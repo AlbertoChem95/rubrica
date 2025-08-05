@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Rubrica – Google Sheets (auto-fallback)</title>
+  <style>
+    body{font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif; margin:24px;}
+    h1{font-size:1.2rem;margin:0 0 12px}
+    .toolbar{display:flex;gap:12px;align-items:center;margin-bottom:14px;flex-wrap:wrap}
+    input[type="search"]{padding:8px 10px;border:1px solid #ccc;border-radius:8px;min-width:260px}
+    table{border-collapse:collapse;width:100%}
+    th, td{border:1px solid #e5e7eb;padding:8px 10px;text-align:left}
+    th{background:#f9fafb}
+    tbody tr:hover{background:#fffef0}
+    .muted{color:#6b7280;font-size:.9rem}
+    .error{color:#b91c1c;background:#fee2e2;border:1px solid #fecaca;padding:10px;border-radius:8px;margin-top:8px;white-space:pre-wrap}
+    code{background:#f3f4f6;padding:2px 4px;border-radius:6px}
+  </style>
+  <script src="https://www.gstatic.com/charts/loader.js"></script>
+</head>
+<body>
+  <h1>Rubrica collegata a Google Sheets</h1>
+  <div class="toolbar">
+    <input id="q" type="search" placeholder="Cerca (nome, cognome, telefono, email)..." />
+    <span class="muted">Foglio: <code>1q6V8tzFWWhBbr8UxzsgkJse3GrYcGFBa7sOx8x8qH5k</code>, sheet=<code>Data</code>, gid=<code>0</code></span>
+  </div>
+  <div id="status" class="muted">Caricamento in corso…</div>
+  <div id="error" class="error" style="display:none;"></div>
+  <div id="table"></div>
+
+  <script>
+    // === CONFIG ===
+    const SHEET_ID = "1q6V8tzFWWhBbr8UxzsgkJse3GrYcGFBa7sOx8x8qH5k";
+    const SHEET_NAME = "Data";
+    const GID = "0";
+    const SELECT = "select *";
+    // =============
+
+    let fullRows = []; // cache per filtro
+
+    google.charts.load("current");
+    google.charts.setOnLoadCallback(init);
+
+    function init(){
+      // Prova 1: sheet=Nome; Prova 2: gid=...
+      const base = `https://docs.google.com/spreadsheets/d/${SHEET_ID}/gviz/tq`;
+      const urls = [
+        `${base}?sheet=${encodeURIComponent(SHEET_NAME)}`,
+        `${base}?gid=${encodeURIComponent(GID)}`
+      ];
+      tryQuery(urls, 0);
+    }
+
+    function tryQuery(urls, i){
+      const status = document.getElementById("status");
+      const errBox = document.getElementById("error");
+      const url = urls[i];
+      status.textContent = `Caricamento (tentativo ${i+1})…`;
+      const q = new google.visualization.Query(url);
+      q.setQuery(SELECT);
+      q.send((resp) => {
+        if(resp.isError()){
+          const msg = `Errore nel caricamento (tentativo ${i+1}): ${resp.getMessage()}\nDettagli: ${resp.getDetailedMessage()}`;
+          console.error(msg, resp);
+          if(i + 1 < urls.length){
+            // fallback al prossimo URL
+            tryQuery(urls, i+1);
+          } else {
+            status.textContent = "";
+            errBox.style.display = "block";
+            errBox.textContent = msg + "\nURL: " + url;
+          }
+          return;
+        }
+        handleResponse(resp);
+      });
+    }
+
+    function handleResponse(resp){
+      const status = document.getElementById("status");
+      const data = resp.getDataTable();
+      status.textContent = `Caricate ${data.getNumberOfRows()} righe.`;
+
+      const headers = [];
+      for(let c=0;c<data.getNumberOfColumns();c++){
+        headers.push(data.getColumnLabel(c) || data.getColumnId(c) || `Col${c+1}`);
+      }
+
+      fullRows = [];
+      for(let r=0;r<data.getNumberOfRows();r++){
+        const row = {};
+        for(let c=0;c<data.getNumberOfColumns();c++){
+          row[headers[c]] = data.getValue(r,c) ?? "";
+        }
+        fullRows.push(row);
+      }
+
+      renderTable(headers, fullRows);
+
+      document.getElementById("q").addEventListener("input", (e)=>{
+        const term = e.target.value.trim().toLowerCase();
+        if(!term) { renderTable(headers, fullRows); return; }
+        const filtered = fullRows.filter(obj =>
+          Object.values(obj).some(v => String(v).toLowerCase().includes(term))
+        );
+        renderTable(headers, filtered);
+        status.textContent = `Viste ${filtered.length} di ${fullRows.length} righe.`;
+      });
+    }
+
+    function renderTable(headers, rows){
+      const container = document.getElementById("table");
+      container.innerHTML = "";
+      const table = document.createElement("table");
+      const thead = document.createElement("thead");
+      const trh = document.createElement("tr");
+      headers.forEach(h => {
+        const th = document.createElement("th");
+        th.textContent = h;
+        trh.appendChild(th);
+      });
+      thead.appendChild(trh);
+      table.appendChild(thead);
+
+      const tbody = document.createElement("tbody");
+      rows.forEach(r => {
+        const tr = document.createElement("tr");
+        headers.forEach(h => {
+          const td = document.createElement("td");
+          td.textContent = r[h] ?? "";
+          tr.appendChild(td);
+        });
+        tbody.appendChild(tr);
+      });
+      table.appendChild(tbody);
+      container.appendChild(table);
+    }
+  </script>
+
+  <p class="muted" style="margin-top:18px">
+    Se dovesse dare ancora errore, apri la <strong>Console</strong> del browser (F12) e incolla qui il messaggio: ora mostriamo i dettagli che arrivano da Google.
+  </p>
+</body>
+</html>
