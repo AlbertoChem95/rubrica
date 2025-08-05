@@ -1,130 +1,145 @@
-
 <!DOCTYPE html>
 <html lang="it">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Rubrica Online</title>
-<style>
-    :root { --gap: 14px; }
-    * { box-sizing: border-box; }
-    body {
-        font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
-        background-color: #f5f5f5;
-        margin: 0; padding: 24px;
-        color: #222;
-    }
-    h1 { text-align: center; margin: 0 0 16px; font-weight: 600; }
-    .card {
-        max-width: 980px; margin: 0 auto; background: #fff; border-radius: 12px;
-        box-shadow: 0 6px 20px rgba(0,0,0,.06); padding: 18px;
-    }
-    .toolbar {
-        display: grid; grid-template-columns: 1fr; gap: var(--gap); margin-bottom: var(--gap);
-    }
-    .search {
-        width: 100%;
-        padding: 12px 14px;
-        border: 1px solid #dcdcdc; border-radius: 10px;
-        font-size: 16px;
-    }
-    table {
-        width: 100%;
-        border-collapse: collapse;
-        background: #fff;
-        border-radius: 10px; overflow: hidden;
-    }
-    thead th {
-        background: #4caf50; color: #fff;
-        text-align: left; padding: 12px; font-weight: 600;
-        position: sticky; top: 0;
-    }
-    tbody td { padding: 10px 12px; border-bottom: 1px solid #eee; }
-    tbody tr:hover { background: #fafafa; }
-    .muted { color: #666; font-size: 14px; }
-    .error { color: #b00020; background: #fde7e9; border: 1px solid #f5c2c7; padding: 10px; border-radius: 8px; }
-</style>
-<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-<script>
-  // === CONFIGURA QUI ===
-  const SHEET_ID = "1q6V8tzFWWhBbr8UxzsgkJse3GrYcGFBa7sOx8x8qH5k"; // <-- il tuo ID
-  const SHEET_NAME = "Data"; // <-- cambia se la linguetta ha un altro nome
-  const SELECT = "select A, B, C, D"; // <-- colonne da mostrare
-  // =====================
-
-  google.charts.load('current', {'packages':['corechart']});
-  google.charts.setOnLoadCallback(init);
-
-  function init() {
-    const url = "https://docs.google.com/spreadsheets/d/e/2PACX-1vTyhhQEn0HfRBRzZ5Igvvqmzd_beKMGZ9LiITFaacKAL3TQmP2L69SC47c7z7xIWv-YhVMvl1HZJv-N/gviz/tq?tqx=out:json";
-    const query = new google.visualization.Query(url);
-    query.setQuery(SELECT);
-    query.send(handleResponse);
-  }
-
-  function handleResponse(response) {
-    const errorBox = document.getElementById('error');
-    errorBox.textContent = "";
-    errorBox.style.display = "none";
-
-    if (response.isError()) {
-      const msg = `Errore dalla Query API: ${response.getMessage()} (dettagli: ${response.getDetailedMessage()})`;
-      console.error(msg);
-      errorBox.textContent = msg + "\n\nControlla: 1) Il foglio è Pubblicato sul web (File > Condividi > Pubblica sul web) oppure Condiviso: Chiunque con il link (Lettore). 2) Il nome della linguetta (SHEET_NAME). 3) Le colonne selezionate (SELECT).`;
-      errorBox.style.display = "block";
-      return;
-    }
-
-    const data = response.getDataTable();
-    const tbody = document.getElementById('rubrica-body');
-    tbody.innerHTML = "";
-
-    const rows = data.getNumberOfRows();
-    const cols = data.getNumberOfColumns();
-
-    for (let r = 0; r < rows; r++) {
-      const tr = document.createElement('tr');
-      for (let c = 0; c < cols; c++) {
-        const td = document.createElement('td');
-        const v = data.getValue(r, c);
-        td.textContent = (v !== null && v !== undefined) ? v : "";
-        tr.appendChild(td);
-      }
-      tbody.appendChild(tr);
-    }
-
-    document.getElementById('count').textContent = rows;
-  }
-
-  function searchTable() {
-    const q = document.getElementById("search").value.toLowerCase();
-    const rows = document.querySelectorAll("#rubrica-body tr");
-    rows.forEach(row => {
-      const match = Array.from(row.children).some(td => td.textContent.toLowerCase().includes(q));
-      row.style.display = match ? "" : "none";
-    });
-  }
-</script>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Rubrica – Google Sheets (auto-fallback)</title>
+  <style>
+    body{font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif; margin:24px;}
+    h1{font-size:1.2rem;margin:0 0 12px}
+    .toolbar{display:flex;gap:12px;align-items:center;margin-bottom:14px;flex-wrap:wrap}
+    input[type="search"]{padding:8px 10px;border:1px solid #ccc;border-radius:8px;min-width:260px}
+    table{border-collapse:collapse;width:100%}
+    th, td{border:1px solid #e5e7eb;padding:8px 10px;text-align:left}
+    th{background:#f9fafb}
+    tbody tr:hover{background:#fffef0}
+    .muted{color:#6b7280;font-size:.9rem}
+    .error{color:#b91c1c;background:#fee2e2;border:1px solid #fecaca;padding:10px;border-radius:8px;margin-top:8px;white-space:pre-wrap}
+    code{background:#f3f4f6;padding:2px 4px;border-radius:6px}
+  </style>
+  <script src="https://www.gstatic.com/charts/loader.js"></script>
 </head>
 <body>
-  <div class="card">
-    <h1>Rubrica Online</h1>
-    <div id="error" class="error" style="display:none"></div>
-    <div class="toolbar">
-      <input id="search" class="search" onkeyup="searchTable()" placeholder="Cerca un contatto...">
-      <div class="muted">Contatti caricati: <span id="count">0</span></div>
-    </div>
-    <table>
-      <thead>
-        <tr>
-          <th>Nome</th>
-          <th>Cognome</th>
-          <th>Telefono</th>
-          <th>Email</th>
-        </tr>
-      </thead>
-      <tbody id="rubrica-body"></tbody>
-    </table>
+  <h1>Rubrica collegata a Google Sheets</h1>
+  <div class="toolbar">
+    <input id="q" type="search" placeholder="Cerca (nome, cognome, telefono, email)..." />
+    <span class="muted">Foglio: <code>1q6V8tzFWWhBbr8UxzsgkJse3GrYcGFBa7sOx8x8qH5k</code>, sheet=<code>Data</code>, gid=<code>0</code></span>
   </div>
+  <div id="status" class="muted">Caricamento in corso…</div>
+  <div id="error" class="error" style="display:none;"></div>
+  <div id="table"></div>
+
+  <script>
+    // === CONFIG ===
+    const SHEET_ID = "1q6V8tzFWWhBbr8UxzsgkJse3GrYcGFBa7sOx8x8qH5k";
+    const SHEET_NAME = "Data";
+    const GID = "0";
+    const SELECT = "select *";
+    // =============
+
+    let fullRows = []; // cache per filtro
+
+    google.charts.load("current");
+    google.charts.setOnLoadCallback(init);
+
+    function init(){
+      // Prova 1: sheet=Nome; Prova 2: gid=...
+      const base = `https://docs.google.com/spreadsheets/d/${SHEET_ID}/gviz/tq`;
+      const urls = [
+        `${base}?sheet=${encodeURIComponent(SHEET_NAME)}`,
+        `${base}?gid=${encodeURIComponent(GID)}`
+      ];
+      tryQuery(urls, 0);
+    }
+
+    function tryQuery(urls, i){
+      const status = document.getElementById("status");
+      const errBox = document.getElementById("error");
+      const url = urls[i];
+      status.textContent = `Caricamento (tentativo ${i+1})…`;
+      const q = new google.visualization.Query(url);
+      q.setQuery(SELECT);
+      q.send((resp) => {
+        if(resp.isError()){
+          const msg = `Errore nel caricamento (tentativo ${i+1}): ${resp.getMessage()}\nDettagli: ${resp.getDetailedMessage()}`;
+          console.error(msg, resp);
+          if(i + 1 < urls.length){
+            // fallback al prossimo URL
+            tryQuery(urls, i+1);
+          } else {
+            status.textContent = "";
+            errBox.style.display = "block";
+            errBox.textContent = msg + "\nURL: " + url;
+          }
+          return;
+        }
+        handleResponse(resp);
+      });
+    }
+
+    function handleResponse(resp){
+      const status = document.getElementById("status");
+      const data = resp.getDataTable();
+      status.textContent = `Caricate ${data.getNumberOfRows()} righe.`;
+
+      const headers = [];
+      for(let c=0;c<data.getNumberOfColumns();c++){
+        headers.push(data.getColumnLabel(c) || data.getColumnId(c) || `Col${c+1}`);
+      }
+
+      fullRows = [];
+      for(let r=0;r<data.getNumberOfRows();r++){
+        const row = {};
+        for(let c=0;c<data.getNumberOfColumns();c++){
+          row[headers[c]] = data.getValue(r,c) ?? "";
+        }
+        fullRows.push(row);
+      }
+
+      renderTable(headers, fullRows);
+
+      document.getElementById("q").addEventListener("input", (e)=>{
+        const term = e.target.value.trim().toLowerCase();
+        if(!term) { renderTable(headers, fullRows); return; }
+        const filtered = fullRows.filter(obj =>
+          Object.values(obj).some(v => String(v).toLowerCase().includes(term))
+        );
+        renderTable(headers, filtered);
+        status.textContent = `Viste ${filtered.length} di ${fullRows.length} righe.`;
+      });
+    }
+
+    function renderTable(headers, rows){
+      const container = document.getElementById("table");
+      container.innerHTML = "";
+      const table = document.createElement("table");
+      const thead = document.createElement("thead");
+      const trh = document.createElement("tr");
+      headers.forEach(h => {
+        const th = document.createElement("th");
+        th.textContent = h;
+        trh.appendChild(th);
+      });
+      thead.appendChild(trh);
+      table.appendChild(thead);
+
+      const tbody = document.createElement("tbody");
+      rows.forEach(r => {
+        const tr = document.createElement("tr");
+        headers.forEach(h => {
+          const td = document.createElement("td");
+          td.textContent = r[h] ?? "";
+          tr.appendChild(td);
+        });
+        tbody.appendChild(tr);
+      });
+      table.appendChild(tbody);
+      container.appendChild(table);
+    }
+  </script>
+
+  <p class="muted" style="margin-top:18px">
+    Se dovesse dare ancora errore, apri la <strong>Console</strong> del browser (F12) e incolla qui il messaggio: ora mostriamo i dettagli che arrivano da Google.
+  </p>
 </body>
 </html>
