@@ -3,114 +3,130 @@
 <head>
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no"/>
-<title>Chi Diventa Milionario? - Edizione Puglia</title>
+<title>Chi Diventa Milionario? – Edizione Puglia</title>
 <style>
 :root{
-  --bg:#0b1220; --panel:#141d30; --panel2:#1b2740; --line:#2a3a5c;
-  --gold:#facc15; --green:#4ade80; --red:#f87171; --blue:#60a5fa;
-  --txt:#e8eef7; --mut:#8aa0c0;
+  --bg:#080e1a;--panel:#111a2b;--panel2:#162035;--line:#243350;
+  --gold:#facc15;--green:#4ade80;--red:#f87171;--blue:#60a5fa;--purple:#a78bfa;
+  --txt:#e8eef7;--mut:#7a90b0;
 }
 *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
-html,body{background:var(--bg);color:var(--txt);font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
-body{min-height:100vh;overflow-x:hidden}
-.app{max-width:560px;margin:0 auto;min-height:100vh;display:flex;flex-direction:column}
-.hd{background:linear-gradient(135deg,#16335c,#0d4c81 60%,#0a3a66);padding:14px 18px;text-align:center;border-bottom:3px solid var(--gold);position:sticky;top:0;z-index:20}
-.hd h1{font-size:1.2rem;color:var(--gold);line-height:1.15}
-.hd .sub{color:#a9cdf0;font-size:.76rem;margin-top:3px}
-.screen{padding:16px;flex:1;animation:fade .35s ease}
-@keyframes fade{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+html,body{background:var(--bg);color:var(--txt);font-family:system-ui,-apple-system,"Segoe UI",sans-serif;min-height:100vh}
+.app{max-width:560px;margin:0 auto;display:flex;flex-direction:column;min-height:100vh}
+.hd{background:linear-gradient(135deg,#12294d,#0a4070 55%,#092d55);padding:13px 16px;text-align:center;border-bottom:2.5px solid var(--gold);position:sticky;top:0;z-index:30}
+.hd h1{font-size:1.18rem;color:var(--gold)}
+.hd .sub{font-size:.73rem;color:#90b8e0;margin-top:2px}
+.screen{padding:14px;flex:1;animation:fade .3s ease}
+@keyframes fade{from{opacity:0;transform:translateY(7px)}to{opacity:1;transform:none}}
 
-.btn{display:block;width:100%;border:none;border-radius:12px;padding:15px;font-size:1rem;font-weight:800;cursor:pointer;transition:transform .12s,filter .12s}
+.btn{display:block;width:100%;border:none;border-radius:11px;padding:14px;font-size:.97rem;font-weight:800;cursor:pointer;transition:transform .12s}
 .btn:active{transform:scale(.97)}
-.btn-gold{background:linear-gradient(135deg,var(--gold),#f0b90b);color:#0b1220;box-shadow:0 6px 18px rgba(250,204,21,.25)}
+.btn-gold{background:linear-gradient(135deg,var(--gold),#eaa800);color:#080e1a;box-shadow:0 4px 14px rgba(250,204,21,.22)}
 .btn-ghost{background:var(--panel2);color:var(--txt);border:1px solid var(--line)}
-.btn-sm{padding:11px;font-size:.9rem;border-radius:10px}
-.btn:disabled{opacity:.4;cursor:not-allowed}
-.mt{margin-top:14px}.mt-s{margin-top:8px}
-.title{font-size:1.05rem;font-weight:800;color:var(--gold);margin-bottom:12px;display:flex;align-items:center;gap:8px}
-.muted{color:var(--mut)}
+.btn:disabled{opacity:.38;cursor:not-allowed}
+.mt{margin-top:12px}.mt-s{margin-top:7px}
+.sec-title{font-size:.97rem;font-weight:800;color:var(--gold);display:flex;align-items:center;gap:7px;margin-bottom:10px}
 
-.rules{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:16px;margin-bottom:14px}
-.rules li{list-style:none;padding:8px 0;border-bottom:1px solid #1d2944;display:flex;gap:10px;align-items:flex-start;font-size:.9rem;line-height:1.4}
+/* INTRO */
+.intro-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:7px;margin:10px 0}
+.intro-cell{background:var(--panel);border:1px solid var(--line);border-radius:9px;padding:9px 4px;text-align:center;font-size:.62rem;color:var(--mut)}
+.intro-cell .e{font-size:1.25rem;display:block;margin-bottom:3px}
+.rules{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:13px;margin-bottom:12px}
+.rules li{list-style:none;padding:7px 0;border-bottom:1px solid #1a2740;display:flex;gap:9px;align-items:flex-start;font-size:.86rem;line-height:1.4}
 .rules li:last-child{border-bottom:none}
-.rules .ic{font-size:1.1rem;flex-shrink:0}
-.samp{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-bottom:14px}
-.samp .s{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:9px 6px;text-align:center}
-.samp .s .e{font-size:1.3rem}
-.samp .s .n{font-size:.68rem;color:var(--mut);margin-top:3px;line-height:1.2}
+.rules .ic{flex-shrink:0;font-size:1rem}
 
-.turnbar{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px;gap:10px}
-.yearlbl{font-weight:800;color:var(--gold);font-size:1rem;white-space:nowrap}
-.dots{display:flex;gap:5px;flex-wrap:wrap}
-.dot{width:13px;height:13px;border-radius:50%;background:#22304d;border:2px solid #2c3d60;transition:.3s}
+/* TURN BAR */
+.turnbar{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px;gap:8px}
+.yearlbl{font-weight:800;color:var(--gold);font-size:.97rem;white-space:nowrap}
+.dots{display:flex;gap:4px}
+.dot{width:12px;height:12px;border-radius:50%;background:#1c2e48;border:2px solid #263d60;transition:.25s}
 .dot.done{background:var(--green);border-color:#22c55e}
-.dot.cur{background:var(--gold);border-color:#eab308;box-shadow:0 0 8px rgba(250,204,21,.6)}
+.dot.cur{background:var(--gold);border-color:#eab308;box-shadow:0 0 7px rgba(250,204,21,.55)}
 
-.cards{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:16px}
-.pcard{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:11px;position:relative;transition:.3s}
-.pcard.lead{border-color:var(--gold);box-shadow:0 0 0 1px var(--gold),0 6px 16px rgba(250,204,21,.15)}
-.pcard .nm{font-weight:700;font-size:.86rem;display:flex;align-items:center;gap:5px}
-.pcard .wl{font-size:1.12rem;font-weight:900;color:var(--green);margin-top:2px;font-variant-numeric:tabular-nums}
-.pcard .dl{font-size:.72rem;margin-top:1px;font-weight:700}
+/* STANDINGS */
+.cards{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin-bottom:13px}
+.pcard{background:var(--panel);border:1px solid var(--line);border-radius:11px;padding:10px}
+.pcard.lead{border-color:var(--gold);box-shadow:0 0 0 1px var(--gold)}
+.pcard .nm{font-size:.82rem;font-weight:700}
+.pcard .wl{font-size:1.08rem;font-weight:900;color:var(--green);margin-top:2px;font-variant-numeric:tabular-nums}
+.pcard .dl{font-size:.68rem;margin-top:1px;font-weight:700}
 .dl.up{color:var(--green)}.dl.down{color:var(--red)}.dl.flat{color:var(--mut)}
 
-.event{border-radius:14px;padding:13px 15px;margin-bottom:16px;border:1px solid;animation:pop .4s ease}
-@keyframes pop{from{opacity:0;transform:scale(.96)}to{opacity:1;transform:none}}
-.event .lb{font-size:.98rem;font-weight:800;display:block;margin-bottom:4px}
-.event .ds{font-size:.83rem;line-height:1.45;opacity:.92}
-.event.good{background:#06281a;border-color:#1f9d57;color:#86efac}
-.event.bad{background:#2a0c0c;border-color:#c43d3d;color:#fca5a5}
-.event.neutral{background:#1a1c24;border-color:#5b6472;color:#c2c9d4}
-.event.info{background:#0a1f3a;border-color:#2f72c4;color:#9ccdf5}
+/* EVENT */
+.ev{border-radius:12px;padding:12px 14px;margin-bottom:13px;border:1px solid;animation:pop .35s ease}
+@keyframes pop{from{opacity:0;transform:scale(.95)}to{opacity:1;transform:none}}
+.ev .lb{font-weight:800;font-size:.96rem;display:block;margin-bottom:3px}
+.ev .ds{font-size:.81rem;line-height:1.42;opacity:.92}
+.ev.good{background:#052212;border-color:#16813e;color:#86efac}
+.ev.bad{background:#220808;border-color:#b03030;color:#fca5a5}
+.ev.neutral{background:#141820;border-color:#4a5568;color:#b8c4d4}
+.ev.info{background:#071830;border-color:#2060b0;color:#90c0f0}
 
-.dechead{display:flex;align-items:center;justify-content:space-between;margin-bottom:3px}
-.dechead .who{font-size:1.15rem;font-weight:900;display:flex;align-items:center;gap:7px}
-.dechead .step{font-size:.72rem;color:var(--mut);background:#0e1c33;border:1px solid #243450;padding:3px 9px;border-radius:20px}
-.cashline{font-size:.84rem;color:var(--mut);margin-bottom:12px}
-.cashline b{color:var(--txt)}
-.choosehint{font-size:.8rem;color:var(--blue);font-weight:700;margin-bottom:10px}
+/* CHOICE HEADER */
+.choice-hd{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:12px;margin-bottom:10px}
+.ch-top{display:flex;align-items:center;justify-content:space-between}
+.ch-who{font-size:1.1rem;font-weight:900}
+.ch-step{font-size:.7rem;color:var(--mut);background:#0b1528;border:1px solid #1e3050;padding:2px 8px;border-radius:20px}
+.ch-cash{font-size:.82rem;color:var(--mut);margin-top:5px}
+.ch-cash b{color:var(--txt)}
+.ch-hint{font-size:.79rem;color:var(--blue);font-weight:700;margin-top:4px}
 
-.mcard{background:var(--panel);border:1.5px solid var(--line);border-radius:13px;padding:12px;margin-bottom:9px;cursor:pointer;transition:.16s;position:relative}
-.mcard:active{transform:scale(.99)}
-.mcard.sel{border-color:var(--gold);background:#1c2210;box-shadow:0 0 0 1px var(--gold) inset,0 6px 16px rgba(250,204,21,.12)}
-.mcard.dis{opacity:.4;pointer-events:none}
-.mcard .top{display:flex;align-items:center;gap:10px}
-.mcard .e{font-size:1.7rem;flex-shrink:0}
-.mcard .nm{font-weight:800;font-size:.92rem}
-.mcard .ds{font-size:.74rem;color:var(--mut);margin-top:1px;line-height:1.3}
-.mcard .selmark{position:absolute;top:10px;right:10px;width:22px;height:22px;border-radius:50%;border:2px solid var(--line);display:flex;align-items:center;justify-content:center;font-size:.75rem;color:#0b1220;font-weight:900}
-.mcard.sel .selmark{background:var(--gold);border-color:var(--gold)}
-.mcard .meta{display:flex;flex-wrap:wrap;gap:6px;margin-top:9px;align-items:center}
-.chip{font-size:.68rem;font-weight:700;padding:3px 8px;border-radius:20px;border:1px solid}
-.chip.cap{background:#0e1c33;border-color:#243450;color:#a9cdf0}
-.chip.rng{background:#0e1c33;border-color:#243450;color:#cbd5e1}
-.chip.cat{border-color:#314058}
-.chip.risk-low{background:#06281a;border-color:#1f9d57;color:#86efac}
-.chip.risk-mid{background:#2a2400;border-color:#b08900;color:#fcd34d}
-.chip.risk-high{background:#2a0c0c;border-color:#c43d3d;color:#fca5a5}
-.chip.fav{background:#06281a;border-color:#1f9d57;color:#86efac}
-.chip.unf{background:#2a0c0c;border-color:#c43d3d;color:#fca5a5}
+/* CHOICE CARD */
+.ccard{background:var(--panel);border:1.5px solid var(--line);border-radius:12px;padding:11px;margin-bottom:8px;cursor:pointer;transition:.15s;position:relative;-webkit-user-select:none;user-select:none}
+.ccard:active{transform:scale(.99)}
+.ccard.sel{border-color:var(--gold);background:#181e0a;box-shadow:0 0 0 1px var(--gold) inset}
+.ccard .top{display:flex;align-items:flex-start;gap:10px}
+.ccard .em{font-size:1.65rem;flex-shrink:0;line-height:1}
+.ccard .info{flex:1;min-width:0}
+.ccard .cn{font-weight:800;font-size:.89rem}
+.ccard .cd{font-size:.72rem;color:var(--mut);margin-top:1px;line-height:1.3}
+.ccard .chk{position:absolute;top:9px;right:9px;width:20px;height:20px;border-radius:50%;border:2px solid var(--line);display:flex;align-items:center;justify-content:center;font-size:.72rem;color:#080e1a;font-weight:900;flex-shrink:0}
+.ccard.sel .chk{background:var(--gold);border-color:var(--gold)}
+.chips{display:flex;flex-wrap:wrap;gap:5px;margin-top:8px}
+.chip{font-size:.64rem;font-weight:700;padding:2px 7px;border-radius:14px;border:1px solid;white-space:nowrap}
+.ch-cost{background:#0b1830;border-color:#243a60;color:#9ab8e0}
+.ch-rng{background:#0b1830;border-color:#243a60;color:#c0cde0}
+.ch-cat{border-color:#2a3e5a}
+.ch-rl{background:#052212;border-color:#16813e;color:#86efac}
+.ch-rm{background:#1e1800;border-color:#927000;color:#fcd34d}
+.ch-rh{background:#220808;border-color:#b03030;color:#fca5a5}
+.ch-fav{background:#052212;border-color:#16813e;color:#86efac}
+.ch-unf{background:#220808;border-color:#b03030;color:#fca5a5}
 
-.rrow{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:12px;margin-bottom:10px}
-.rrow .rh{display:flex;justify-content:space-between;align-items:center;gap:8px}
-.rrow .rn{font-weight:800;font-size:.93rem;display:flex;align-items:center;gap:6px}
-.rrow .rsub{font-size:.74rem;color:var(--mut);margin-top:2px}
-.rrow .rg{font-weight:900;font-size:1.05rem;font-variant-numeric:tabular-nums;white-space:nowrap}
+/* RESULTS */
+.rrow{background:var(--panel);border:1px solid var(--line);border-radius:11px;padding:11px;margin-bottom:9px}
+.rrow .rh{display:flex;justify-content:space-between;align-items:flex-start;gap:8px}
+.rrow .rn{font-weight:800;font-size:.9rem}
+.rrow .rsub{font-size:.7rem;color:var(--mut);margin-top:2px}
+.rrow .rg{font-weight:900;font-size:1rem;font-variant-numeric:tabular-nums;white-space:nowrap;padding-top:1px}
 .rg.pos{color:var(--green)}.rg.neg{color:var(--red)}
 
-.podium{display:flex;justify-content:center;align-items:flex-end;gap:8px;margin:8px 0 18px}
-.pp{flex:1;max-width:120px;text-align:center;border-radius:12px 12px 0 0;padding:12px 6px;border:2px solid;border-bottom:none}
-.pp .pe{font-size:1.6rem}
-.pp .pn{font-weight:800;font-size:.84rem;margin:4px 0 1px}
-.pp .pw{font-size:.78rem;font-weight:900;color:var(--green);font-variant-numeric:tabular-nums}
-.pp.first{background:#2a2400;border-color:var(--gold);height:140px;order:2}
-.pp.second{background:#1a1f2c;border-color:#9aa6b8;height:115px;order:1}
-.pp.third{background:#241600;border-color:#c2790f;height:95px;order:3}
-.frow{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:11px;margin-bottom:8px;display:flex;align-items:center;gap:10px}
-.frow .rk{font-weight:900;color:var(--gold);font-size:1rem;width:22px}
-.frow .fn{font-weight:700;flex:1}
-.frow .fw{font-weight:800;color:var(--green);font-variant-numeric:tabular-nums;font-size:.9rem}
-.hint{font-size:.74rem;color:var(--mut);text-align:center;margin-top:10px;line-height:1.4}
+/* FINAL */
+.podium{display:flex;justify-content:center;align-items:flex-end;gap:7px;margin:8px 0 16px}
+.pp{flex:1;max-width:115px;text-align:center;border-radius:11px 11px 0 0;padding:10px 5px;border:2px solid;border-bottom:none}
+.pp .pe{font-size:1.5rem}
+.pp .pn{font-weight:800;font-size:.82rem;margin:3px 0 1px}
+.pp .pw{font-size:.76rem;font-weight:900;color:var(--green);font-variant-numeric:tabular-nums}
+.pp.first{background:#221c00;border-color:var(--gold);height:132px;order:2}
+.pp.second{background:#161c28;border-color:#8a96a8;height:108px;order:1}
+.pp.third{background:#1e1000;border-color:#b07000;height:90px;order:3}
+.frow{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:10px;margin-bottom:7px;display:flex;align-items:center;gap:9px}
+.frow .rk{font-weight:900;color:var(--gold);width:20px;font-size:.97rem}
+.frow .fn{flex:1;font-weight:700;font-size:.88rem}
+.frow .fsub{font-size:.68rem;color:var(--mut);margin-top:2px}
+.frow .fw{font-weight:800;color:var(--green);font-variant-numeric:tabular-nums;font-size:.87rem}
+.hint{font-size:.72rem;color:var(--mut);text-align:center;margin-top:9px;line-height:1.4}
+
+/* OVERVIEW TABLE (shared cards) */
+.ov-header{background:var(--panel2);border:1px solid var(--line);border-radius:11px;padding:10px 12px;margin-bottom:10px;font-size:.78rem;color:var(--blue);font-weight:700;text-align:center}
+.whose-turn{background:var(--panel2);border:1px solid var(--line);border-radius:11px;padding:10px 12px;margin-bottom:10px;display:flex;gap:12px;flex-wrap:wrap}
+.wt-item{display:flex;align-items:center;gap:6px;font-size:.78rem}
+.wt-item .wt-av{width:22px;height:22px;border-radius:50%;border:2px solid var(--line);display:flex;align-items:center;justify-content:center;font-size:.7rem;background:#0b1830}
+.wt-item .wt-av.done{border-color:var(--green)}
+.wt-item .wt-av.cur{border-color:var(--gold);background:#1c1800}
+.wt-lbl{color:var(--mut)}
+.wt-pick{font-weight:700;color:var(--txt)}
 </style>
 </head>
 <body>
@@ -121,347 +137,444 @@ body{min-height:100vh;overflow-x:hidden}
   </div>
   <div class="screen" id="screen"></div>
 </div>
-
 <script>
 "use strict";
-
-// ════════════════ CONFIG ════════════════
 var PLAYERS=["Alberto","Alice","Nicolas","Mattia"];
-var AVATARS={Alberto:"🧔",Alice:"👩",Nicolas:"👨",Mattia:"🧑"};
-var START=10000, YEARS=10, HAND=3;
+var AV={Alberto:"🧔",Alice:"👩",Nicolas:"👨",Mattia:"🧑"};
+var START=10000, YEARS=10, HAND=5;
 
-// category meta
+// ─── CATEGORIE ───────────────────────────────────────────────────────────────
 var CATS={
-  tech:{l:"Tech",c:"#a78bfa"}, immobili:{l:"Immobili",c:"#f472b6"},
-  turismo:{l:"Turismo",c:"#22d3ee"}, food:{l:"Food",c:"#fb923c"},
-  auto:{l:"Auto",c:"#60a5fa"}, finanza:{l:"Finanza",c:"#4ade80"},
-  crypto:{l:"Crypto",c:"#fbbf24"}, extra:{l:"Azzardo",c:"#f87171"}
+  crypto:{l:"Crypto",    c:"#fbbf24"},
+  azioni:{l:"Azioni",    c:"#60a5fa"},
+  tech:  {l:"Tech",      c:"#a78bfa"},
+  gold:  {l:"Oro",       c:"#fde68a"},
+  silver:{l:"Argento",   c:"#d1d5db"},
+  immob: {l:"Immobili",  c:"#f472b6"},
+  turis: {l:"Turismo",   c:"#22d3ee"},
+  food:  {l:"Food/Agri", c:"#fb923c"},
+  auto:  {l:"Auto",      c:"#64748b"},
+  fin:   {l:"Finanza",   c:"#4ade80"},
+  azz:   {l:"Azzardo",   c:"#f87171"}
 };
 
-// ~34 opportunità nel mazzo (stake = capitale impiegato, lo/hi = resa annua)
+// ─── MAZZO (~52 carte) ────────────────────────────────────────────────────────
+// lo/hi = range resa sul capitale investito (es. -0.5 = -50%, +1.0 = +100%)
+// tags = sottocategorie per eventi specifici
 var DECK=[
-  {id:"app", e:"📱", n:"App per turisti", ds:"Startup digitale per i vacanzieri", cost:3000, cat:"tech", lo:-0.50, hi:1.20},
-  {id:"ai", e:"🤖", n:"Startup di AI", ds:"Scommessa tecnologica ad alto potenziale", cost:5000, cat:"tech", lo:-0.60, hi:1.50},
-  {id:"ecom", e:"🛒", n:"E-commerce tipico", ds:"Vendita online di prodotti pugliesi", cost:2500, cat:"tech", lo:-0.30, hi:0.80},
-  {id:"garage", e:"🏠", n:"Garage da affittare", ds:"Rendita immobiliare tranquilla", cost:8000, cat:"immobili", lo:0.05, hi:0.18},
-  {id:"trullo", e:"🏡", n:"Trullo da ristrutturare", ds:"Ristruttura e rivendi", cost:12000, cat:"immobili", lo:-0.10, hi:0.60},
-  {id:"mare", e:"🏖️", n:"Casa al mare in affitto", ds:"Affitti estivi a Gallipoli", cost:15000, cat:"immobili", lo:0.00, hi:0.40},
-  {id:"palazzo", e:"🏢", n:"Quota in palazzina", ds:"Investimento immobiliare grosso", cost:20000, cat:"immobili", lo:-0.05, hi:0.30},
-  {id:"chiosco", e:"🍹", n:"Chiosco sulla spiaggia", ds:"Drink e granite tutta estate", cost:6000, cat:"turismo", lo:0.00, hi:0.45},
-  {id:"barche", e:"⛵", n:"Noleggio barche", ds:"Gite in barca tra le grotte", cost:9000, cat:"turismo", lo:-0.30, hi:0.70},
-  {id:"bb", e:"🛏️", n:"B&B nel centro storico", ds:"Ospitalità tra i vicoli", cost:11000, cat:"turismo", lo:-0.10, hi:0.55},
-  {id:"van", e:"🚐", n:"Tour in van del Salento", ds:"Escursioni guidate", cost:4000, cat:"turismo", lo:-0.20, hi:0.60},
-  {id:"lido", e:"🛟", n:"Lido attrezzato", ds:"Ombrelloni, lettini e bar", cost:14000, cat:"turismo", lo:-0.20, hi:0.60},
-  {id:"pizzica", e:"🪗", n:"Festival di pizzica", ds:"Eventi musicali estivi", cost:4000, cat:"turismo", lo:-0.40, hi:0.80},
-  {id:"olio", e:"🫒", n:"Uliveto (olio EVO)", ds:"Oro verde di Puglia", cost:7000, cat:"food", lo:-0.20, hi:0.50},
-  {id:"vino", e:"🍇", n:"Vigneto di Primitivo", ds:"Vino pregiato del Salento", cost:10000, cat:"food", lo:-0.25, hi:0.70},
-  {id:"burrata", e:"🧀", n:"Caseificio (burrata)", ds:"Latticini freschi a km zero", cost:5000, cat:"food", lo:-0.10, hi:0.50},
-  {id:"pizzeria", e:"🍕", n:"Pizzeria gourmet", ds:"Forno a legna e impasti speciali", cost:6000, cat:"food", lo:-0.40, hi:0.90},
-  {id:"pesce", e:"🐟", n:"Pescheria", ds:"Pescato del giorno", cost:3500, cat:"food", lo:-0.20, hi:0.45},
-  {id:"gelato", e:"🍦", n:"Gelateria artigianale", ds:"Gusti del territorio", cost:4500, cat:"food", lo:-0.20, hi:0.60},
-  {id:"sagra", e:"🎪", n:"Sagra delle orecchiette", ds:"Evento gastronomico di paese", cost:3000, cat:"food", lo:-0.20, hi:0.50},
-  {id:"cozze", e:"🦪", n:"Allevamento di cozze", ds:"Mitilicoltura a Taranto", cost:5000, cat:"food", lo:-0.30, hi:0.60},
-  {id:"usate", e:"🚗", n:"Compravendita auto usate", ds:"Compra basso, vendi alto", cost:4000, cat:"auto", lo:-0.40, hi:1.00},
-  {id:"scooter", e:"🛵", n:"Noleggio scooter", ds:"Due ruote per i turisti", cost:3000, cat:"auto", lo:-0.30, hi:0.60},
-  {id:"flotta", e:"🚙", n:"Flotta a noleggio", ds:"Auto a noleggio in aeroporto", cost:13000, cat:"auto", lo:-0.30, hi:0.70},
-  {id:"bond", e:"🏦", n:"Obbligazioni statali", ds:"Cedola sicura e noiosa", cost:5000, cat:"finanza", lo:0.02, hi:0.05},
-  {id:"etf", e:"📊", n:"ETF mondiale", ds:"Mercati globali diversificati", cost:5000, cat:"finanza", lo:-0.15, hi:0.25},
-  {id:"oro", e:"🥇", n:"Oro fisico", ds:"Bene rifugio", cost:6000, cat:"finanza", lo:-0.10, hi:0.20},
-  {id:"diamanti", e:"💎", n:"Diamanti da investimento", ds:"Pietre preziose", cost:8000, cat:"finanza", lo:-0.20, hi:0.30},
-  {id:"solare", e:"🌻", n:"Campo fotovoltaico", ds:"Energia che rende negli anni", cost:16000, cat:"finanza", lo:0.03, hi:0.25},
-  {id:"btc", e:"₿", n:"Bitcoin", ds:"Cripto volatile per stomaci forti", cost:4000, cat:"crypto", lo:-0.70, hi:2.00},
-  {id:"meme", e:"🪙", n:"Memecoin pugliese", ds:"Pump o crollo, chi lo sa", cost:2000, cat:"crypto", lo:-0.95, hi:4.00},
-  {id:"bet", e:"🎰", n:"Scommessa sportiva", ds:"Tutto sul derby", cost:1500, cat:"extra", lo:-1.00, hi:2.50},
-  {id:"poker", e:"🃏", n:"Tavolo da poker", ds:"Serata ad alto rischio", cost:2000, cat:"extra", lo:-1.00, hi:1.80},
-  {id:"arte", e:"🎨", n:"Galleria d'arte", ds:"Compra opere emergenti", cost:7000, cat:"extra", lo:-0.50, hi:0.70}
+  // CRYPTO
+  {id:"btc",    e:"₿",  n:"Bitcoin",            ds:"La cripto madre: alta volatilità",    cost:3000,cat:"crypto",tags:[],          lo:-0.70,hi:2.00},
+  {id:"eth",    e:"Ξ",  n:"Ethereum",            ds:"Smart contract e DeFi",               cost:3000,cat:"crypto",tags:["defi"],    lo:-0.65,hi:1.80},
+  {id:"meme",   e:"🐕", n:"Memecoin",            ds:"Pump o crollo, nessuno sa",           cost:1000,cat:"crypto",tags:[],          lo:-0.95,hi:4.50},
+  {id:"defi",   e:"🔗", n:"Token DeFi",          ds:"Finanza decentralizzata",             cost:2000,cat:"crypto",tags:["defi"],    lo:-0.75,hi:2.50},
+  {id:"nft",    e:"🖼️", n:"Collezione NFT",      ds:"Arte digitale: tutto o niente",       cost:1500,cat:"crypto",tags:[],          lo:-0.90,hi:3.00},
+  // AZIONI
+  {id:"az_dif", e:"🛡️", n:"Azioni Difesa",       ds:"Industria militare e armamenti",      cost:5000,cat:"azioni",tags:["difesa"], lo:-0.10,hi:0.65},
+  {id:"az_far", e:"💊", n:"Azioni Farmaceutiche",ds:"Big Pharma globale",                  cost:5000,cat:"azioni",tags:["pharma"], lo:-0.20,hi:0.90},
+  {id:"az_ene", e:"⚡", n:"Azioni Rinnovabili",  ds:"Solare, eolico, green energy",        cost:5000,cat:"azioni",tags:["green"],  lo:-0.25,hi:0.70},
+  {id:"az_pet", e:"🛢️", n:"Azioni Petrolio",     ds:"Big Oil: volatile ma ricco",          cost:6000,cat:"azioni",tags:["petrolio"],lo:-0.30,hi:0.80},
+  {id:"az_aer", e:"✈️", n:"Azioni Compagnie Aeree",ds:"Alto rischio geopolitico",          cost:4000,cat:"azioni",tags:["aerei"],  lo:-0.50,hi:0.75},
+  {id:"az_ban", e:"🏦", n:"Azioni Bancarie",     ds:"Istituti finanziari europei",         cost:5000,cat:"azioni",tags:["banche"], lo:-0.40,hi:0.60},
+  {id:"az_con", e:"🛍️", n:"Azioni Consumer",     ds:"Brand dei beni di consumo",           cost:4000,cat:"azioni",tags:[],         lo:-0.20,hi:0.45},
+  {id:"az_lux", e:"👜", n:"Azioni Lusso",        ds:"LVMH, Moncler, Ferrari...",           cost:6000,cat:"azioni",tags:["lusso"],  lo:-0.15,hi:0.55},
+  {id:"az_fod", e:"🍔", n:"Azioni Fast Food",    ds:"Catene ristorazione globale",         cost:3000,cat:"azioni",tags:[],         lo:-0.10,hi:0.35},
+  {id:"az_med", e:"📺", n:"Azioni Media/Streaming",ds:"Netflix, Disney, contenuti",        cost:4000,cat:"azioni",tags:[],         lo:-0.30,hi:0.60},
+  {id:"az_chip",e:"💻", n:"Azioni Semiconduttori",ds:"Chip e microprocessori",             cost:5000,cat:"azioni",tags:["chip","tech"],lo:-0.25,hi:0.90},
+  {id:"az_fer", e:"🚂", n:"Azioni Infrastrutture",ds:"Ferrovie, autostrade, utilities",   cost:5000,cat:"azioni",tags:[],         lo:-0.10,hi:0.30},
+  // TECH
+  {id:"ai_st",  e:"🤖", n:"Startup AI",          ds:"Scommessa sull'intelligenza artificiale",cost:4000,cat:"tech",tags:["ai"],  lo:-0.55,hi:1.60},
+  {id:"cloud",  e:"☁️", n:"Cloud Computing",     ds:"Infrastruttura digitale globale",     cost:5000,cat:"tech",tags:[],         lo:-0.20,hi:0.70},
+  {id:"app",    e:"📱", n:"App per turisti",      ds:"Startup mobile per il Salento",       cost:2500,cat:"tech",tags:[],         lo:-0.50,hi:1.20},
+  {id:"ecom",   e:"🛒", n:"E-commerce tipico",   ds:"Vendita online prodotti pugliesi",    cost:2500,cat:"tech",tags:[],         lo:-0.30,hi:0.80},
+  {id:"gaming", e:"🎮", n:"Gaming / Esport",     ds:"Videogiochi e competizioni online",   cost:3000,cat:"tech",tags:[],         lo:-0.40,hi:1.10},
+  // ORO & ARGENTO & METALLI
+  {id:"oro",    e:"🥇", n:"Oro fisico",           ds:"Bene rifugio per eccellenza",         cost:5000,cat:"gold", tags:[],         lo:-0.10,hi:0.30},
+  {id:"oro_etf",e:"📊", n:"ETF sull'Oro",         ds:"Esposizione al gold senza custodire", cost:3000,cat:"gold", tags:[],         lo:-0.10,hi:0.28},
+  {id:"argento",e:"🥈", n:"Argento fisico",       ds:"Metallo industriale e riserva valore",cost:4000,cat:"silver",tags:["metalli"],lo:-0.15,hi:0.45},
+  {id:"platino",e:"💎", n:"Platino",              ds:"Metallo raro, domanda industriale",   cost:5000,cat:"silver",tags:["metalli"],lo:-0.20,hi:0.50},
+  {id:"rame",   e:"🔩", n:"Rame",                 ds:"Richiesto per l'elettrificazione",    cost:3000,cat:"silver",tags:["metalli","green"],lo:-0.20,hi:0.55},
+  // IMMOBILI
+  {id:"garage", e:"🏠", n:"Garage da affittare", ds:"Rendita sicura nel quartiere",        cost:8000,cat:"immob",tags:[],         lo:0.04, hi:0.18},
+  {id:"trullo", e:"🏡", n:"Trullo da ristrutturare",ds:"Ristruttura e rivendi",            cost:12000,cat:"immob",tags:[],        lo:-0.10,hi:0.60},
+  {id:"mare",   e:"🏖️", n:"Casa al mare",         ds:"Affitti estivi a Gallipoli",          cost:15000,cat:"immob",tags:[],        lo:0.00, hi:0.40},
+  {id:"solare", e:"🌻", n:"Campo fotovoltaico",   ds:"Energia pulita che rende",            cost:14000,cat:"immob",tags:["green"], lo:0.03, hi:0.28},
+  {id:"magaz",  e:"🏭", n:"Magazzino industriale",ds:"Affitto a imprese locali",            cost:11000,cat:"immob",tags:[],        lo:0.03, hi:0.22},
+  // TURISMO (Puglia)
+  {id:"chiosco",e:"🍹", n:"Chiosco sulla spiaggia",ds:"Drink e granite per i turisti",    cost:6000,cat:"turis",tags:[],         lo:-0.10,hi:0.55},
+  {id:"barche", e:"⛵", n:"Noleggio barche",      ds:"Gite tra le grotte marine",           cost:9000,cat:"turis",tags:[],         lo:-0.30,hi:0.75},
+  {id:"bb",     e:"🛏️", n:"B&B centro storico",   ds:"Ospitalita` nei vicoli pugliesi",    cost:11000,cat:"turis",tags:[],        lo:-0.10,hi:0.55},
+  {id:"van",    e:"🚐", n:"Tour in van del Salento",ds:"Escursioni guidate nel Tacco",      cost:4000,cat:"turis",tags:[],         lo:-0.25,hi:0.65},
+  {id:"lido",   e:"🛟", n:"Lido attrezzato",      ds:"Ombrelloni, lettini e bar",           cost:14000,cat:"turis",tags:[],        lo:-0.20,hi:0.60},
+  // FOOD & AGRI
+  {id:"olio",   e:"🫒", n:"Uliveto (olio EVO)",  ds:"Oro verde di Puglia",                 cost:7000,cat:"food",tags:["agri"],   lo:-0.30,hi:0.55},
+  {id:"vino",   e:"🍇", n:"Vigneto Primitivo",   ds:"Vino pregiato del Salento",           cost:10000,cat:"food",tags:["agri"],  lo:-0.25,hi:0.70},
+  {id:"burrata",e:"🧀", n:"Caseificio burrata",  ds:"Latticini freschi a km zero",         cost:5000,cat:"food",tags:[],         lo:-0.10,hi:0.50},
+  {id:"pizza",  e:"🍕", n:"Pizzeria gourmet",     ds:"Forno a legna e impasti speciali",    cost:6000,cat:"food",tags:[],         lo:-0.40,hi:0.90},
+  {id:"cozze",  e:"🦪", n:"Allevamento cozze",   ds:"Mitilicoltura a Taranto",             cost:5000,cat:"food",tags:["agri"],   lo:-0.30,hi:0.65},
+  // AUTO
+  {id:"usate",  e:"🚗", n:"Compravendita auto usate",ds:"Compra basso, vendi alto",        cost:4000,cat:"auto",tags:[],         lo:-0.40,hi:1.00},
+  {id:"scooter",e:"🛵", n:"Noleggio scooter",     ds:"Due ruote per turisti",               cost:3000,cat:"auto",tags:[],         lo:-0.30,hi:0.60},
+  {id:"ev",     e:"🔋", n:"Concessionaria EV",    ds:"Auto elettriche, mercato in crescita",cost:8000,cat:"auto",tags:["green"],  lo:-0.20,hi:0.70},
+  // FINANZA
+  {id:"btp",    e:"🇮🇹", n:"BTP / Titoli di Stato",ds:"Cedola sicura ma non eccitante",    cost:5000,cat:"fin",tags:[],          lo:0.02, hi:0.06},
+  {id:"etf_m",  e:"📈", n:"ETF mondo",            ds:"Mercati globali diversificati",       cost:5000,cat:"fin",tags:[],          lo:-0.15,hi:0.28},
+  {id:"etf_eu", e:"🇪🇺", n:"ETF Europa",           ds:"Azioni del vecchio continente",       cost:4000,cat:"fin",tags:[],          lo:-0.12,hi:0.22},
+  {id:"pfond",  e:"🧾", n:"Fondo pensione",        ds:"Crescita lenta ma sicura",            cost:4000,cat:"fin",tags:[],          lo:0.01, hi:0.08},
+  // AZZARDO
+  {id:"casino", e:"🎰", n:"Scommessa al casino`", ds:"Notte di grande rischio",             cost:2000,cat:"azz",tags:[],          lo:-1.00,hi:1.80},
+  {id:"poker",  e:"🃏", n:"Torneo di poker",       ds:"Tutto o niente al tavolo",            cost:1500,cat:"azz",tags:[],          lo:-1.00,hi:2.00},
+  {id:"lotto",  e:"🎟️", n:"Superenalotto",         ds:"Probabilita` infinitesimale... o no?",cost:500, cat:"azz",tags:[],          lo:-1.00,hi:50.00}
 ];
 
-// clima economico annuale (modifica le rese per categoria)
-var CLIMATES=[
-  {id:"boomTech", lb:"🚀 Boom tecnologico", ty:"good", ds:"Le startup esplodono: il Tech vola.", mods:{tech:0.45}},
-  {id:"crisi", lb:"📉 Crisi finanziaria", ty:"bad", ds:"Mercati in rosso: Tech, Crypto, Finanza e Auto soffrono.", mods:{tech:-0.25,crypto:-0.35,finanza:-0.15,auto:-0.20}},
-  {id:"estate", lb:"☀️ Estate da record", ty:"good", ds:"Turismo e Food incassano alla grande.", mods:{turismo:0.50,food:0.30}},
-  {id:"maltempo", lb:"⛈️ Stagione di maltempo", ty:"bad", ds:"Spiagge vuote: Turismo e Food in calo.", mods:{turismo:-0.40,food:-0.20}},
-  {id:"bce", lb:"🏦 La BCE alza i tassi", ty:"neutral", ds:"Finanza premiata, Immobili un po' frenati.", mods:{finanza:0.07,immobili:-0.10}},
-  {id:"cryptoUp", lb:"🌕 Crypto mania", ty:"good", ds:"Le cripto vanno alla luna.", mods:{crypto:1.20}},
-  {id:"cryptoDn", lb:"💥 Crypto crash", ty:"bad", ds:"Bagno di sangue sulle cripto.", mods:{crypto:-0.70}},
-  {id:"infl", lb:"📈 Inflazione alle stelle", ty:"bad", ds:"La liquidità ferma perde valore; il Food sale.", mods:{food:0.10}, erode:0.04},
-  {id:"turismoBoom", lb:"🧳 Turismo in boom", ty:"good", ds:"Puglia presa d'assalto dai visitatori.", mods:{turismo:0.35}},
-  {id:"siccita", lb:"🏜️ Siccità", ty:"bad", ds:"Raccolti scarsi: il Food cala.", mods:{food:-0.40}},
-  {id:"olioTop", lb:"🫒 Annata d'olio record", ty:"good", ds:"Olio e prodotti agricoli alle stelle.", mods:{food:0.45}},
-  {id:"mattone", lb:"🧱 Mattone d'oro", ty:"good", ds:"Il mercato immobiliare si surriscalda.", mods:{immobili:0.40}},
-  {id:"calmo", lb:"📅 Anno tranquillo", ty:"neutral", ds:"Nessun evento straordinario.", mods:{}},
-  {id:"stabile", lb:"🌤️ Mercato stabile", ty:"neutral", ds:"I fondamentali tengono, nessuna sorpresa.", mods:{}}
+// ─── EVENTI (~24) ────────────────────────────────────────────────────────────
+// mods = modificatori sulle categorie e tags durante la risoluzione
+var EVENTS=[
+  {id:"weuropa",  lb:"⚔️ Guerra in Europa",          ty:"bad",
+   ds:"Conflitto sul continente: mercati in panico, difesa vola, turismo crolla.",
+   mods:{azioni:-0.22,aerei:-0.55,turis:-0.45,crypto:-0.30,difesa:+0.90,gold:+0.30,silver:+0.20,petrolio:+0.45}},
+  {id:"wmedio",   lb:"🛢️ Crisi petrolio (Guerra MO)",ty:"bad",
+   ds:"Instabilita` in Medio Oriente: petrolio alle stelle, aerei in ginocchio.",
+   mods:{petrolio:+0.70,aerei:-0.50,azioni:-0.15,gold:+0.25,silver:+0.15,auto:-0.20}},
+  {id:"pace",     lb:"🤝 Accordo di pace internazionale",ty:"good",
+   ds:"Distensione geopolitica: mercati rimbalzano, turismo si riprende.",
+   mods:{azioni:+0.15,turis:+0.30,aerei:+0.35,difesa:-0.20,gold:-0.10}},
+  {id:"pandemia", lb:"🦠 Pandemia globale",           ty:"bad",
+   ds:"Lockdown planetario: turismo e aerei a zero, pharma esplode, tech resiste.",
+   mods:{turis:-0.70,aerei:-0.75,food:-0.20,azioni:-0.30,pharma:+0.85,tech:+0.20,crypto:-0.20,immob:-0.10}},
+  {id:"vaccino",  lb:"💉 Vaccino miracoloso",         ty:"good",
+   ds:"Scoperta farmaceutica: pharma vola, ripresa economica generale.",
+   mods:{pharma:+0.90,turis:+0.35,aerei:+0.50,azioni:+0.15,crypto:+0.20}},
+  {id:"terrem",   lb:"🌋 Terremoto devastante",       ty:"bad",
+   ds:"Catastrofe naturale: immobili e turismo crollano, oro rifugio.",
+   mods:{immob:-0.35,turis:-0.40,food:-0.20,gold:+0.20,silver:+0.15,azioni:-0.10}},
+  {id:"tsunami",  lb:"🌊 Uragano & inondazioni",      ty:"bad",
+   ds:"Disastro climatico: food e immobili devastati, oro rifugio.",
+   mods:{food:-0.45,immob:-0.30,turis:-0.50,gold:+0.18,silver:+0.12,green:+0.10}},
+  {id:"siccita",  lb:"🏜️ Siccita` record",            ty:"bad",
+   ds:"Annata agricola disastrosa: olio, vino e cozze a picco.",
+   mods:{food:-0.50,agri:-0.40,turis:-0.10,gold:+0.08}},
+  {id:"boomec",   lb:"💰 Boom economico globale",     ty:"good",
+   ds:"Crescita record mondiale: quasi tutto sale.",
+   mods:{azioni:+0.28,immob:+0.18,turis:+0.22,food:+0.12,auto:+0.15,tech:+0.20,lusso:+0.25}},
+  {id:"recess",   lb:"📉 Recessione globale",         ty:"bad",
+   ds:"Crollo dell'economia: azioni, immobili e turismo soffrono.",
+   mods:{azioni:-0.30,immob:-0.18,turis:-0.25,food:-0.10,auto:-0.20,lusso:-0.30,gold:+0.22,silver:+0.15}},
+  {id:"airev",    lb:"🤖 Rivoluzione AI",             ty:"good",
+   ds:"L'intelligenza artificiale esplode: tech e chip volano.",
+   mods:{tech:+0.65,ai:+0.80,chip:+0.60,azioni:+0.15}},
+  {id:"cryptobull",lb:"🚀 Crypto Bull Run",           ty:"good",
+   ds:"Mercato crypto in festa: tutto sale, Bitcoin in testa.",
+   mods:{crypto:+1.30}},
+  {id:"cryptocrash",lb:"💥 Crypto Crash",             ty:"bad",
+   ds:"Crollano tutte le cripto: sangue ovunque.",
+   mods:{crypto:-0.70}},
+  {id:"bcealza",  lb:"🏦 BCE alza i tassi",           ty:"neutral",
+   ds:"Tassi in rialzo: obbligazioni meglio, immobili e banche frenati.",
+   mods:{fin:+0.04,banche:-0.15,immob:-0.12,azioni:-0.08}},
+  {id:"bcetaglia",lb:"✂️ BCE taglia i tassi",         ty:"good",
+   ds:"Tassi in calo: immobili e azioni respirano.",
+   mods:{immob:+0.14,azioni:+0.12,banche:+0.08,fin:-0.01}},
+  {id:"inflaz",   lb:"📈 Inflazione alle stelle",     ty:"bad",
+   ds:"Prezzi in corsa: l'oro e i beni reali proteggono, liquidita` brucia.",
+   mods:{gold:+0.25,silver:+0.18,metalli:+0.15,food:+0.12,immob:+0.08,fin:-0.03},erode:0.05},
+  {id:"green",    lb:"🌿 Green New Deal europeo",     ty:"good",
+   ds:"Sussidi massici al green: rinnovabili, EV e rame decollano.",
+   mods:{green:+0.60,az_ene:+0.30,azioni:+0.05}},
+  {id:"estate",   lb:"☀️ Estate da record in Puglia", ty:"good",
+   ds:"Spiagge prese d'assalto: turismo e food pugliesi al massimo.",
+   mods:{turis:+0.55,food:+0.25}},
+  {id:"oliogrande",lb:"🫒 Annata d'olio record",      ty:"good",
+   ds:"Raccolto straordinario: olio e vino pugliese volano.",
+   mods:{agri:+0.50,food:+0.20}},
+  {id:"lussoboom", lb:"👜 Boom del lusso",            ty:"good",
+   ds:"I ricchi spendono di piu`: lusso e turismo di alta gamma crescono.",
+   mods:{lusso:+0.55,turis:+0.20,azioni:+0.08}},
+  {id:"chipshort", lb:"💻 Crisi chip globale",        ty:"bad",
+   ds:"Shortage di semiconduttori: auto, elettronica e tech soffrono.",
+   mods:{chip:-0.35,auto:-0.25,tech:-0.15,azioni:-0.08}},
+  {id:"bankcrash", lb:"🏦 Fallimento banche",         ty:"bad",
+   ds:"Crisi bancaria sistemica: gold rifugio, mercati in panico.",
+   mods:{banche:-0.60,azioni:-0.22,gold:+0.35,silver:+0.22,crypto:-0.15,immob:-0.15}},
+  {id:"calm",     lb:"📅 Anno tranquillo",            ty:"neutral",
+   ds:"Nessun evento straordinario: i mercati seguono i fondamentali.",
+   mods:{}},
+  {id:"stable",   lb:"🌤️ Mercato stabile",            ty:"neutral",
+   ds:"Anno senza sorprese: ognuno raccoglie quello che ha seminato.",
+   mods:{}}
 ];
 
-// ════════════════ STATE ════════════════
+// ─── STATE ───────────────────────────────────────────────────────────────────
 var S;
 function newGame(){
-  S={ screen:"intro", year:1, decideIdx:0,
-      climate:null, hands:[], choices:[], dealtYear:0,
-      resort:{revealed:false, approved:null},
-      players:PLAYERS.map(function(nm){ return {name:nm,cash:START,history:[],nw:[START]}; }) };
+  S={screen:"intro",year:1,decideIdx:0,
+     climate:null,sharedHand:[],choices:[null,null,null,null],dealtYear:0,
+     resort:{revealed:false,approved:null},
+     lastResults:null,
+     players:PLAYERS.map(function(nm){return {name:nm,cash:START,history:[],nw:[START]};})};
 }
 
-// ════════════════ HELPERS ════════════════
-function eur(n){ n=Math.round(n); return n.toLocaleString("it-IT")+" €"; }
-function rnd(a,b){ return Math.random()*(b-a)+a; }
-function clamp(v,lo,hi){ return Math.max(lo,Math.min(hi,v)); }
-function shuffle(a){ a=a.slice(); for(var i=a.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1));var t=a[i];a[i]=a[j];a[j]=t;} return a; }
-function cardById(id){ for(var i=0;i<DECK.length;i++) if(DECK[i].id===id) return DECK[i]; return null; }
-function net(p){ return p.cash; }
-function leadIdx(){ var b=0,bw=-1e9; S.players.forEach(function(p,i){ if(net(p)>bw){bw=net(p);b=i;} }); return b; }
-function el(tag,cls,html){ var d=document.createElement(tag); if(cls)d.className=cls; if(html!=null)d.innerHTML=html; return d; }
-function riskOf(c){ var sp=c.hi-c.lo; return sp<0.25?"low":sp<0.9?"mid":"high"; }
-function riskLbl(r){ return r==="low"?"🟢 Sicuro":r==="mid"?"🟡 Medio":"🔴 Alto"; }
-function pct(x){ return (x>=0?"+":"")+Math.round(x*100)+"%"; }
+// ─── HELPERS ─────────────────────────────────────────────────────────────────
+function eur(n){n=Math.round(n);return n.toLocaleString("it-IT")+" €";}
+function rnd(a,b){return Math.random()*(b-a)+a;}
+function clamp(v,lo,hi){return Math.max(lo,Math.min(hi,v));}
+function shuffle(a){a=a.slice();for(var i=a.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1));var t=a[i];a[i]=a[j];a[j]=t;}return a;}
+function cardById(id){for(var i=0;i<DECK.length;i++)if(DECK[i].id===id)return DECK[i];return null;}
+function leadIdx(){var b=0,bw=-1e9;S.players.forEach(function(p,i){if(p.cash>bw){bw=p.cash;b=i;}});return b;}
+function el(tag,cls,html){var d=document.createElement(tag);if(cls)d.className=cls;if(html!=null)d.innerHTML=html;return d;}
+function riskOf(c){var sp=c.hi-c.lo;return sp<0.25?"low":sp<0.9?"mid":"high";}
+function riskChip(r){return r==="low"?"<span class='chip ch-rl'>🟢 Sicuro</span>":r==="mid"?"<span class='chip ch-rm'>🟡 Medio</span>":"<span class='chip ch-rh'>🔴 Alto</span>";}
+function pct(x){return(x>=0?"+":"")+Math.round(x*100)+"%";}
+function catChip(c){var ct=CATS[c];if(!ct)return "";return "<span class='chip ch-cat' style='color:"+ct.c+"'>"+ct.l+"</span>";}
+function effMod(card,mods){
+  var m=mods[card.cat]||0;
+  (card.tags||[]).forEach(function(t){m+=mods[t]||0;});
+  return m;
+}
 
-// ════════════════ TURN SETUP ════════════════
+// ─── DEAL ─────────────────────────────────────────────────────────────────────
 function chooseClimate(){
-  if(S.year===2 && !S.resort.revealed){
-    S.resort.revealed=true; S.resort.approved=Math.random()<0.55;
+  if(S.year===2&&!S.resort.revealed){
+    S.resort.revealed=true;S.resort.approved=Math.random()<0.55;
     return S.resort.approved
-      ? {id:"resortY", lb:"🏗️ Resort APPROVATO!", ty:"good", ds:"Via libera al mega-resort: Immobili e Turismo esplodono quest'anno.", mods:{immobili:0.60,turismo:0.50}}
-      : {id:"resortN", lb:"❌ Resort bocciato", ty:"neutral", ds:"Progetto respinto per ragioni ambientali. Nessun effetto particolare.", mods:{}};
+      ?{id:"resortY",lb:"🏗️ Resort APPROVATO!",ty:"good",ds:"Via libera al mega-resort: Immobili e Turismo esplodono.",mods:{immob:0.60,turis:0.50}}
+      :{id:"resortN",lb:"❌ Resort bocciato",ty:"neutral",ds:"Progetto respinto per ragioni ambientali. Anno normale.",mods:{}};
   }
-  return CLIMATES[Math.floor(Math.random()*CLIMATES.length)];
+  return EVENTS[Math.floor(Math.random()*EVENTS.length)];
 }
 function dealTurn(){
-  if(S.dealtYear===S.year) return; // già distribuito
+  if(S.dealtYear===S.year)return;
   S.climate=chooseClimate();
-  S.hands=S.players.map(function(p){
-    var pool=shuffle(DECK).filter(function(c){ return c.cost<=p.cash; });
-    var picks=pool.slice(0,HAND).map(function(c){ return {kind:"opp",id:c.id}; });
-    // sempre disponibili: deposito + liquidità
-    var dep=Math.min(p.cash, Math.max(2000, Math.round(p.cash*0.4/500)*500));
-    picks.push({kind:"dep", stake:dep});
-    picks.push({kind:"liq"});
-    return picks;
-  });
+  // Pick HAND cards usable by at least one player (min cost check)
+  var minCash=Math.min.apply(null,S.players.map(function(p){return p.cash;}));
+  var pool=shuffle(DECK.filter(function(c){return c.cost<=Math.max(minCash,START);}));
+  // always include at least one safe option in hand
+  var safe=pool.filter(function(c){return c.cat==="fin"&&c.cost<=minCash;});
+  var risky=pool.filter(function(c){return c.cat!=="fin";});
+  var hand=risky.slice(0,HAND-1);
+  if(safe.length>0)hand.push(safe[0]); else hand.push(pool[HAND-1]||pool[0]);
+  hand=shuffle(hand);
+  S.sharedHand=hand;
   S.choices=[null,null,null,null];
   S.dealtYear=S.year;
 }
 
-// ════════════════ RESOLVE ════════════════
-function moveOutcome(p, mv){
+// ─── RESOLVE ──────────────────────────────────────────────────────────────────
+function resolveChoice(p,card){
   var mods=S.climate.mods||{};
-  if(mv.kind==="opp"){
-    var c=cardById(mv.id);
-    var rate=clamp(rnd(c.lo,c.hi)+(mods[c.cat]||0), -1, c.hi+1.6);
-    var delta=Math.round(c.cost*rate);
-    return {delta:delta, label:c.e+" "+c.n, sub:"Capitale "+eur(c.cost)+" · resa "+pct(rate)};
+  var mod=effMod(card,mods);
+  if(card.cat==="azz"&&card.id==="lotto"){
+    // superenalotto: 0.0001% chance of jackpot, rest = loss
+    var jackpot=Math.random()<0.00001;
+    var rate=jackpot?50.0:-1.0;
+    return {delta:Math.round(card.cost*rate),label:card.e+" "+card.n,sub:jackpot?"🎉 JACKPOT!":"Nessuna vincita",rate:rate};
   }
-  if(mv.kind==="dep"){
-    var r=0.03+(mods.finanza||0);
-    var d=Math.round(mv.stake*r);
-    return {delta:d, label:"💰 Conto deposito", sub:"Capitale "+eur(mv.stake)+" · "+pct(r)};
-  }
-  // liquidità
+  var base=rnd(card.lo,card.hi);
+  var rate=clamp(base+mod,-1.0,card.hi+2.5);
+  var delta=Math.round(card.cost*rate);
+  // erosione liquidita` se inflazione
   var er=S.climate.erode||0;
-  var loss=Math.round(p.cash*er);
-  return {delta:-loss, label:"🛡️ Tieni la liquidità", sub: er>0? "Inflazione "+pct(-er) : "Nessun rischio"};
+  if(er>0){
+    var idle=Math.max(0,p.cash-card.cost);
+    delta-=Math.round(idle*er);
+  }
+  return {delta:delta,label:card.e+" "+card.n,sub:"Capitale "+eur(card.cost)+" · resa "+pct(rate),rate:rate};
 }
 function resolveTurn(){
   S.lastResults=S.players.map(function(p,i){
-    var mv=S.hands[i][S.choices[i]];
-    var o=moveOutcome(p,mv);
-    return {i:i, delta:o.delta, label:o.label, sub:o.sub};
+    var idx=S.choices[i];
+    var card=idx!=null?S.sharedHand[idx]:null;
+    var o;
+    if(!card){
+      // held cash (safety fallback)
+      var er=S.climate.erode||0;
+      var loss=Math.round(p.cash*er);
+      o={delta:-loss,label:"🛡️ Liquidita` tenuta",sub:er>0?"Inflazione "+pct(-er):"Nessun rischio"};
+    } else {
+      o=resolveChoice(p,card);
+    }
+    return {i:i,delta:o.delta,label:o.label,sub:o.sub};
   });
   S.lastResults.forEach(function(r){
     var p=S.players[r.i];
     p.cash=Math.max(0,p.cash+r.delta);
-    p.history.push(r); p.nw.push(p.cash);
+    p.history.push(r);p.nw.push(p.cash);
   });
-  S.screen = S.year>=YEARS ? "final" : "results";
+  S.screen=S.year>=YEARS?"final":"results";
 }
 
-// ════════════════ RENDER ════════════════
+// ─── RENDER ───────────────────────────────────────────────────────────────────
 function render(){
-  var root=document.getElementById("screen"); root.innerHTML="";
-  if(S.screen==="intro") return renderIntro(root);
-  if(S.screen==="final"){ renderBar(root); return renderFinal(root); }
+  var root=document.getElementById("screen");root.innerHTML="";
+  if(S.screen==="intro")return renderIntro(root);
+  if(S.screen==="final"){renderBar(root);return renderFinal(root);}
   renderBar(root);
-  if(S.screen==="decision") return renderDecision(root);
-  if(S.screen==="results") return renderResults(root);
+  if(S.screen==="decision")return renderDecision(root);
+  if(S.screen==="results")return renderResults(root);
 }
 
 function renderIntro(root){
-  root.appendChild(el("div","title","🌊 Benvenuti in Puglia"));
-  var samp=el("div","samp");
-  ["📱","🏠","🍹","🫒","🍇","🚗","₿","🥇","🎰"].forEach(function(e){
-    samp.appendChild(el("div","s","<div class='e'>"+e+"</div>"));
+  root.appendChild(el("div","sec-title","🌊 Benvenuti in Puglia"));
+  var g=el("div","intro-grid");
+  ["₿","🛡️","💊","⚡","🛢️","🥇","🥈","🤖","🍕","🫒","🍇","🏖️","🍹","✈️","🎰"].forEach(function(e){
+    g.appendChild(el("div","intro-cell","<span class='e'>"+e+"</span>"));
   });
-  root.appendChild(samp);
+  root.appendChild(g);
   root.appendChild(el("div","rules",
-    "<div class='title'>📜 Come si gioca</div>"+
+    "<div class='sec-title'>📜 Come si gioca</div>"+
     li("💶","Ognuno parte con <b>10.000 €</b>")+
-    li("🃏","Ogni anno ti vengono <b>proposte 5 mosse</b> pescate da un mazzo di oltre 30 opportunità")+
-    li("👉","<b>Ognuno sceglie una mossa</b>, conoscendo già il clima economico dell'anno")+
-    li("🎲","Io applico clima, fortuna e rischio e calcolo il risultato")+
-    li("🏆","Dopo <b>10 anni</b> vince chi ha il patrimonio più alto")));
-  root.appendChild(el("div","event info",
-    "<span class='lb'>🏗️ In arrivo: il Resort</span>"+
-    "<span class='ds'>Una multinazionale vuole costruire un mega-resort vicino a voi. Se al 2° anno il progetto passa, Immobili e Turismo voleranno.</span>"));
+    li("🃏","Ogni anno vengono proposte <b>5 opportunita` a caso</b> tra oltre 50 disponibili")+
+    li("🌍","Viene rivelato il <b>clima economico</b> (guerra, pandemia, boom, siccita`...)")+
+    li("👆","<b>Ogni giocatore tocca una carta</b> e sceglie come investire")+
+    li("🎲","Il clima modifica le rese: scegliere bene fa la differenza")+
+    li("🏆","Dopo <b>10 anni</b> vince chi ha il patrimonio piu` alto")));
+  root.appendChild(el("div","ev info",
+    "<span class='lb'>🏗️ Evento in arrivo: il Resort</span>"+
+    "<span class='ds'>Al 2° anno si scopre se una multinazionale costruira` un mega-resort vicino a voi. Se approvato: Immobili e Turismo esplodono.</span>"));
   var b=el("button","btn btn-gold mt","▶ Inizia il gioco");
-  b.onclick=function(){ startTurn(); };
+  b.onclick=function(){startTurn();};
   root.appendChild(b);
 }
-function li(ic,t){ return "<li><span class='ic'>"+ic+"</span><span>"+t+"</span></li>"; }
+function li(ic,t){return "<li><span class='ic'>"+ic+"</span><span>"+t+"</span></li>";}
 
-function startTurn(){
-  dealTurn();
-  S.screen="decision"; S.decideIdx=0;
-  render();
-}
+function startTurn(){dealTurn();S.screen="decision";S.decideIdx=0;render();}
 
 function renderBar(root){
-  var tb=el("div","turnbar"), dots="";
-  for(var i=0;i<YEARS;i++){ var c=i<S.year-1?"done":(i===S.year-1?"cur":""); dots+="<div class='dot "+c+"'></div>"; }
+  var tb=el("div","turnbar"),dots="";
+  for(var i=0;i<YEARS;i++){var c=i<S.year-1?"done":i===S.year-1?"cur":"";dots+="<div class='dot "+c+"'></div>";}
   tb.innerHTML="<span class='yearlbl'>Anno "+S.year+" / "+YEARS+"</span><div class='dots'>"+dots+"</div>";
   root.appendChild(tb);
-  var cards=el("div","cards"), lead=leadIdx();
+  var cards=el("div","cards"),lead=leadIdx();
   S.players.forEach(function(p,i){
-    var last=p.history.length? p.history[p.history.length-1].delta : null;
+    var last=p.history.length?p.history[p.history.length-1].delta:null;
     var dl=last==null?"":"<div class='dl "+(last>0?"up":last<0?"down":"flat")+"'>"+(last>0?"▲ +":last<0?"▼ ":"")+eur(Math.abs(last))+"</div>";
     cards.appendChild(el("div","pcard"+(i===lead&&S.year>1?" lead":""),
-      "<div class='nm'>"+(i===lead&&S.year>1?"👑 ":"")+AVATARS[p.name]+" "+p.name+"</div>"+
-      "<div class='wl'>"+eur(net(p))+"</div>"+dl));
+      "<div class='nm'>"+(i===lead&&S.year>1?"👑 ":"")+AV[p.name]+" "+p.name+"</div>"+
+      "<div class='wl'>"+eur(p.cash)+"</div>"+dl));
   });
   root.appendChild(cards);
 }
 
 function renderDecision(root){
   var cl=S.climate;
-  root.appendChild(el("div","event "+cl.ty,
-    "<span class='lb'>"+cl.lb+"</span><span class='ds'>"+cl.ds+"</span>"));
-  var p=S.players[S.decideIdx];
-  root.appendChild(el("div","",
-    "<div class='dechead'><div class='who'>"+AVATARS[p.name]+" "+p.name+"</div>"+
-    "<div class='step'>Giocatore "+(S.decideIdx+1)+" / 4</div></div>"));
-  root.appendChild(el("div","cashline","Patrimonio: <b>"+eur(p.cash)+"</b>"));
-  root.appendChild(el("div","choosehint","👉 Scegli la tua mossa per quest'anno:"));
+  root.appendChild(el("div","ev "+cl.ty,"<span class='lb'>"+cl.lb+"</span><span class='ds'>"+cl.ds+"</span>"));
 
-  var hand=S.hands[S.decideIdx];
-  var wrap=el("div");
-  hand.forEach(function(mv,idx){
-    wrap.appendChild(buildMoveCard(p,mv,idx));
+  // who has chosen so far
+  var wt=el("div","whose-turn");
+  S.players.forEach(function(p,i){
+    var done=S.choices[i]!=null,cur=i===S.decideIdx;
+    var card=done?S.sharedHand[S.choices[i]]:null;
+    wt.innerHTML+="<div class='wt-item'><div class='wt-av "+(done?"done":cur?"cur":"")+"'>"+AV[p.name]+"</div>"+
+      "<div><div class='wt-lbl'>"+p.name+"</div>"+(done&&card?"<div class='wt-pick'>"+card.e+" "+card.n.split(" ")[0]+"</div>":"")+"</div></div>";
   });
-  root.appendChild(wrap);
+  root.appendChild(wt);
+
+  var p=S.players[S.decideIdx];
+  var hd=el("div","choice-hd");
+  hd.innerHTML="<div class='ch-top'><div class='ch-who'>"+AV[p.name]+" "+p.name+"</div>"+
+    "<div class='ch-step'>Giocatore "+(S.decideIdx+1)+" / 4</div></div>"+
+    "<div class='ch-cash'>Patrimonio: <b>"+eur(p.cash)+"</b></div>"+
+    "<div class='ch-hint'>👇 Tocca una carta per scegliere:</div>";
+  root.appendChild(hd);
+
+  var mods=S.climate.mods||{};
+  S.sharedHand.forEach(function(c,idx){
+    root.appendChild(buildCard(c,idx,p,mods));
+  });
 
   var sel=S.choices[S.decideIdx];
-  var confirm=el("button","btn btn-gold mt", S.decideIdx<3? "Conferma ▶ tocca a "+PLAYERS[S.decideIdx+1] : "⚡ Risolvi l'Anno "+S.year);
-  confirm.disabled = (sel==null);
+  var confirm=el("button","btn btn-gold mt",
+    S.decideIdx<3?"Conferma ▶ tocca a "+PLAYERS[S.decideIdx+1]:"⚡ Risolvi l'Anno "+S.year);
+  confirm.disabled=(sel==null);
   confirm.onclick=function(){
-    if(S.choices[S.decideIdx]==null) return;
-    if(S.decideIdx<3){ S.decideIdx++; render(); }
-    else { resolveTurn(); render(); }
+    if(S.choices[S.decideIdx]==null)return;
+    if(S.decideIdx<3){S.decideIdx++;render();}
+    else{resolveTurn();render();}
   };
   root.appendChild(confirm);
   if(S.decideIdx>0){
     var back=el("button","btn btn-ghost btn-sm mt-s","◀ Indietro");
-    back.onclick=function(){ S.decideIdx--; render(); };
+    back.onclick=function(){S.decideIdx--;render();};
     root.appendChild(back);
   }
-  root.appendChild(el("div","hint","Le mosse cambiano ogni anno. Il clima qui sopra può favorire o penalizzare alcune categorie."));
+  root.appendChild(el("div","hint","Le stesse 5 opportunita` per tutti. Il clima rivelato qui sopra puo` favorire o penalizzare alcune categorie."));
 }
 
-function buildMoveCard(p,mv,idx){
-  var sel = S.choices[S.decideIdx]===idx;
-  var d=el("div","mcard"+(sel?" sel":""));
-  d.innerHTML="<div class='selmark'>"+(sel?"✓":"")+"</div>";
-  var mods=S.climate.mods||{};
-  if(mv.kind==="opp"){
-    var c=cardById(mv.id), r=riskOf(c), cm=CATS[c.cat];
-    var fav = mods[c.cat]||0;
-    var favChip = fav>0? "<span class='chip fav'>📈 favorito</span>" : fav<0? "<span class='chip unf'>📉 sfavorito</span>" : "";
-    d.innerHTML+=
-      "<div class='top'><div class='e'>"+c.e+"</div><div><div class='nm'>"+c.n+"</div><div class='ds'>"+c.ds+"</div></div></div>"+
-      "<div class='meta'>"+
-        "<span class='chip cap'>💶 "+eur(c.cost)+"</span>"+
-        "<span class='chip rng'>resa "+pct(c.lo)+" … "+pct(c.hi)+"</span>"+
-        "<span class='chip risk-"+r+"'>"+riskLbl(r)+"</span>"+
-        "<span class='chip cat' style='color:"+cm.c+"'>"+cm.l+"</span>"+favChip+
-      "</div>";
-  } else if(mv.kind==="dep"){
-    var fr=0.03+(mods.finanza||0);
-    d.innerHTML+=
-      "<div class='top'><div class='e'>💰</div><div><div class='nm'>Conto deposito</div><div class='ds'>Rendimento garantito, zero pensieri</div></div></div>"+
-      "<div class='meta'><span class='chip cap'>💶 "+eur(mv.stake)+"</span>"+
-        "<span class='chip rng'>"+pct(fr)+" sicuro</span>"+
-        "<span class='chip risk-low'>🟢 Sicuro</span></div>";
-  } else {
-    var er=S.climate.erode||0;
-    d.innerHTML+=
-      "<div class='top'><div class='e'>🛡️</div><div><div class='nm'>Tieni la liquidità</div><div class='ds'>Non investi: aspetti tempi migliori</div></div></div>"+
-      "<div class='meta'><span class='chip cap'>Nessun capitale a rischio</span>"+
-        (er>0?"<span class='chip unf'>📉 inflazione "+pct(-er)+"</span>":"<span class='chip risk-low'>🟢 Sicuro</span>")+"</div>";
+function buildCard(c,idx,p,mods){
+  var sel=S.choices[S.decideIdx]===idx;
+  var affordable=c.cost<=p.cash;
+  var d=el("div","ccard"+(sel?" sel":"")+((!affordable)?" dis":""));
+  var r=riskOf(c), mod=effMod(c,mods);
+  var favChip=mod>0?"<span class='chip ch-fav'>📈 favorito +"+Math.round(mod*100)+"%</span>":mod<0?"<span class='chip ch-unf'>📉 sfavorito "+Math.round(mod*100)+"%</span>":"";
+  var costChip=!affordable?"<span class='chip ch-rh'>❌ Fondi insufficienti</span>":"<span class='chip ch-cost'>💶 "+eur(c.cost)+"</span>";
+  d.innerHTML="<div class='chk'>"+(sel?"✓":"")+"</div>"+
+    "<div class='top'><div class='em'>"+c.e+"</div><div class='info'><div class='cn'>"+c.n+"</div><div class='cd'>"+c.ds+"</div></div></div>"+
+    "<div class='chips'>"+costChip+
+      "<span class='chip ch-rng'>"+pct(c.lo)+" … "+pct(c.hi)+"</span>"+
+      riskChip(r)+catChip(c.cat)+favChip+"</div>";
+  if(affordable){
+    d.onclick=function(){S.choices[S.decideIdx]=idx;render();};
   }
-  d.onclick=function(){ S.choices[S.decideIdx]=idx; render(); };
   return d;
 }
 
 function renderResults(root){
   var cl=S.climate;
-  root.appendChild(el("div","event "+cl.ty,"<span class='lb'>"+cl.lb+"</span><span class='ds'>"+cl.ds+"</span>"));
-  root.appendChild(el("div","title","📊 Risultati Anno "+S.year));
+  root.appendChild(el("div","ev "+cl.ty,"<span class='lb'>"+cl.lb+"</span><span class='ds'>"+cl.ds+"</span>"));
+  root.appendChild(el("div","sec-title","📊 Risultati Anno "+S.year));
   S.players.forEach(function(p){
     var h=p.history[p.history.length-1];
     root.appendChild(el("div","rrow",
-      "<div class='rh'><div><div class='rn'>"+AVATARS[p.name]+" "+p.name+"</div>"+
-      "<div class='rsub'>"+h.label+" — "+h.sub+"</div></div>"+
+      "<div class='rh'><div><div class='rn'>"+AV[p.name]+" "+p.name+"</div>"+
+      "<div class='rsub'>"+h.label+"</div>"+
+      "<div class='rsub'>"+h.sub+"</div></div>"+
       "<div class='rg "+(h.delta>=0?"pos":"neg")+"'>"+(h.delta>=0?"+":"")+eur(h.delta)+"</div></div>"));
   });
-  var b=el("button","btn btn-gold mt", S.year>=YEARS? "🏆 Classifica finale" : "▶ Avanti all'Anno "+(S.year+1));
-  b.onclick=function(){ S.year++; startTurn(); };
+  var b=el("button","btn btn-gold mt",S.year>=YEARS?"🏆 Classifica finale":"▶ Avanti all'Anno "+(S.year+1));
+  b.onclick=function(){S.year++;startTurn();};
   root.appendChild(b);
 }
 
 function renderFinal(root){
-  var sorted=S.players.slice().sort(function(a,b){ return net(b)-net(a); });
-  root.appendChild(el("div","title","🏆 Classifica finale · "+YEARS+" anni"));
-  var pod=el("div","podium"), slots=[["second","🥈"],["first","🥇"],["third","🥉"]];
+  var sorted=S.players.slice().sort(function(a,b){return b.cash-a.cash;});
+  root.appendChild(el("div","sec-title","🏆 Classifica finale · "+YEARS+" anni"));
+  var pod=el("div","podium"),slots=[["second","🥈"],["first","🥇"],["third","🥉"]];
   [sorted[1],sorted[0],sorted[2]].forEach(function(p,k){
-    if(!p) return;
+    if(!p)return;
     pod.appendChild(el("div","pp "+slots[k][0],
-      "<div class='pe'>"+slots[k][1]+"</div><div class='pn'>"+AVATARS[p.name]+" "+p.name+"</div>"+
-      "<div class='pw'>"+eur(net(p))+"</div>"));
+      "<div class='pe'>"+slots[k][1]+"</div><div class='pn'>"+AV[p.name]+" "+p.name+"</div>"+
+      "<div class='pw'>"+eur(p.cash)+"</div>"));
   });
   root.appendChild(pod);
   sorted.forEach(function(p,i){
-    var g=net(p)-START;
+    var g=p.cash-START;
     root.appendChild(el("div","frow",
       "<div class='rk'>"+(i+1)+"</div>"+
-      "<div class='fn'>"+AVATARS[p.name]+" "+p.name+
-        "<div style='font-size:.7rem;color:#8aa0c0'>"+(g>=0?"+":"")+eur(g)+" sul capitale</div></div>"+
+      "<div><div class='fn'>"+AV[p.name]+" "+p.name+"</div>"+
+      "<div class='fsub'>"+(g>=0?"+":"")+eur(g)+" sul capitale iniziale</div></div>"+
       sparkline(p.nw)+
-      "<div class='fw'>"+eur(net(p))+"</div>"));
+      "<div class='fw'>"+eur(p.cash)+"</div>"));
   });
-  var win=sorted[0], mil=net(win)>=1000000;
-  root.appendChild(el("div","event "+(mil?"good":"info")+" mt",
+  var win=sorted[0],mil=win.cash>=1000000;
+  root.appendChild(el("div","ev "+(mil?"good":"info")+" mt",
     "<span class='lb'>"+(mil?"🎉 Abbiamo un milionario!":"🎯 Vince "+win.name+"!")+"</span>"+
-    "<span class='ds'>"+(mil? win.name+" ha superato il milione. Imprenditore pugliese dell'anno!"
-      : win.name+" chiude con "+eur(net(win))+". Nessun milione… per ora!")+"</span>"));
+    "<span class='ds'>"+(mil?win.name+" ha superato il milione. Imprenditore pugliese dell'anno!":win.name+" chiude con "+eur(win.cash)+". Nessun milione ancora — riprovate!")+"</span>"));
   var b=el("button","btn btn-gold mt","🔄 Nuova partita");
-  b.onclick=function(){ newGame(); render(); };
+  b.onclick=function(){newGame();render();};
   root.appendChild(b);
   root.appendChild(el("div","hint","Grazie per aver giocato all'Edizione Puglia 🌊"));
 }
 
 function sparkline(vals){
-  var w=64,h=24,pad=2;
-  var mn=Math.min.apply(null,vals), mx=Math.max.apply(null,vals), rng=Math.max(1,mx-mn);
+  var w=60,h=22,p=2,mn=Math.min.apply(null,vals),mx=Math.max.apply(null,vals),rng=Math.max(1,mx-mn);
   var pts=vals.map(function(v,i){
-    var x=pad+i*(w-2*pad)/(vals.length-1||1);
-    var y=h-pad-((v-mn)/rng)*(h-2*pad);
-    return x.toFixed(1)+","+y.toFixed(1);
+    return (p+i*(w-2*p)/(vals.length-1||1)).toFixed(1)+","+(h-p-((v-mn)/rng)*(h-2*p)).toFixed(1);
   }).join(" ");
   var col=vals[vals.length-1]>=vals[0]?"#4ade80":"#f87171";
-  return "<svg width='"+w+"' height='"+h+"' viewBox='0 0 "+w+" "+h+"'><polyline fill='none' stroke='"+col+"' stroke-width='2' stroke-linejoin='round' stroke-linecap='round' points='"+pts+"'/></svg>";
+  return "<svg width='"+w+"' height='"+h+"' viewBox='0 0 "+w+" "+h+"' style='flex-shrink:0'><polyline fill='none' stroke='"+col+"' stroke-width='2' stroke-linejoin='round' stroke-linecap='round' points='"+pts+"'/></svg>";
 }
 
-// ════════════════ BOOT ════════════════
-newGame();
-render();
+// ─── BOOT ─────────────────────────────────────────────────────────────────────
+newGame();render();
 </script>
 </body>
 </html>
