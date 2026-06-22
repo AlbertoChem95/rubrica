@@ -14,138 +14,102 @@
 html,body{background:var(--bg);color:var(--txt);font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
 body{min-height:100vh;overflow-x:hidden}
 .app{max-width:560px;margin:0 auto;min-height:100vh;display:flex;flex-direction:column}
-
-/* HEADER */
-.hd{background:linear-gradient(135deg,#16335c,#0d4c81 60%,#0a3a66);padding:16px 18px;text-align:center;border-bottom:3px solid var(--gold);position:sticky;top:0;z-index:20}
-.hd h1{font-size:1.25rem;color:var(--gold);letter-spacing:.3px;line-height:1.15}
-.hd .sub{color:#a9cdf0;font-size:.78rem;margin-top:3px}
-
-/* SCREENS */
+.hd{background:linear-gradient(135deg,#16335c,#0d4c81 60%,#0a3a66);padding:14px 18px;text-align:center;border-bottom:3px solid var(--gold);position:sticky;top:0;z-index:20}
+.hd h1{font-size:1.2rem;color:var(--gold);line-height:1.15}
+.hd .sub{color:#a9cdf0;font-size:.76rem;margin-top:3px}
 .screen{padding:16px;flex:1;animation:fade .35s ease}
 @keyframes fade{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
 
-/* GENERIC */
-.btn{display:block;width:100%;border:none;border-radius:12px;padding:15px;font-size:1rem;font-weight:800;cursor:pointer;transition:transform .12s,filter .12s;letter-spacing:.2px}
+.btn{display:block;width:100%;border:none;border-radius:12px;padding:15px;font-size:1rem;font-weight:800;cursor:pointer;transition:transform .12s,filter .12s}
 .btn:active{transform:scale(.97)}
 .btn-gold{background:linear-gradient(135deg,var(--gold),#f0b90b);color:#0b1220;box-shadow:0 6px 18px rgba(250,204,21,.25)}
 .btn-ghost{background:var(--panel2);color:var(--txt);border:1px solid var(--line)}
 .btn-sm{padding:11px;font-size:.9rem;border-radius:10px}
-.btn:disabled{opacity:.45;cursor:not-allowed}
+.btn:disabled{opacity:.4;cursor:not-allowed}
 .mt{margin-top:14px}.mt-s{margin-top:8px}
-
 .title{font-size:1.05rem;font-weight:800;color:var(--gold);margin-bottom:12px;display:flex;align-items:center;gap:8px}
 .muted{color:var(--mut)}
-.center{text-align:center}
 
-/* INTRO */
 .rules{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:16px;margin-bottom:14px}
 .rules li{list-style:none;padding:8px 0;border-bottom:1px solid #1d2944;display:flex;gap:10px;align-items:flex-start;font-size:.9rem;line-height:1.4}
 .rules li:last-child{border-bottom:none}
 .rules .ic{font-size:1.1rem;flex-shrink:0}
-.opps{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:14px}
-.opp{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:12px}
-.opp .e{font-size:1.4rem}
-.opp .n{font-weight:700;font-size:.86rem;margin:4px 0 2px}
-.opp .d{font-size:.74rem;color:var(--mut);line-height:1.35}
+.samp{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-bottom:14px}
+.samp .s{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:9px 6px;text-align:center}
+.samp .s .e{font-size:1.3rem}
+.samp .s .n{font-size:.68rem;color:var(--mut);margin-top:3px;line-height:1.2}
 
-/* TURN BAR */
 .turnbar{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px;gap:10px}
 .yearlbl{font-weight:800;color:var(--gold);font-size:1rem;white-space:nowrap}
 .dots{display:flex;gap:5px;flex-wrap:wrap}
-.dot{width:14px;height:14px;border-radius:50%;background:#22304d;border:2px solid #2c3d60;transition:.3s}
+.dot{width:13px;height:13px;border-radius:50%;background:#22304d;border:2px solid #2c3d60;transition:.3s}
 .dot.done{background:var(--green);border-color:#22c55e}
 .dot.cur{background:var(--gold);border-color:#eab308;box-shadow:0 0 8px rgba(250,204,21,.6)}
 
-/* STANDINGS CARDS */
 .cards{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:16px}
 .pcard{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:11px;position:relative;transition:.3s}
 .pcard.lead{border-color:var(--gold);box-shadow:0 0 0 1px var(--gold),0 6px 16px rgba(250,204,21,.15)}
-.pcard .nm{font-weight:700;font-size:.88rem;display:flex;align-items:center;gap:5px}
-.pcard .wl{font-size:1.15rem;font-weight:900;color:var(--green);margin-top:2px;font-variant-numeric:tabular-nums}
+.pcard .nm{font-weight:700;font-size:.86rem;display:flex;align-items:center;gap:5px}
+.pcard .wl{font-size:1.12rem;font-weight:900;color:var(--green);margin-top:2px;font-variant-numeric:tabular-nums}
 .pcard .dl{font-size:.72rem;margin-top:1px;font-weight:700}
 .dl.up{color:var(--green)}.dl.down{color:var(--red)}.dl.flat{color:var(--mut)}
-.tags{display:flex;flex-wrap:wrap;gap:3px;margin-top:7px}
-.tag{font-size:.66rem;background:#0e1c33;border:1px solid #243450;border-radius:6px;padding:2px 5px;color:#a9cdf0}
 
-/* EVENT */
-.event{border-radius:14px;padding:14px 16px;margin-bottom:16px;border:1px solid;animation:pop .4s ease}
+.event{border-radius:14px;padding:13px 15px;margin-bottom:16px;border:1px solid;animation:pop .4s ease}
 @keyframes pop{from{opacity:0;transform:scale(.96)}to{opacity:1;transform:none}}
-.event .lb{font-size:1rem;font-weight:800;display:block;margin-bottom:4px}
-.event .ds{font-size:.84rem;line-height:1.45;opacity:.92}
+.event .lb{font-size:.98rem;font-weight:800;display:block;margin-bottom:4px}
+.event .ds{font-size:.83rem;line-height:1.45;opacity:.92}
 .event.good{background:#06281a;border-color:#1f9d57;color:#86efac}
 .event.bad{background:#2a0c0c;border-color:#c43d3d;color:#fca5a5}
 .event.neutral{background:#1a1c24;border-color:#5b6472;color:#c2c9d4}
 .event.info{background:#0a1f3a;border-color:#2f72c4;color:#9ccdf5}
 
-/* DECISION */
-.decwrap{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:16px}
-.dechead{display:flex;align-items:center;justify-content:space-between;margin-bottom:4px}
+.dechead{display:flex;align-items:center;justify-content:space-between;margin-bottom:3px}
 .dechead .who{font-size:1.15rem;font-weight:900;display:flex;align-items:center;gap:7px}
-.dechead .step{font-size:.74rem;color:var(--mut);background:#0e1c33;border:1px solid #243450;padding:3px 9px;border-radius:20px}
-.cashline{font-size:.85rem;color:var(--mut);margin-bottom:14px}
+.dechead .step{font-size:.72rem;color:var(--mut);background:#0e1c33;border:1px solid #243450;padding:3px 9px;border-radius:20px}
+.cashline{font-size:.84rem;color:var(--mut);margin-bottom:12px}
 .cashline b{color:var(--txt)}
+.choosehint{font-size:.8rem;color:var(--blue);font-weight:700;margin-bottom:10px}
 
-.block{margin-bottom:16px}
-.block .bt{font-size:.82rem;font-weight:700;color:var(--blue);margin-bottom:8px;display:flex;align-items:center;gap:6px}
+.mcard{background:var(--panel);border:1.5px solid var(--line);border-radius:13px;padding:12px;margin-bottom:9px;cursor:pointer;transition:.16s;position:relative}
+.mcard:active{transform:scale(.99)}
+.mcard.sel{border-color:var(--gold);background:#1c2210;box-shadow:0 0 0 1px var(--gold) inset,0 6px 16px rgba(250,204,21,.12)}
+.mcard.dis{opacity:.4;pointer-events:none}
+.mcard .top{display:flex;align-items:center;gap:10px}
+.mcard .e{font-size:1.7rem;flex-shrink:0}
+.mcard .nm{font-weight:800;font-size:.92rem}
+.mcard .ds{font-size:.74rem;color:var(--mut);margin-top:1px;line-height:1.3}
+.mcard .selmark{position:absolute;top:10px;right:10px;width:22px;height:22px;border-radius:50%;border:2px solid var(--line);display:flex;align-items:center;justify-content:center;font-size:.75rem;color:#0b1220;font-weight:900}
+.mcard.sel .selmark{background:var(--gold);border-color:var(--gold)}
+.mcard .meta{display:flex;flex-wrap:wrap;gap:6px;margin-top:9px;align-items:center}
+.chip{font-size:.68rem;font-weight:700;padding:3px 8px;border-radius:20px;border:1px solid}
+.chip.cap{background:#0e1c33;border-color:#243450;color:#a9cdf0}
+.chip.rng{background:#0e1c33;border-color:#243450;color:#cbd5e1}
+.chip.cat{border-color:#314058}
+.chip.risk-low{background:#06281a;border-color:#1f9d57;color:#86efac}
+.chip.risk-mid{background:#2a2400;border-color:#b08900;color:#fcd34d}
+.chip.risk-high{background:#2a0c0c;border-color:#c43d3d;color:#fca5a5}
+.chip.fav{background:#06281a;border-color:#1f9d57;color:#86efac}
+.chip.unf{background:#2a0c0c;border-color:#c43d3d;color:#fca5a5}
 
-.assetbtns{display:flex;flex-direction:column;gap:8px}
-.abtn{display:flex;align-items:center;gap:10px;background:#0e1830;border:1.5px solid var(--line);border-radius:11px;padding:11px 12px;cursor:pointer;transition:.18s}
-.abtn .ae{font-size:1.3rem}
-.abtn .ai{flex:1}
-.abtn .an{font-weight:700;font-size:.85rem}
-.abtn .ad{font-size:.72rem;color:var(--mut);margin-top:1px}
-.abtn .ax{font-size:.78rem;font-weight:800;color:var(--gold);white-space:nowrap}
-.abtn.on{border-color:var(--gold);background:#1e2410;box-shadow:0 0 0 1px var(--gold) inset}
-.abtn.dis{opacity:.4;cursor:not-allowed}
-.abtn .chk{width:20px;height:20px;border-radius:6px;border:2px solid var(--line);flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:.8rem;color:#0b1220}
-.abtn.on .chk{background:var(--gold);border-color:var(--gold)}
-
-.sliderbox{background:#0e1830;border:1px solid var(--line);border-radius:11px;padding:12px}
-.sliderbox .sv{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:6px}
-.sliderbox .sval{font-size:1.15rem;font-weight:900;font-variant-numeric:tabular-nums}
-.sliderbox .shint{font-size:.72rem;color:var(--mut)}
-input[type=range]{width:100%;-webkit-appearance:none;appearance:none;height:7px;border-radius:6px;background:#26344f;outline:none}
-input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:24px;height:24px;border-radius:50%;background:var(--gold);border:3px solid #0b1220;box-shadow:0 2px 6px rgba(0,0,0,.4);cursor:pointer}
-input[type=range]::-moz-range-thumb{width:22px;height:22px;border-radius:50%;background:var(--gold);border:3px solid #0b1220;cursor:pointer}
-.quick{display:flex;gap:6px;margin-top:8px}
-.qb{flex:1;background:#16243e;border:1px solid var(--line);border-radius:8px;padding:6px;font-size:.72rem;font-weight:700;color:var(--mut);cursor:pointer}
-.qb:active{background:#1e3a5f;color:var(--txt)}
-
-/* BUDGET BAR */
-.budget{margin:14px 0 4px}
-.bbar{height:14px;border-radius:8px;overflow:hidden;display:flex;background:#0e1830;border:1px solid var(--line)}
-.bseg{height:100%;transition:width .25s}
-.bseg.as{background:#a78bfa}.bseg.st{background:var(--blue)}.bseg.dp{background:var(--green)}.bseg.lq{background:#475569}
-.blegend{display:flex;flex-wrap:wrap;gap:10px;margin-top:7px;font-size:.7rem;color:var(--mut)}
-.blegend span{display:flex;align-items:center;gap:4px}
-.sw{width:9px;height:9px;border-radius:2px;display:inline-block}
-
-/* RESULTS */
 .rrow{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:12px;margin-bottom:10px}
-.rrow .rh{display:flex;justify-content:space-between;align-items:center}
-.rrow .rn{font-weight:800;font-size:.95rem}
-.rrow .rg{font-weight:900;font-size:1.05rem;font-variant-numeric:tabular-nums}
+.rrow .rh{display:flex;justify-content:space-between;align-items:center;gap:8px}
+.rrow .rn{font-weight:800;font-size:.93rem;display:flex;align-items:center;gap:6px}
+.rrow .rsub{font-size:.74rem;color:var(--mut);margin-top:2px}
+.rrow .rg{font-weight:900;font-size:1.05rem;font-variant-numeric:tabular-nums;white-space:nowrap}
 .rg.pos{color:var(--green)}.rg.neg{color:var(--red)}
-.rlog{margin-top:8px;display:flex;flex-direction:column;gap:3px}
-.rlog .li{font-size:.76rem;color:var(--mut);display:flex;justify-content:space-between;gap:8px;padding:2px 0;border-top:1px dashed #1d2944}
-.rlog .li .v{font-weight:700;font-variant-numeric:tabular-nums}
-.v.pos{color:#86efac}.v.neg{color:#fca5a5}
 
-/* FINAL */
 .podium{display:flex;justify-content:center;align-items:flex-end;gap:8px;margin:8px 0 18px}
 .pp{flex:1;max-width:120px;text-align:center;border-radius:12px 12px 0 0;padding:12px 6px;border:2px solid;border-bottom:none}
 .pp .pe{font-size:1.6rem}
-.pp .pn{font-weight:800;font-size:.85rem;margin:4px 0 1px}
-.pp .pw{font-size:.8rem;font-weight:900;color:var(--green);font-variant-numeric:tabular-nums}
+.pp .pn{font-weight:800;font-size:.84rem;margin:4px 0 1px}
+.pp .pw{font-size:.78rem;font-weight:900;color:var(--green);font-variant-numeric:tabular-nums}
 .pp.first{background:#2a2400;border-color:var(--gold);height:140px;order:2}
 .pp.second{background:#1a1f2c;border-color:#9aa6b8;height:115px;order:1}
 .pp.third{background:#241600;border-color:#c2790f;height:95px;order:3}
 .frow{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:11px;margin-bottom:8px;display:flex;align-items:center;gap:10px}
 .frow .rk{font-weight:900;color:var(--gold);font-size:1rem;width:22px}
 .frow .fn{font-weight:700;flex:1}
-.frow .fspark{height:26px}
 .frow .fw{font-weight:800;color:var(--green);font-variant-numeric:tabular-nums;font-size:.9rem}
-
 .hint{font-size:.74rem;color:var(--mut);text-align:center;margin-top:10px;line-height:1.4}
 </style>
 </head>
@@ -161,452 +125,322 @@ input[type=range]::-moz-range-thumb{width:22px;height:22px;border-radius:50%;bac
 <script>
 "use strict";
 
-// ════════════════════ CONFIG ════════════════════
-var PLAYERS = ["Alberto","Alice","Nicolas","Mattia"];
-var AVATARS = {Alberto:"🧔",Alice:"👩",Nicolas:"👨",Mattia:"🧑"};
-var START = 10000;
-var YEARS = 10;
+// ════════════════ CONFIG ════════════════
+var PLAYERS=["Alberto","Alice","Nicolas","Mattia"];
+var AVATARS={Alberto:"🧔",Alice:"👩",Nicolas:"👨",Mattia:"🧑"};
+var START=10000, YEARS=10, HAND=3;
 
-var ASSETS = [
-  {id:"garage", e:"🏠", n:"Garage da affittare", cost:8000, d:"Affitto +900 €/anno"},
-  {id:"kiosk",  e:"🍹", n:"Chiosco sulla spiaggia", cost:6000, d:"Profitto +1.200 €/anno"},
-  {id:"cars",   e:"🚗", n:"Compravendita auto usate", cost:4000, d:"Resa -40% / +100% l'anno"}
+// category meta
+var CATS={
+  tech:{l:"Tech",c:"#a78bfa"}, immobili:{l:"Immobili",c:"#f472b6"},
+  turismo:{l:"Turismo",c:"#22d3ee"}, food:{l:"Food",c:"#fb923c"},
+  auto:{l:"Auto",c:"#60a5fa"}, finanza:{l:"Finanza",c:"#4ade80"},
+  crypto:{l:"Crypto",c:"#fbbf24"}, extra:{l:"Azzardo",c:"#f87171"}
+};
+
+// ~34 opportunità nel mazzo (stake = capitale impiegato, lo/hi = resa annua)
+var DECK=[
+  {id:"app", e:"📱", n:"App per turisti", ds:"Startup digitale per i vacanzieri", cost:3000, cat:"tech", lo:-0.50, hi:1.20},
+  {id:"ai", e:"🤖", n:"Startup di AI", ds:"Scommessa tecnologica ad alto potenziale", cost:5000, cat:"tech", lo:-0.60, hi:1.50},
+  {id:"ecom", e:"🛒", n:"E-commerce tipico", ds:"Vendita online di prodotti pugliesi", cost:2500, cat:"tech", lo:-0.30, hi:0.80},
+  {id:"garage", e:"🏠", n:"Garage da affittare", ds:"Rendita immobiliare tranquilla", cost:8000, cat:"immobili", lo:0.05, hi:0.18},
+  {id:"trullo", e:"🏡", n:"Trullo da ristrutturare", ds:"Ristruttura e rivendi", cost:12000, cat:"immobili", lo:-0.10, hi:0.60},
+  {id:"mare", e:"🏖️", n:"Casa al mare in affitto", ds:"Affitti estivi a Gallipoli", cost:15000, cat:"immobili", lo:0.00, hi:0.40},
+  {id:"palazzo", e:"🏢", n:"Quota in palazzina", ds:"Investimento immobiliare grosso", cost:20000, cat:"immobili", lo:-0.05, hi:0.30},
+  {id:"chiosco", e:"🍹", n:"Chiosco sulla spiaggia", ds:"Drink e granite tutta estate", cost:6000, cat:"turismo", lo:0.00, hi:0.45},
+  {id:"barche", e:"⛵", n:"Noleggio barche", ds:"Gite in barca tra le grotte", cost:9000, cat:"turismo", lo:-0.30, hi:0.70},
+  {id:"bb", e:"🛏️", n:"B&B nel centro storico", ds:"Ospitalità tra i vicoli", cost:11000, cat:"turismo", lo:-0.10, hi:0.55},
+  {id:"van", e:"🚐", n:"Tour in van del Salento", ds:"Escursioni guidate", cost:4000, cat:"turismo", lo:-0.20, hi:0.60},
+  {id:"lido", e:"🛟", n:"Lido attrezzato", ds:"Ombrelloni, lettini e bar", cost:14000, cat:"turismo", lo:-0.20, hi:0.60},
+  {id:"pizzica", e:"🪗", n:"Festival di pizzica", ds:"Eventi musicali estivi", cost:4000, cat:"turismo", lo:-0.40, hi:0.80},
+  {id:"olio", e:"🫒", n:"Uliveto (olio EVO)", ds:"Oro verde di Puglia", cost:7000, cat:"food", lo:-0.20, hi:0.50},
+  {id:"vino", e:"🍇", n:"Vigneto di Primitivo", ds:"Vino pregiato del Salento", cost:10000, cat:"food", lo:-0.25, hi:0.70},
+  {id:"burrata", e:"🧀", n:"Caseificio (burrata)", ds:"Latticini freschi a km zero", cost:5000, cat:"food", lo:-0.10, hi:0.50},
+  {id:"pizzeria", e:"🍕", n:"Pizzeria gourmet", ds:"Forno a legna e impasti speciali", cost:6000, cat:"food", lo:-0.40, hi:0.90},
+  {id:"pesce", e:"🐟", n:"Pescheria", ds:"Pescato del giorno", cost:3500, cat:"food", lo:-0.20, hi:0.45},
+  {id:"gelato", e:"🍦", n:"Gelateria artigianale", ds:"Gusti del territorio", cost:4500, cat:"food", lo:-0.20, hi:0.60},
+  {id:"sagra", e:"🎪", n:"Sagra delle orecchiette", ds:"Evento gastronomico di paese", cost:3000, cat:"food", lo:-0.20, hi:0.50},
+  {id:"cozze", e:"🦪", n:"Allevamento di cozze", ds:"Mitilicoltura a Taranto", cost:5000, cat:"food", lo:-0.30, hi:0.60},
+  {id:"usate", e:"🚗", n:"Compravendita auto usate", ds:"Compra basso, vendi alto", cost:4000, cat:"auto", lo:-0.40, hi:1.00},
+  {id:"scooter", e:"🛵", n:"Noleggio scooter", ds:"Due ruote per i turisti", cost:3000, cat:"auto", lo:-0.30, hi:0.60},
+  {id:"flotta", e:"🚙", n:"Flotta a noleggio", ds:"Auto a noleggio in aeroporto", cost:13000, cat:"auto", lo:-0.30, hi:0.70},
+  {id:"bond", e:"🏦", n:"Obbligazioni statali", ds:"Cedola sicura e noiosa", cost:5000, cat:"finanza", lo:0.02, hi:0.05},
+  {id:"etf", e:"📊", n:"ETF mondiale", ds:"Mercati globali diversificati", cost:5000, cat:"finanza", lo:-0.15, hi:0.25},
+  {id:"oro", e:"🥇", n:"Oro fisico", ds:"Bene rifugio", cost:6000, cat:"finanza", lo:-0.10, hi:0.20},
+  {id:"diamanti", e:"💎", n:"Diamanti da investimento", ds:"Pietre preziose", cost:8000, cat:"finanza", lo:-0.20, hi:0.30},
+  {id:"solare", e:"🌻", n:"Campo fotovoltaico", ds:"Energia che rende negli anni", cost:16000, cat:"finanza", lo:0.03, hi:0.25},
+  {id:"btc", e:"₿", n:"Bitcoin", ds:"Cripto volatile per stomaci forti", cost:4000, cat:"crypto", lo:-0.70, hi:2.00},
+  {id:"meme", e:"🪙", n:"Memecoin pugliese", ds:"Pump o crollo, chi lo sa", cost:2000, cat:"crypto", lo:-0.95, hi:4.00},
+  {id:"bet", e:"🎰", n:"Scommessa sportiva", ds:"Tutto sul derby", cost:1500, cat:"extra", lo:-1.00, hi:2.50},
+  {id:"poker", e:"🃏", n:"Tavolo da poker", ds:"Serata ad alto rischio", cost:2000, cat:"extra", lo:-1.00, hi:1.80},
+  {id:"arte", e:"🎨", n:"Galleria d'arte", ds:"Compra opere emergenti", cost:7000, cat:"extra", lo:-0.50, hi:0.70}
 ];
 
-var EVENTS = [
-  {id:"boom",   lb:"🚀 Boom tecnologico", ty:"good", ds:"Le startup esplodono: le azioni tech volano.", fx:{stocks:+0.30}},
-  {id:"crisis", lb:"📉 Crisi finanziaria", ty:"bad",  ds:"I mercati crollano. Azioni e auto soffrono.", fx:{stocks:-0.30, cars:-0.20}},
-  {id:"summer", lb:"☀️ Estate record in Puglia", ty:"good", ds:"Turismo ai massimi: i chioschi incassano il doppio.", fx:{kioskMult:2.0}},
-  {id:"storm",  lb:"⛈️ Alluvione autunnale", ty:"bad", ds:"Danni agli immobili: i garage perdono 1.500 €.", fx:{garageDmg:1500}},
-  {id:"bce",    lb:"🏦 La BCE alza i tassi", ty:"good", ds:"Il conto deposito rende il 5% invece del 3%.", fx:{deposit:0.05}},
-  {id:"fair",   lb:"🏎️ Fiera dell auto in Puglia", ty:"good", ds:"Le auto usate vanno a ruba: resa extra.", fx:{cars:+0.50}},
-  {id:"scandal",lb:"💥 Scandalo concessionarie", ty:"bad", ds:"Crollo del mercato dell usato.", fx:{cars:-0.45}},
-  {id:"infl",   lb:"📈 Inflazione alle stelle", ty:"bad", ds:"La liquidità ferma perde il 3% di valore.", fx:{erode:0.03}},
-  {id:"fest",   lb:"🎉 Festival del gusto nel Salento", ty:"good", ds:"I chioschi incassano 500 € extra.", fx:{kioskBonus:500}},
-  {id:"calm",   lb:"📅 Anno tranquillo", ty:"neutral", ds:"Nessun evento straordinario: i trend seguono la norma.", fx:{}},
-  {id:"stable", lb:"🌤️ Mercato stabile", ty:"neutral", ds:"Anno senza sorprese: i fondamentali tengono.", fx:{}}
+// clima economico annuale (modifica le rese per categoria)
+var CLIMATES=[
+  {id:"boomTech", lb:"🚀 Boom tecnologico", ty:"good", ds:"Le startup esplodono: il Tech vola.", mods:{tech:0.45}},
+  {id:"crisi", lb:"📉 Crisi finanziaria", ty:"bad", ds:"Mercati in rosso: Tech, Crypto, Finanza e Auto soffrono.", mods:{tech:-0.25,crypto:-0.35,finanza:-0.15,auto:-0.20}},
+  {id:"estate", lb:"☀️ Estate da record", ty:"good", ds:"Turismo e Food incassano alla grande.", mods:{turismo:0.50,food:0.30}},
+  {id:"maltempo", lb:"⛈️ Stagione di maltempo", ty:"bad", ds:"Spiagge vuote: Turismo e Food in calo.", mods:{turismo:-0.40,food:-0.20}},
+  {id:"bce", lb:"🏦 La BCE alza i tassi", ty:"neutral", ds:"Finanza premiata, Immobili un po' frenati.", mods:{finanza:0.07,immobili:-0.10}},
+  {id:"cryptoUp", lb:"🌕 Crypto mania", ty:"good", ds:"Le cripto vanno alla luna.", mods:{crypto:1.20}},
+  {id:"cryptoDn", lb:"💥 Crypto crash", ty:"bad", ds:"Bagno di sangue sulle cripto.", mods:{crypto:-0.70}},
+  {id:"infl", lb:"📈 Inflazione alle stelle", ty:"bad", ds:"La liquidità ferma perde valore; il Food sale.", mods:{food:0.10}, erode:0.04},
+  {id:"turismoBoom", lb:"🧳 Turismo in boom", ty:"good", ds:"Puglia presa d'assalto dai visitatori.", mods:{turismo:0.35}},
+  {id:"siccita", lb:"🏜️ Siccità", ty:"bad", ds:"Raccolti scarsi: il Food cala.", mods:{food:-0.40}},
+  {id:"olioTop", lb:"🫒 Annata d'olio record", ty:"good", ds:"Olio e prodotti agricoli alle stelle.", mods:{food:0.45}},
+  {id:"mattone", lb:"🧱 Mattone d'oro", ty:"good", ds:"Il mercato immobiliare si surriscalda.", mods:{immobili:0.40}},
+  {id:"calmo", lb:"📅 Anno tranquillo", ty:"neutral", ds:"Nessun evento straordinario.", mods:{}},
+  {id:"stabile", lb:"🌤️ Mercato stabile", ty:"neutral", ds:"I fondamentali tengono, nessuna sorpresa.", mods:{}}
 ];
 
-// ════════════════════ STATE ════════════════════
+// ════════════════ STATE ════════════════
 var S;
 function newGame(){
-  S = {
-    screen:"intro",
-    year:1,
-    decideIdx:0,
-    drafts:[],
-    resort:{revealed:false, approved:null},
-    lastEvent:null,
-    lastResults:null,
-    players: PLAYERS.map(function(nm){
-      return { name:nm, cash:START, assets:[], history:[], nw:[START] };
-    })
-  };
+  S={ screen:"intro", year:1, decideIdx:0,
+      climate:null, hands:[], choices:[], dealtYear:0,
+      resort:{revealed:false, approved:null},
+      players:PLAYERS.map(function(nm){ return {name:nm,cash:START,history:[],nw:[START]}; }) };
 }
 
-// ════════════════════ HELPERS ════════════════════
+// ════════════════ HELPERS ════════════════
 function eur(n){ n=Math.round(n); return n.toLocaleString("it-IT")+" €"; }
 function rnd(a,b){ return Math.random()*(b-a)+a; }
-function pick(a){ return a[Math.floor(Math.random()*a.length)]; }
 function clamp(v,lo,hi){ return Math.max(lo,Math.min(hi,v)); }
-function net(p){
-  var v=p.cash; p.assets.forEach(function(id){ var a=assetDef(id); if(a) v+=a.cost; }); return v;
-}
-function assetDef(id){ for(var i=0;i<ASSETS.length;i++) if(ASSETS[i].id===id) return ASSETS[i]; return null; }
-function leadIdx(){ var b=0,bw=-1e9; S.players.forEach(function(p,i){ var w=net(p); if(w>bw){bw=w;b=i;} }); return b; }
+function shuffle(a){ a=a.slice(); for(var i=a.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1));var t=a[i];a[i]=a[j];a[j]=t;} return a; }
+function cardById(id){ for(var i=0;i<DECK.length;i++) if(DECK[i].id===id) return DECK[i]; return null; }
+function net(p){ return p.cash; }
+function leadIdx(){ var b=0,bw=-1e9; S.players.forEach(function(p,i){ if(net(p)>bw){bw=net(p);b=i;} }); return b; }
 function el(tag,cls,html){ var d=document.createElement(tag); if(cls)d.className=cls; if(html!=null)d.innerHTML=html; return d; }
+function riskOf(c){ var sp=c.hi-c.lo; return sp<0.25?"low":sp<0.9?"mid":"high"; }
+function riskLbl(r){ return r==="low"?"🟢 Sicuro":r==="mid"?"🟡 Medio":"🔴 Alto"; }
+function pct(x){ return (x>=0?"+":"")+Math.round(x*100)+"%"; }
 
-// ════════════════════ SIMULATION ════════════════════
-function chooseEvent(){
+// ════════════════ TURN SETUP ════════════════
+function chooseClimate(){
   if(S.year===2 && !S.resort.revealed){
-    S.resort.revealed=true;
-    S.resort.approved = Math.random()<0.55;
+    S.resort.revealed=true; S.resort.approved=Math.random()<0.55;
     return S.resort.approved
-      ? {id:"resortY", lb:"🏗️ Resort APPROVATO!", ty:"good",
-         ds:"La multinazionale ottiene il via libera. Immobili 📈📈 e turismo 📈 esplodono.",
-         fx:{garageMult:1.6, kioskMult:1.8}}
-      : {id:"resortN", lb:"❌ Resort bocciato", ty:"neutral",
-         ds:"Il consiglio comunale boccia il progetto per ragioni ambientali. Nessun effetto.",
-         fx:{}};
+      ? {id:"resortY", lb:"🏗️ Resort APPROVATO!", ty:"good", ds:"Via libera al mega-resort: Immobili e Turismo esplodono quest'anno.", mods:{immobili:0.60,turismo:0.50}}
+      : {id:"resortN", lb:"❌ Resort bocciato", ty:"neutral", ds:"Progetto respinto per ragioni ambientali. Nessun effetto particolare.", mods:{}};
   }
-  return pick(EVENTS);
+  return CLIMATES[Math.floor(Math.random()*CLIMATES.length)];
+}
+function dealTurn(){
+  if(S.dealtYear===S.year) return; // già distribuito
+  S.climate=chooseClimate();
+  S.hands=S.players.map(function(p){
+    var pool=shuffle(DECK).filter(function(c){ return c.cost<=p.cash; });
+    var picks=pool.slice(0,HAND).map(function(c){ return {kind:"opp",id:c.id}; });
+    // sempre disponibili: deposito + liquidità
+    var dep=Math.min(p.cash, Math.max(2000, Math.round(p.cash*0.4/500)*500));
+    picks.push({kind:"dep", stake:dep});
+    picks.push({kind:"liq"});
+    return picks;
+  });
+  S.choices=[null,null,null,null];
+  S.dealtYear=S.year;
 }
 
-function simulate(){
-  var ev = chooseEvent();
-  S.lastEvent = ev;
-  var fx = ev.fx||{};
-  var stocksMod = fx.stocks||0, carsMod = fx.cars||0;
-  var kioskMult = fx.kioskMult||1, kioskBonus = fx.kioskBonus||0;
-  var garageMult = fx.garageMult||1, garageDmg = fx.garageDmg||0;
-  var depRate = fx.deposit||0.03, erode = fx.erode||0;
-
-  var results = S.players.map(function(p,i){
-    var d = S.drafts[i] || {assets:[],stocks:0,deposit:0};
-    var log=[], delta=0;
-
-    // income from owned assets
-    p.assets.forEach(function(id){
-      if(id==="garage"){ var g=Math.round(900*garageMult)-garageDmg; delta+=g; log.push(["🏠 Garage",g]); }
-      if(id==="kiosk"){ var k=Math.round(1200*kioskMult)+kioskBonus; delta+=k; log.push(["🍹 Chiosco",k]); }
-      if(id==="cars"){ var r=clamp(rnd(-0.40,1.00)+carsMod,-0.6,1.6); var c=Math.round(4000*r); delta+=c; log.push(["🚗 Auto usate ("+(r>=0?"+":"")+Math.round(r*100)+"%)",c]); }
-    });
-
-    // buy new assets
-    (d.assets||[]).forEach(function(id){
-      if(p.assets.indexOf(id)>=0) return;
-      var a=assetDef(id); if(!a) return;
-      p.assets.push(id); delta-=a.cost; log.push([a.e+" Compra "+a.n.split(" ")[0],-a.cost]);
-    });
-
-    // stocks
-    if(d.stocks>0){
-      var sr=clamp(rnd(-0.20,0.50)+stocksMod,-0.8,1.0);
-      var sg=Math.round(d.stocks*sr); delta+=sg;
-      log.push(["📈 Azioni ("+(sr>=0?"+":"")+Math.round(sr*100)+"%)",sg]);
-    }
-    // deposit
-    if(d.deposit>0){
-      var di=Math.round(d.deposit*depRate); delta+=di;
-      log.push(["💰 Deposito (+"+Math.round(depRate*100)+"%)",di]);
-    }
-    // inflation on idle cash
-    if(erode>0){
-      var idle=p.cash - d.stocks - d.deposit;
-      idle=Math.max(0,idle);
-      var er=Math.round(idle*erode);
-      if(er>0){ delta-=er; log.push(["📉 Inflazione su liquidità",-er]); }
-    }
-    return {i:i,delta:delta,log:log};
+// ════════════════ RESOLVE ════════════════
+function moveOutcome(p, mv){
+  var mods=S.climate.mods||{};
+  if(mv.kind==="opp"){
+    var c=cardById(mv.id);
+    var rate=clamp(rnd(c.lo,c.hi)+(mods[c.cat]||0), -1, c.hi+1.6);
+    var delta=Math.round(c.cost*rate);
+    return {delta:delta, label:c.e+" "+c.n, sub:"Capitale "+eur(c.cost)+" · resa "+pct(rate)};
+  }
+  if(mv.kind==="dep"){
+    var r=0.03+(mods.finanza||0);
+    var d=Math.round(mv.stake*r);
+    return {delta:d, label:"💰 Conto deposito", sub:"Capitale "+eur(mv.stake)+" · "+pct(r)};
+  }
+  // liquidità
+  var er=S.climate.erode||0;
+  var loss=Math.round(p.cash*er);
+  return {delta:-loss, label:"🛡️ Tieni la liquidità", sub: er>0? "Inflazione "+pct(-er) : "Nessun rischio"};
+}
+function resolveTurn(){
+  S.lastResults=S.players.map(function(p,i){
+    var mv=S.hands[i][S.choices[i]];
+    var o=moveOutcome(p,mv);
+    return {i:i, delta:o.delta, label:o.label, sub:o.sub};
   });
-
-  results.forEach(function(r){
+  S.lastResults.forEach(function(r){
     var p=S.players[r.i];
     p.cash=Math.max(0,p.cash+r.delta);
-    p.history.push({year:S.year,delta:r.delta,log:r.log});
-    p.nw.push(net(p));
+    p.history.push(r); p.nw.push(p.cash);
   });
-
-  S.lastResults=results;
   S.screen = S.year>=YEARS ? "final" : "results";
 }
 
-// ════════════════════ RENDER ════════════════════
+// ════════════════ RENDER ════════════════
 function render(){
-  var root=document.getElementById("screen");
-  root.innerHTML="";
+  var root=document.getElementById("screen"); root.innerHTML="";
   if(S.screen==="intro") return renderIntro(root);
-  if(S.screen==="final") { renderStandingsBar(root); return renderFinal(root); }
-  renderStandingsBar(root);
+  if(S.screen==="final"){ renderBar(root); return renderFinal(root); }
+  renderBar(root);
   if(S.screen==="decision") return renderDecision(root);
   if(S.screen==="results") return renderResults(root);
 }
 
 function renderIntro(root){
-  var op=el("div","opps");
-  op.innerHTML =
-    opp("📈","Azioni Tech","Resa -20% / +50%, casuale")+
-    opp("💰","Conto Deposito","Garantito +3% l'anno")+
-    opp("🏠","Garage","8.000 € · +900 €/anno")+
-    opp("🍹","Chiosco","6.000 € · +1.200 €/anno")+
-    opp("🚗","Auto usate","4.000 € · molto variabile")+
-    opp("🏦","Liquidità","Tieni i contanti, zero rischio");
-  var rules=el("div","rules",
-    "<div class='title'>📜 Regole</div>"+
-    li("💶","Ognuno parte con <b>10.000 €</b>")+
-    li("🗓️","Il gioco dura <b>10 anni</b> (1 turno = 1 anno)")+
-    li("🎯","Ogni anno: azioni, immobili, attività o liquidità")+
-    li("🎲","Io simulo mercato, crisi, boom ed eventi casuali")+
-    li("🏆","Vince chi ha il <b>patrimonio più alto</b> dopo 10 anni"));
-  var info=el("div","event info",
-    "<span class='lb'>🏗️ Evento in arrivo: il Resort</span>"+
-    "<span class='ds'>Una multinazionale vuole costruire un enorme resort vicino alla vostra zona. Se il progetto passa, immobili e turismo voleranno. Il verdetto arriva al 2° anno.</span>");
   root.appendChild(el("div","title","🌊 Benvenuti in Puglia"));
-  root.appendChild(op);
-  root.appendChild(rules);
-  root.appendChild(info);
+  var samp=el("div","samp");
+  ["📱","🏠","🍹","🫒","🍇","🚗","₿","🥇","🎰"].forEach(function(e){
+    samp.appendChild(el("div","s","<div class='e'>"+e+"</div>"));
+  });
+  root.appendChild(samp);
+  root.appendChild(el("div","rules",
+    "<div class='title'>📜 Come si gioca</div>"+
+    li("💶","Ognuno parte con <b>10.000 €</b>")+
+    li("🃏","Ogni anno ti vengono <b>proposte 5 mosse</b> pescate da un mazzo di oltre 30 opportunità")+
+    li("👉","<b>Ognuno sceglie una mossa</b>, conoscendo già il clima economico dell'anno")+
+    li("🎲","Io applico clima, fortuna e rischio e calcolo il risultato")+
+    li("🏆","Dopo <b>10 anni</b> vince chi ha il patrimonio più alto")));
+  root.appendChild(el("div","event info",
+    "<span class='lb'>🏗️ In arrivo: il Resort</span>"+
+    "<span class='ds'>Una multinazionale vuole costruire un mega-resort vicino a voi. Se al 2° anno il progetto passa, Immobili e Turismo voleranno.</span>"));
   var b=el("button","btn btn-gold mt","▶ Inizia il gioco");
-  b.onclick=function(){ S.screen="decision"; S.decideIdx=0; S.drafts=[]; render(); };
+  b.onclick=function(){ startTurn(); };
   root.appendChild(b);
 }
-function opp(e,n,d){ return "<div class='opp'><div class='e'>"+e+"</div><div class='n'>"+n+"</div><div class='d'>"+d+"</div></div>"; }
 function li(ic,t){ return "<li><span class='ic'>"+ic+"</span><span>"+t+"</span></li>"; }
 
-function renderStandingsBar(root){
-  var tb=el("div","turnbar");
-  var dots="";
+function startTurn(){
+  dealTurn();
+  S.screen="decision"; S.decideIdx=0;
+  render();
+}
+
+function renderBar(root){
+  var tb=el("div","turnbar"), dots="";
   for(var i=0;i<YEARS;i++){ var c=i<S.year-1?"done":(i===S.year-1?"cur":""); dots+="<div class='dot "+c+"'></div>"; }
   tb.innerHTML="<span class='yearlbl'>Anno "+S.year+" / "+YEARS+"</span><div class='dots'>"+dots+"</div>";
   root.appendChild(tb);
-
-  var cards=el("div","cards");
-  var lead=leadIdx();
+  var cards=el("div","cards"), lead=leadIdx();
   S.players.forEach(function(p,i){
-    var w=net(p);
-    var last = p.history.length? p.history[p.history.length-1].delta : null;
-    var dl = last==null? "" :
-      "<div class='dl "+(last>0?"up":last<0?"down":"flat")+"'>"+(last>0?"▲ +":last<0?"▼ ":"")+eur(Math.abs(last))+"</div>";
-    var tags="<span class='tag'>💵 "+eur(p.cash)+"</span>"+
-      p.assets.map(function(id){var a=assetDef(id);return "<span class='tag'>"+a.e+"</span>";}).join("");
-    var c=el("div","pcard"+(i===lead&&S.year>1?" lead":""),
+    var last=p.history.length? p.history[p.history.length-1].delta : null;
+    var dl=last==null?"":"<div class='dl "+(last>0?"up":last<0?"down":"flat")+"'>"+(last>0?"▲ +":last<0?"▼ ":"")+eur(Math.abs(last))+"</div>";
+    cards.appendChild(el("div","pcard"+(i===lead&&S.year>1?" lead":""),
       "<div class='nm'>"+(i===lead&&S.year>1?"👑 ":"")+AVATARS[p.name]+" "+p.name+"</div>"+
-      "<div class='wl'>"+eur(w)+"</div>"+dl+
-      "<div class='tags'>"+tags+"</div>");
-    cards.appendChild(c);
+      "<div class='wl'>"+eur(net(p))+"</div>"+dl));
   });
   root.appendChild(cards);
 }
 
 function renderDecision(root){
-  if(S.year===1 && !S.resort.revealed && S.decideIdx===0){
-    root.appendChild(el("div","event info",
-      "<span class='lb'>🏗️ Resort in sospeso</span>"+
-      "<span class='ds'>Il verdetto arriverà il prossimo anno. Se approvato: immobili 📈📈 e turismo 📈.</span>"));
-  }
+  var cl=S.climate;
+  root.appendChild(el("div","event "+cl.ty,
+    "<span class='lb'>"+cl.lb+"</span><span class='ds'>"+cl.ds+"</span>"));
   var p=S.players[S.decideIdx];
-  if(!S._draft) S._draft={assets:[],stocks:0,deposit:0};
-  var draft=S._draft;
-
-  var wrap=el("div","decwrap");
-  wrap.innerHTML=
+  root.appendChild(el("div","",
     "<div class='dechead'><div class='who'>"+AVATARS[p.name]+" "+p.name+"</div>"+
-    "<div class='step'>Giocatore "+(S.decideIdx+1)+" / 4</div></div>"+
-    "<div class='cashline'>Disponibili: <b>"+eur(p.cash)+"</b></div>";
+    "<div class='step'>Giocatore "+(S.decideIdx+1)+" / 4</div></div>"));
+  root.appendChild(el("div","cashline","Patrimonio: <b>"+eur(p.cash)+"</b>"));
+  root.appendChild(el("div","choosehint","👉 Scegli la tua mossa per quest'anno:"));
 
-  // assets block
-  var ab=el("div","block");
-  ab.appendChild(el("div","bt","🏗️ Investimenti / Attività"));
-  var list=el("div","assetbtns");
-  ASSETS.forEach(function(a){
-    var owned=p.assets.indexOf(a.id)>=0;
-    var btn=el("div","abtn");
-    btn.setAttribute("data-aid",a.id);
-    btn.innerHTML="<div class='chk'>✓</div><div class='ae'>"+a.e+"</div>"+
-      "<div class='ai'><div class='an'>"+a.n+"</div><div class='ad'>"+(owned?"Già posseduto":a.d)+"</div></div>"+
-      "<div class='ax'>"+(owned?"✔":eur(a.cost))+"</div>";
-    if(owned){ btn.className="abtn dis"; }
-    else {
-      btn.onclick=function(){ toggleAsset(a.id); };
-    }
-    list.appendChild(btn);
+  var hand=S.hands[S.decideIdx];
+  var wrap=el("div");
+  hand.forEach(function(mv,idx){
+    wrap.appendChild(buildMoveCard(p,mv,idx));
   });
-  ab.appendChild(list);
-  wrap.appendChild(ab);
-
-  // stocks slider
-  wrap.appendChild(sliderBlock("stocks","📈 Azioni Tech","Resa -20% / +50% — a rischio",p.cash));
-  // deposit slider
-  wrap.appendChild(sliderBlock("deposit","💰 Conto Deposito","Garantito +3% — sicuro",p.cash));
-
-  // budget bar
-  var bud=el("div","budget");
-  bud.innerHTML=
-    "<div class='bbar'>"+
-      "<div class='bseg as' id='seg_as'></div>"+
-      "<div class='bseg st' id='seg_st'></div>"+
-      "<div class='bseg dp' id='seg_dp'></div>"+
-      "<div class='bseg lq' id='seg_lq'></div>"+
-    "</div>"+
-    "<div class='blegend'>"+
-      "<span><i class='sw' style='background:#a78bfa'></i>Attività <b id='lg_as'>0 €</b></span>"+
-      "<span><i class='sw' style='background:#60a5fa'></i>Azioni <b id='lg_st'>0 €</b></span>"+
-      "<span><i class='sw' style='background:#4ade80'></i>Deposito <b id='lg_dp'>0 €</b></span>"+
-      "<span><i class='sw' style='background:#475569'></i>Liquidità <b id='lg_lq'>0 €</b></span>"+
-    "</div>";
-  wrap.appendChild(bud);
-
   root.appendChild(wrap);
 
-  var confirm=el("button","btn btn-gold mt", S.decideIdx<3? "Conferma e passa a "+PLAYERS[S.decideIdx+1]+" ▶" : "⚡ Simula l'Anno "+S.year);
+  var sel=S.choices[S.decideIdx];
+  var confirm=el("button","btn btn-gold mt", S.decideIdx<3? "Conferma ▶ tocca a "+PLAYERS[S.decideIdx+1] : "⚡ Risolvi l'Anno "+S.year);
+  confirm.disabled = (sel==null);
   confirm.onclick=function(){
-    S.drafts[S.decideIdx]={assets:draft.assets.slice(),stocks:draft.stocks,deposit:draft.deposit};
-    S._draft=null;
+    if(S.choices[S.decideIdx]==null) return;
     if(S.decideIdx<3){ S.decideIdx++; render(); }
-    else { S.decideIdx=0; simulate(); render(); }
+    else { resolveTurn(); render(); }
   };
   root.appendChild(confirm);
-
   if(S.decideIdx>0){
-    var back=el("button","btn btn-ghost btn-sm mt-s","◀ Torna indietro");
-    back.onclick=function(){ S._draft=S.drafts[S.decideIdx-1]||null; S.decideIdx--; render(); };
+    var back=el("button","btn btn-ghost btn-sm mt-s","◀ Indietro");
+    back.onclick=function(){ S.decideIdx--; render(); };
     root.appendChild(back);
   }
-  root.appendChild(el("div","hint","Trascina gli slider o usa i pulsanti rapidi. Ciò che non investi resta liquidità."));
-
-  refreshBudget();
+  root.appendChild(el("div","hint","Le mosse cambiano ogni anno. Il clima qui sopra può favorire o penalizzare alcune categorie."));
 }
 
-function sliderBlock(kind,label,hint,maxCash){
-  var b=el("div","block");
-  b.innerHTML=
-    "<div class='sliderbox'>"+
-      "<div class='sv'><span class='shint'>"+label+"</span><span class='sval' id='val_"+kind+"'>0 €</span></div>"+
-      "<input type='range' min='0' max='"+maxCash+"' step='250' value='0' id='sl_"+kind+"'>"+
-      "<div class='shint' style='margin-top:5px'>"+hint+"</div>"+
-      "<div class='quick'>"+
-        "<button class='qb' data-k='"+kind+"' data-p='0'>0</button>"+
-        "<button class='qb' data-k='"+kind+"' data-p='0.25'>25%</button>"+
-        "<button class='qb' data-k='"+kind+"' data-p='0.5'>50%</button>"+
-        "<button class='qb' data-k='"+kind+"' data-p='1'>Max</button>"+
-      "</div>"+
-    "</div>";
-  // wire after insertion via setTimeout? Instead attach now using event delegation on inputs.
-  setTimeout(function(){
-    var sl=document.getElementById("sl_"+kind);
-    if(sl){ sl.addEventListener("input",function(){ onSlider(kind, parseInt(sl.value,10)||0); }); }
-    var qbs=b.querySelectorAll(".qb");
-    qbs.forEach(function(q){
-      q.addEventListener("click",function(){
-        var pr=parseFloat(q.getAttribute("data-p"));
-        var p=S.players[S.decideIdx];
-        var target=Math.round((p.cash*pr)/250)*250;
-        onSlider(kind,target);
-      });
-    });
-  },0);
-  return b;
-}
-
-function assetSpent(){
-  var p=S.players[S.decideIdx];
-  return S._draft.assets.reduce(function(s,id){
-    if(p.assets.indexOf(id)>=0) return s;
-    var a=assetDef(id); return s+(a?a.cost:0);
-  },0);
-}
-
-function toggleAsset(id){
-  var p=S.players[S.decideIdx];
-  var arr=S._draft.assets;
-  var idx=arr.indexOf(id);
-  if(idx>=0){ arr.splice(idx,1); }
-  else {
-    var a=assetDef(id);
-    var freeAfter = p.cash - assetSpent() - a.cost;
-    if(freeAfter<0){ flash("Fondi insufficienti per "+a.n); return; }
-    arr.push(id);
-  }
-  // re-clamp sliders to remaining budget
-  reclampSliders();
-  // update asset button visuals
-  var btns=document.querySelectorAll(".abtn[data-aid]");
-  btns.forEach(function(b){
-    var aid=b.getAttribute("data-aid");
-    if(p.assets.indexOf(aid)>=0) return;
-    if(S._draft.assets.indexOf(aid)>=0) b.classList.add("on"); else b.classList.remove("on");
-  });
-  refreshBudget();
-}
-
-function maxAlloc(){
-  var p=S.players[S.decideIdx];
-  return Math.max(0, p.cash - assetSpent());
-}
-function onSlider(kind,val){
-  var d=S._draft;
-  var cap=maxAlloc();
-  val=clamp(val,0,cap);
-  if(kind==="stocks"){
-    d.stocks=val;
-    if(d.stocks+d.deposit>cap) d.deposit=cap-d.stocks;
+function buildMoveCard(p,mv,idx){
+  var sel = S.choices[S.decideIdx]===idx;
+  var d=el("div","mcard"+(sel?" sel":""));
+  d.innerHTML="<div class='selmark'>"+(sel?"✓":"")+"</div>";
+  var mods=S.climate.mods||{};
+  if(mv.kind==="opp"){
+    var c=cardById(mv.id), r=riskOf(c), cm=CATS[c.cat];
+    var fav = mods[c.cat]||0;
+    var favChip = fav>0? "<span class='chip fav'>📈 favorito</span>" : fav<0? "<span class='chip unf'>📉 sfavorito</span>" : "";
+    d.innerHTML+=
+      "<div class='top'><div class='e'>"+c.e+"</div><div><div class='nm'>"+c.n+"</div><div class='ds'>"+c.ds+"</div></div></div>"+
+      "<div class='meta'>"+
+        "<span class='chip cap'>💶 "+eur(c.cost)+"</span>"+
+        "<span class='chip rng'>resa "+pct(c.lo)+" … "+pct(c.hi)+"</span>"+
+        "<span class='chip risk-"+r+"'>"+riskLbl(r)+"</span>"+
+        "<span class='chip cat' style='color:"+cm.c+"'>"+cm.l+"</span>"+favChip+
+      "</div>";
+  } else if(mv.kind==="dep"){
+    var fr=0.03+(mods.finanza||0);
+    d.innerHTML+=
+      "<div class='top'><div class='e'>💰</div><div><div class='nm'>Conto deposito</div><div class='ds'>Rendimento garantito, zero pensieri</div></div></div>"+
+      "<div class='meta'><span class='chip cap'>💶 "+eur(mv.stake)+"</span>"+
+        "<span class='chip rng'>"+pct(fr)+" sicuro</span>"+
+        "<span class='chip risk-low'>🟢 Sicuro</span></div>";
   } else {
-    d.deposit=val;
-    if(d.stocks+d.deposit>cap) d.stocks=cap-d.deposit;
+    var er=S.climate.erode||0;
+    d.innerHTML+=
+      "<div class='top'><div class='e'>🛡️</div><div><div class='nm'>Tieni la liquidità</div><div class='ds'>Non investi: aspetti tempi migliori</div></div></div>"+
+      "<div class='meta'><span class='chip cap'>Nessun capitale a rischio</span>"+
+        (er>0?"<span class='chip unf'>📉 inflazione "+pct(-er)+"</span>":"<span class='chip risk-low'>🟢 Sicuro</span>")+"</div>";
   }
-  syncSliderDom();
-  refreshBudget();
-}
-function reclampSliders(){
-  var d=S._draft, cap=maxAlloc();
-  if(d.stocks>cap) d.stocks=cap;
-  if(d.stocks+d.deposit>cap) d.deposit=cap-d.stocks;
-  if(d.deposit<0) d.deposit=0;
-  syncSliderDom();
-}
-function syncSliderDom(){
-  var d=S._draft, cap=maxAlloc();
-  var ss=document.getElementById("sl_stocks"), sd=document.getElementById("sl_deposit");
-  if(ss){ ss.max=cap; ss.value=d.stocks; }
-  if(sd){ sd.max=cap; sd.value=d.deposit; }
-  var vs=document.getElementById("val_stocks"), vd=document.getElementById("val_deposit");
-  if(vs) vs.textContent=eur(d.stocks);
-  if(vd) vd.textContent=eur(d.deposit);
-}
-function refreshBudget(){
-  var p=S.players[S.decideIdx], d=S._draft;
-  var as=assetSpent(), st=d.stocks, dp=d.deposit;
-  var lq=Math.max(0,p.cash-as-st-dp);
-  var tot=Math.max(1,p.cash);
-  setW("seg_as",as/tot); setW("seg_st",st/tot); setW("seg_dp",dp/tot); setW("seg_lq",lq/tot);
-  setT("lg_as",eur(as)); setT("lg_st",eur(st)); setT("lg_dp",eur(dp)); setT("lg_lq",eur(lq));
-  syncSliderDom();
-}
-function setW(id,frac){ var e=document.getElementById(id); if(e) e.style.width=(frac*100)+"%"; }
-function setT(id,t){ var e=document.getElementById(id); if(e) e.textContent=t; }
-
-function flash(msg){
-  var f=el("div","",msg);
-  f.style.cssText="position:fixed;left:50%;bottom:24px;transform:translateX(-50%);background:#c43d3d;color:#fff;padding:10px 16px;border-radius:10px;font-size:.85rem;font-weight:700;z-index:50;box-shadow:0 6px 20px rgba(0,0,0,.4)";
-  document.body.appendChild(f);
-  setTimeout(function(){ f.style.transition="opacity .4s"; f.style.opacity="0"; },1400);
-  setTimeout(function(){ f.remove(); },1850);
+  d.onclick=function(){ S.choices[S.decideIdx]=idx; render(); };
+  return d;
 }
 
 function renderResults(root){
-  var ev=S.lastEvent;
-  root.appendChild(el("div","event "+ev.ty,
-    "<span class='lb'>"+ev.lb+"</span><span class='ds'>"+ev.ds+"</span>"));
+  var cl=S.climate;
+  root.appendChild(el("div","event "+cl.ty,"<span class='lb'>"+cl.lb+"</span><span class='ds'>"+cl.ds+"</span>"));
   root.appendChild(el("div","title","📊 Risultati Anno "+S.year));
   S.players.forEach(function(p){
     var h=p.history[p.history.length-1];
-    var logHtml=h.log.map(function(x){
-      var v=x[1];
-      return "<div class='li'><span>"+x[0]+"</span><span class='v "+(v>=0?"pos":"neg")+"'>"+(v>=0?"+":"")+eur(v)+"</span></div>";
-    }).join("");
     root.appendChild(el("div","rrow",
-      "<div class='rh'><span class='rn'>"+AVATARS[p.name]+" "+p.name+"</span>"+
-      "<span class='rg "+(h.delta>=0?"pos":"neg")+"'>"+(h.delta>=0?"+":"")+eur(h.delta)+"</span></div>"+
-      "<div class='rlog'>"+logHtml+"</div>"));
+      "<div class='rh'><div><div class='rn'>"+AVATARS[p.name]+" "+p.name+"</div>"+
+      "<div class='rsub'>"+h.label+" — "+h.sub+"</div></div>"+
+      "<div class='rg "+(h.delta>=0?"pos":"neg")+"'>"+(h.delta>=0?"+":"")+eur(h.delta)+"</div></div>"));
   });
   var b=el("button","btn btn-gold mt", S.year>=YEARS? "🏆 Classifica finale" : "▶ Avanti all'Anno "+(S.year+1));
-  b.onclick=function(){ S.year++; S.screen="decision"; S.decideIdx=0; S.drafts=[]; render(); };
+  b.onclick=function(){ S.year++; startTurn(); };
   root.appendChild(b);
 }
 
 function renderFinal(root){
   var sorted=S.players.slice().sort(function(a,b){ return net(b)-net(a); });
   root.appendChild(el("div","title","🏆 Classifica finale · "+YEARS+" anni"));
-
-  var pod=el("div","podium");
-  var slots=[["second","🥈"],["first","🥇"],["third","🥉"]];
-  // order: 2nd,1st,3rd visually; map sorted[1],sorted[0],sorted[2]
-  var arrange=[sorted[1],sorted[0],sorted[2]];
-  arrange.forEach(function(p,k){
+  var pod=el("div","podium"), slots=[["second","🥈"],["first","🥇"],["third","🥉"]];
+  [sorted[1],sorted[0],sorted[2]].forEach(function(p,k){
     if(!p) return;
     pod.appendChild(el("div","pp "+slots[k][0],
-      "<div class='pe'>"+slots[k][1]+"</div>"+
-      "<div class='pn'>"+AVATARS[p.name]+" "+p.name+"</div>"+
+      "<div class='pe'>"+slots[k][1]+"</div><div class='pn'>"+AVATARS[p.name]+" "+p.name+"</div>"+
       "<div class='pw'>"+eur(net(p))+"</div>"));
   });
   root.appendChild(pod);
-
   sorted.forEach(function(p,i){
-    var w=net(p), g=w-START;
+    var g=net(p)-START;
     root.appendChild(el("div","frow",
       "<div class='rk'>"+(i+1)+"</div>"+
       "<div class='fn'>"+AVATARS[p.name]+" "+p.name+
         "<div style='font-size:.7rem;color:#8aa0c0'>"+(g>=0?"+":"")+eur(g)+" sul capitale</div></div>"+
       sparkline(p.nw)+
-      "<div class='fw'>"+eur(w)+"</div>"));
+      "<div class='fw'>"+eur(net(p))+"</div>"));
   });
-
   var win=sorted[0], mil=net(win)>=1000000;
   root.appendChild(el("div","event "+(mil?"good":"info")+" mt",
     "<span class='lb'>"+(mil?"🎉 Abbiamo un milionario!":"🎯 Vince "+win.name+"!")+"</span>"+
-    "<span class='ds'>"+(mil
-      ? win.name+" ha superato il milione di euro. Imprenditore pugliese dell anno!"
+    "<span class='ds'>"+(mil? win.name+" ha superato il milione. Imprenditore pugliese dell'anno!"
       : win.name+" chiude con "+eur(net(win))+". Nessun milione… per ora!")+"</span>"));
-
   var b=el("button","btn btn-gold mt","🔄 Nuova partita");
   b.onclick=function(){ newGame(); render(); };
   root.appendChild(b);
@@ -614,21 +448,18 @@ function renderFinal(root){
 }
 
 function sparkline(vals){
-  var w=70,h=26,pad=2;
-  var mn=Math.min.apply(null,vals), mx=Math.max.apply(null,vals);
-  var rng=Math.max(1,mx-mn);
+  var w=64,h=24,pad=2;
+  var mn=Math.min.apply(null,vals), mx=Math.max.apply(null,vals), rng=Math.max(1,mx-mn);
   var pts=vals.map(function(v,i){
     var x=pad+i*(w-2*pad)/(vals.length-1||1);
     var y=h-pad-((v-mn)/rng)*(h-2*pad);
     return x.toFixed(1)+","+y.toFixed(1);
   }).join(" ");
-  var up=vals[vals.length-1]>=vals[0];
-  var col=up?"#4ade80":"#f87171";
-  return "<svg class='fspark' width='"+w+"' height='"+h+"' viewBox='0 0 "+w+" "+h+"'>"+
-    "<polyline fill='none' stroke='"+col+"' stroke-width='2' stroke-linejoin='round' stroke-linecap='round' points='"+pts+"'/></svg>";
+  var col=vals[vals.length-1]>=vals[0]?"#4ade80":"#f87171";
+  return "<svg width='"+w+"' height='"+h+"' viewBox='0 0 "+w+" "+h+"'><polyline fill='none' stroke='"+col+"' stroke-width='2' stroke-linejoin='round' stroke-linecap='round' points='"+pts+"'/></svg>";
 }
 
-// ════════════════════ BOOT ════════════════════
+// ════════════════ BOOT ════════════════
 newGame();
 render();
 </script>
