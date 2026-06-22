@@ -2,610 +2,634 @@
 <html lang="it">
 <head>
 <meta charset="utf-8"/>
-<meta name="viewport" content="width=device-width,initial-scale=1"/>
-<title>💰 Chi Diventa Milionario? – Edizione Puglia</title>
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no"/>
+<title>Chi Diventa Milionario? - Edizione Puglia</title>
 <style>
-*{box-sizing:border-box;margin:0;padding:0}
-body{font-family:system-ui,-apple-system,sans-serif;background:#0f172a;color:#e2e8f0;min-height:100vh}
-header{background:linear-gradient(135deg,#1e3a5f,#0f4c81);padding:20px 24px;text-align:center;border-bottom:2px solid #facc15}
-header h1{font-size:1.8rem;color:#facc15;letter-spacing:.5px}
-header p{color:#93c5fd;font-size:.9rem;margin-top:4px}
-.badge{display:inline-block;background:#facc15;color:#0f172a;padding:2px 10px;border-radius:20px;font-weight:700;font-size:.8rem;margin-left:8px}
-main{max-width:1100px;margin:0 auto;padding:20px 16px}
+:root{
+  --bg:#0b1220; --panel:#141d30; --panel2:#1b2740; --line:#2a3a5c;
+  --gold:#facc15; --green:#4ade80; --red:#f87171; --blue:#60a5fa;
+  --txt:#e8eef7; --mut:#8aa0c0;
+}
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+html,body{background:var(--bg);color:var(--txt);font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+body{min-height:100vh;overflow-x:hidden}
+.app{max-width:560px;margin:0 auto;min-height:100vh;display:flex;flex-direction:column}
+
+/* HEADER */
+.hd{background:linear-gradient(135deg,#16335c,#0d4c81 60%,#0a3a66);padding:16px 18px;text-align:center;border-bottom:3px solid var(--gold);position:sticky;top:0;z-index:20}
+.hd h1{font-size:1.25rem;color:var(--gold);letter-spacing:.3px;line-height:1.15}
+.hd .sub{color:#a9cdf0;font-size:.78rem;margin-top:3px}
+
+/* SCREENS */
+.screen{padding:16px;flex:1;animation:fade .35s ease}
+@keyframes fade{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+
+/* GENERIC */
+.btn{display:block;width:100%;border:none;border-radius:12px;padding:15px;font-size:1rem;font-weight:800;cursor:pointer;transition:transform .12s,filter .12s;letter-spacing:.2px}
+.btn:active{transform:scale(.97)}
+.btn-gold{background:linear-gradient(135deg,var(--gold),#f0b90b);color:#0b1220;box-shadow:0 6px 18px rgba(250,204,21,.25)}
+.btn-ghost{background:var(--panel2);color:var(--txt);border:1px solid var(--line)}
+.btn-sm{padding:11px;font-size:.9rem;border-radius:10px}
+.btn:disabled{opacity:.45;cursor:not-allowed}
+.mt{margin-top:14px}.mt-s{margin-top:8px}
+
+.title{font-size:1.05rem;font-weight:800;color:var(--gold);margin-bottom:12px;display:flex;align-items:center;gap:8px}
+.muted{color:var(--mut)}
+.center{text-align:center}
+
+/* INTRO */
+.rules{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:16px;margin-bottom:14px}
+.rules li{list-style:none;padding:8px 0;border-bottom:1px solid #1d2944;display:flex;gap:10px;align-items:flex-start;font-size:.9rem;line-height:1.4}
+.rules li:last-child{border-bottom:none}
+.rules .ic{font-size:1.1rem;flex-shrink:0}
+.opps{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:14px}
+.opp{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:12px}
+.opp .e{font-size:1.4rem}
+.opp .n{font-weight:700;font-size:.86rem;margin:4px 0 2px}
+.opp .d{font-size:.74rem;color:var(--mut);line-height:1.35}
 
 /* TURN BAR */
-.turnbar{display:flex;align-items:center;gap:12px;margin-bottom:20px;flex-wrap:wrap}
-.turn-label{font-size:1.1rem;font-weight:700;color:#facc15}
-.dots{display:flex;gap:6px}
-.dot{width:18px;height:18px;border-radius:50%;background:#1e3a5f;border:2px solid #334155;transition:all .3s}
-.dot.done{background:#22c55e;border-color:#16a34a}
-.dot.current{background:#facc15;border-color:#eab308;box-shadow:0 0 8px #facc1580}
+.turnbar{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px;gap:10px}
+.yearlbl{font-weight:800;color:var(--gold);font-size:1rem;white-space:nowrap}
+.dots{display:flex;gap:5px;flex-wrap:wrap}
+.dot{width:14px;height:14px;border-radius:50%;background:#22304d;border:2px solid #2c3d60;transition:.3s}
+.dot.done{background:var(--green);border-color:#22c55e}
+.dot.cur{background:var(--gold);border-color:#eab308;box-shadow:0 0 8px rgba(250,204,21,.6)}
 
-/* WEALTH CARDS */
-.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:14px;margin-bottom:24px}
-.card{background:#1e293b;border:1px solid #334155;border-radius:12px;padding:16px;position:relative;overflow:hidden}
-.card.leader{border-color:#facc15;box-shadow:0 0 12px #facc1540}
-.card-name{font-weight:700;font-size:1rem;margin-bottom:6px}
-.card-wealth{font-size:1.6rem;font-weight:800;color:#4ade80}
-.card-delta{font-size:.8rem;margin-top:2px}
-.card-delta.pos{color:#4ade80}.card-delta.neg{color:#f87171}.card-delta.zero{color:#94a3b8}
-.card-assets{margin-top:8px;display:flex;flex-wrap:wrap;gap:4px}
-.asset-tag{background:#0f2744;border:1px solid #334155;border-radius:6px;padding:2px 7px;font-size:.75rem;color:#93c5fd}
-.crown{position:absolute;top:8px;right:10px;font-size:1.2rem}
+/* STANDINGS CARDS */
+.cards{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:16px}
+.pcard{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:11px;position:relative;transition:.3s}
+.pcard.lead{border-color:var(--gold);box-shadow:0 0 0 1px var(--gold),0 6px 16px rgba(250,204,21,.15)}
+.pcard .nm{font-weight:700;font-size:.88rem;display:flex;align-items:center;gap:5px}
+.pcard .wl{font-size:1.15rem;font-weight:900;color:var(--green);margin-top:2px;font-variant-numeric:tabular-nums}
+.pcard .dl{font-size:.72rem;margin-top:1px;font-weight:700}
+.dl.up{color:var(--green)}.dl.down{color:var(--red)}.dl.flat{color:var(--mut)}
+.tags{display:flex;flex-wrap:wrap;gap:3px;margin-top:7px}
+.tag{font-size:.66rem;background:#0e1c33;border:1px solid #243450;border-radius:6px;padding:2px 5px;color:#a9cdf0}
 
-/* SECTION */
-.section{background:#1e293b;border:1px solid #334155;border-radius:12px;padding:20px;margin-bottom:20px}
-.section h2{font-size:1rem;font-weight:700;color:#facc15;margin-bottom:14px;display:flex;align-items:center;gap:8px}
+/* EVENT */
+.event{border-radius:14px;padding:14px 16px;margin-bottom:16px;border:1px solid;animation:pop .4s ease}
+@keyframes pop{from{opacity:0;transform:scale(.96)}to{opacity:1;transform:none}}
+.event .lb{font-size:1rem;font-weight:800;display:block;margin-bottom:4px}
+.event .ds{font-size:.84rem;line-height:1.45;opacity:.92}
+.event.good{background:#06281a;border-color:#1f9d57;color:#86efac}
+.event.bad{background:#2a0c0c;border-color:#c43d3d;color:#fca5a5}
+.event.neutral{background:#1a1c24;border-color:#5b6472;color:#c2c9d4}
+.event.info{background:#0a1f3a;border-color:#2f72c4;color:#9ccdf5}
 
-/* EVENT BANNER */
-.event-banner{border-radius:10px;padding:14px 16px;margin-bottom:20px;border:1px solid}
-.event-banner.info{background:#0c1a2e;border-color:#3b82f6;color:#93c5fd}
-.event-banner.good{background:#052e16;border-color:#16a34a;color:#4ade80}
-.event-banner.bad{background:#2d0a0a;border-color:#dc2626;color:#f87171}
-.event-banner.neutral{background:#1c1917;border-color:#78716c;color:#a8a29e}
-.event-banner strong{display:block;font-size:1rem;margin-bottom:4px}
-.event-banner p{font-size:.85rem;line-height:1.5}
+/* DECISION */
+.decwrap{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:16px}
+.dechead{display:flex;align-items:center;justify-content:space-between;margin-bottom:4px}
+.dechead .who{font-size:1.15rem;font-weight:900;display:flex;align-items:center;gap:7px}
+.dechead .step{font-size:.74rem;color:var(--mut);background:#0e1c33;border:1px solid #243450;padding:3px 9px;border-radius:20px}
+.cashline{font-size:.85rem;color:var(--mut);margin-bottom:14px}
+.cashline b{color:var(--txt)}
 
-/* FORMS */
-.player-form{border:1px solid #334155;border-radius:10px;margin-bottom:12px;overflow:hidden}
-.player-form-header{background:#162032;padding:12px 16px;cursor:pointer;display:flex;justify-content:space-between;align-items:center;user-select:none}
-.player-form-header:hover{background:#1e3a5f}
-.player-form-body{padding:16px;display:none}
-.player-form-body.open{display:block}
-.form-row{display:flex;flex-wrap:wrap;gap:12px;margin-bottom:12px}
-.form-group{flex:1;min-width:140px}
-.form-group label{display:block;font-size:.8rem;color:#94a3b8;margin-bottom:4px}
-.form-group input[type=number]{width:100%;background:#0f172a;border:1px solid #475569;border-radius:6px;color:#e2e8f0;padding:7px 10px;font-size:.9rem}
-.form-group input[type=number]:focus{outline:none;border-color:#facc15}
-.form-group small{color:#64748b;font-size:.75rem;display:block;margin-top:2px}
-.asset-checks{display:flex;flex-wrap:wrap;gap:8px;margin-top:6px}
-.asset-check{display:flex;align-items:center;gap:6px;background:#0f172a;border:1px solid #334155;border-radius:8px;padding:6px 10px;cursor:pointer;transition:border-color .2s}
-.asset-check:hover{border-color:#60a5fa}
-.asset-check input{accent-color:#facc15;width:14px;height:14px}
-.asset-check span{font-size:.82rem}
-.asset-check.disabled{opacity:.4;cursor:not-allowed}
-.cash-left{font-size:.8rem;color:#fb923c;margin-top:8px}
+.block{margin-bottom:16px}
+.block .bt{font-size:.82rem;font-weight:700;color:var(--blue);margin-bottom:8px;display:flex;align-items:center;gap:6px}
 
-/* BUTTONS */
-.btn{padding:10px 22px;border:none;border-radius:8px;font-weight:700;cursor:pointer;font-size:.95rem;transition:all .2s}
-.btn-primary{background:#facc15;color:#0f172a}.btn-primary:hover{background:#eab308}
-.btn-secondary{background:#334155;color:#e2e8f0}.btn-secondary:hover{background:#475569}
-.btn-lg{padding:14px 32px;font-size:1.05rem;width:100%}
+.assetbtns{display:flex;flex-direction:column;gap:8px}
+.abtn{display:flex;align-items:center;gap:10px;background:#0e1830;border:1.5px solid var(--line);border-radius:11px;padding:11px 12px;cursor:pointer;transition:.18s}
+.abtn .ae{font-size:1.3rem}
+.abtn .ai{flex:1}
+.abtn .an{font-weight:700;font-size:.85rem}
+.abtn .ad{font-size:.72rem;color:var(--mut);margin-top:1px}
+.abtn .ax{font-size:.78rem;font-weight:800;color:var(--gold);white-space:nowrap}
+.abtn.on{border-color:var(--gold);background:#1e2410;box-shadow:0 0 0 1px var(--gold) inset}
+.abtn.dis{opacity:.4;cursor:not-allowed}
+.abtn .chk{width:20px;height:20px;border-radius:6px;border:2px solid var(--line);flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:.8rem;color:#0b1220}
+.abtn.on .chk{background:var(--gold);border-color:var(--gold)}
+
+.sliderbox{background:#0e1830;border:1px solid var(--line);border-radius:11px;padding:12px}
+.sliderbox .sv{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:6px}
+.sliderbox .sval{font-size:1.15rem;font-weight:900;font-variant-numeric:tabular-nums}
+.sliderbox .shint{font-size:.72rem;color:var(--mut)}
+input[type=range]{width:100%;-webkit-appearance:none;appearance:none;height:7px;border-radius:6px;background:#26344f;outline:none}
+input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:24px;height:24px;border-radius:50%;background:var(--gold);border:3px solid #0b1220;box-shadow:0 2px 6px rgba(0,0,0,.4);cursor:pointer}
+input[type=range]::-moz-range-thumb{width:22px;height:22px;border-radius:50%;background:var(--gold);border:3px solid #0b1220;cursor:pointer}
+.quick{display:flex;gap:6px;margin-top:8px}
+.qb{flex:1;background:#16243e;border:1px solid var(--line);border-radius:8px;padding:6px;font-size:.72rem;font-weight:700;color:var(--mut);cursor:pointer}
+.qb:active{background:#1e3a5f;color:var(--txt)}
+
+/* BUDGET BAR */
+.budget{margin:14px 0 4px}
+.bbar{height:14px;border-radius:8px;overflow:hidden;display:flex;background:#0e1830;border:1px solid var(--line)}
+.bseg{height:100%;transition:width .25s}
+.bseg.as{background:#a78bfa}.bseg.st{background:var(--blue)}.bseg.dp{background:var(--green)}.bseg.lq{background:#475569}
+.blegend{display:flex;flex-wrap:wrap;gap:10px;margin-top:7px;font-size:.7rem;color:var(--mut)}
+.blegend span{display:flex;align-items:center;gap:4px}
+.sw{width:9px;height:9px;border-radius:2px;display:inline-block}
 
 /* RESULTS */
-.result-row{display:flex;justify-content:space-between;align-items:center;padding:8px 0;border-bottom:1px solid #1e293b;font-size:.88rem}
-.result-row:last-child{border-bottom:none}
-.result-player{font-weight:600}
-.result-detail{color:#94a3b8}
-.result-gain{font-weight:700}.result-gain.pos{color:#4ade80}.result-gain.neg{color:#f87171}
-
-/* LOG */
-.log-entry{padding:6px 0;border-bottom:1px solid #1e293b;font-size:.83rem;color:#94a3b8;line-height:1.5}
-.log-entry:last-child{border-bottom:none}
-.log-entry b{color:#e2e8f0}
+.rrow{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:12px;margin-bottom:10px}
+.rrow .rh{display:flex;justify-content:space-between;align-items:center}
+.rrow .rn{font-weight:800;font-size:.95rem}
+.rrow .rg{font-weight:900;font-size:1.05rem;font-variant-numeric:tabular-nums}
+.rg.pos{color:var(--green)}.rg.neg{color:var(--red)}
+.rlog{margin-top:8px;display:flex;flex-direction:column;gap:3px}
+.rlog .li{font-size:.76rem;color:var(--mut);display:flex;justify-content:space-between;gap:8px;padding:2px 0;border-top:1px dashed #1d2944}
+.rlog .li .v{font-weight:700;font-variant-numeric:tabular-nums}
+.v.pos{color:#86efac}.v.neg{color:#fca5a5}
 
 /* FINAL */
-.podium{display:flex;justify-content:center;align-items:flex-end;gap:16px;margin:24px 0}
-.podium-place{text-align:center;padding:16px;border-radius:10px;min-width:110px}
-.podium-place.first{background:#2d2500;border:2px solid #facc15;padding-top:28px}
-.podium-place.second{background:#1a1a2e;border:2px solid #94a3b8}
-.podium-place.third{background:#1a1000;border:2px solid #b45309}
-.podium-emoji{font-size:2rem}
-.podium-name{font-weight:700;margin:6px 0 2px}
-.podium-wealth{font-size:1.1rem;font-weight:800;color:#4ade80}
+.podium{display:flex;justify-content:center;align-items:flex-end;gap:8px;margin:8px 0 18px}
+.pp{flex:1;max-width:120px;text-align:center;border-radius:12px 12px 0 0;padding:12px 6px;border:2px solid;border-bottom:none}
+.pp .pe{font-size:1.6rem}
+.pp .pn{font-weight:800;font-size:.85rem;margin:4px 0 1px}
+.pp .pw{font-size:.8rem;font-weight:900;color:var(--green);font-variant-numeric:tabular-nums}
+.pp.first{background:#2a2400;border-color:var(--gold);height:140px;order:2}
+.pp.second{background:#1a1f2c;border-color:#9aa6b8;height:115px;order:1}
+.pp.third{background:#241600;border-color:#c2790f;height:95px;order:3}
+.frow{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:11px;margin-bottom:8px;display:flex;align-items:center;gap:10px}
+.frow .rk{font-weight:900;color:var(--gold);font-size:1rem;width:22px}
+.frow .fn{font-weight:700;flex:1}
+.frow .fspark{height:26px}
+.frow .fw{font-weight:800;color:var(--green);font-variant-numeric:tabular-nums;font-size:.9rem}
 
-.hidden{display:none!important}
+.hint{font-size:.74rem;color:var(--mut);text-align:center;margin-top:10px;line-height:1.4}
 </style>
 </head>
 <body>
-<header>
-  <h1>💰 Chi Diventa Milionario?</h1>
-  <p>Edizione Puglia — 4 giocatori, 10 anni, 1 vincitore</p>
-</header>
-<main>
-  <div id="app"></div>
-</main>
+<div class="app">
+  <div class="hd">
+    <h1>💰 Chi Diventa Milionario?</h1>
+    <div class="sub">Edizione Puglia · 4 giocatori · 10 anni · 1 vincitore</div>
+  </div>
+  <div class="screen" id="screen"></div>
+</div>
 
 <script>
-// ── CONSTANTS ──────────────────────────────────────────────────────────────
-const PLAYERS = ['Alberto','Alice','Nicolas','Mattia'];
-const START_CASH = 10000;
-const TURNS = 10;
+"use strict";
 
-const ASSETS_DEF = [
-  {id:'garage', emoji:'🏠', name:'Garage da affittare', cost:8000, income:900, desc:'900€/anno'},
-  {id:'kiosk',  emoji:'🍹', name:'Chiosco sulla spiaggia', cost:6000, income:1200, desc:'1.200€/anno'},
-  {id:'cars',   emoji:'🚗', name:'Auto usate', cost:4000, income:0, desc:'rendimento variabile'},
+// ════════════════════ CONFIG ════════════════════
+var PLAYERS = ["Alberto","Alice","Nicolas","Mattia"];
+var AVATARS = {Alberto:"🧔",Alice:"👩",Nicolas:"👨",Mattia:"🧑"};
+var START = 10000;
+var YEARS = 10;
+
+var ASSETS = [
+  {id:"garage", e:"🏠", n:"Garage da affittare", cost:8000, d:"Affitto +900 €/anno"},
+  {id:"kiosk",  e:"🍹", n:"Chiosco sulla spiaggia", cost:6000, d:"Profitto +1.200 €/anno"},
+  {id:"cars",   e:"🚗", n:"Compravendita auto usate", cost:4000, d:"Resa -40% / +100% l'anno"}
 ];
 
-const RANDOM_EVENTS = [
-  {id:'crisis',   label:'📉 Crisi finanziaria', type:'bad',
-   desc:'I mercati crollano. Le azioni perdono terreno.',
-   fx:{stocks_mod:-0.30, cars_mod:-0.20}},
-  {id:'boom',     label:'🚀 Boom tecnologico', type:'good',
-   desc:'Le startup esplodono. I tech stock volano.',
-   fx:{stocks_mod:+0.30}},
-  {id:'summer',   label:'☀️ Estate record in Puglia', type:'good',
-   desc:'Turismo ai massimi. I chioschi incassano il doppio.',
-   fx:{kiosk_mult:2.0}},
-  {id:'flood',    label:'⛈️ Alluvione autunnale', type:'bad',
-   desc:'Danni agli immobili. I garage perdono 1.500€.',
-   fx:{garage_damage:1500}},
-  {id:'bce',      label:'🏦 BCE alza i tassi', type:'good',
-   desc:'Il conto deposito rende il 5% invece del 3%.',
-   fx:{deposit_rate:0.05}},
-  {id:'carfair',  label:"🏎️ Fiera dell'auto in Puglia", type:'good',
-   desc:'Le auto usate volano. Rendimento extra.',
-   fx:{cars_mod:+0.50}},
-  {id:'scandal',  label:'💥 Scandalo concessionarie', type:'bad',
-   desc:'Le auto usate perdono valore. Attenzione.',
-   fx:{cars_mod:-0.40}},
-  {id:'inflation',label:'📈 Inflazione alle stelle', type:'bad',
-   desc:'La liquidità perde potere d\'acquisto. Meglio investire.',
-   fx:{cash_erode:0.03}},
-  {id:'festival', label:'🎉 Festival del gusto Salento', type:'good',
-   desc:'I chioschi incassano 500€ extra.',
-   fx:{kiosk_bonus:500}},
-  {id:'normal',   label:'📅 Anno tranquillo', type:'neutral',
-   desc:'Nessun evento straordinario. Il mercato segue i trend normali.',
-   fx:{}},
-  {id:'normal2',  label:'📅 Mercato stabile', type:'neutral',
-   desc:'Anno senza sorprese. I fondamentali tengono.',
-   fx:{}},
+var EVENTS = [
+  {id:"boom",   lb:"🚀 Boom tecnologico", ty:"good", ds:"Le startup esplodono: le azioni tech volano.", fx:{stocks:+0.30}},
+  {id:"crisis", lb:"📉 Crisi finanziaria", ty:"bad",  ds:"I mercati crollano. Azioni e auto soffrono.", fx:{stocks:-0.30, cars:-0.20}},
+  {id:"summer", lb:"☀️ Estate record in Puglia", ty:"good", ds:"Turismo ai massimi: i chioschi incassano il doppio.", fx:{kioskMult:2.0}},
+  {id:"storm",  lb:"⛈️ Alluvione autunnale", ty:"bad", ds:"Danni agli immobili: i garage perdono 1.500 €.", fx:{garageDmg:1500}},
+  {id:"bce",    lb:"🏦 La BCE alza i tassi", ty:"good", ds:"Il conto deposito rende il 5% invece del 3%.", fx:{deposit:0.05}},
+  {id:"fair",   lb:"🏎️ Fiera dell auto in Puglia", ty:"good", ds:"Le auto usate vanno a ruba: resa extra.", fx:{cars:+0.50}},
+  {id:"scandal",lb:"💥 Scandalo concessionarie", ty:"bad", ds:"Crollo del mercato dell usato.", fx:{cars:-0.45}},
+  {id:"infl",   lb:"📈 Inflazione alle stelle", ty:"bad", ds:"La liquidità ferma perde il 3% di valore.", fx:{erode:0.03}},
+  {id:"fest",   lb:"🎉 Festival del gusto nel Salento", ty:"good", ds:"I chioschi incassano 500 € extra.", fx:{kioskBonus:500}},
+  {id:"calm",   lb:"📅 Anno tranquillo", ty:"neutral", ds:"Nessun evento straordinario: i trend seguono la norma.", fx:{}},
+  {id:"stable", lb:"🌤️ Mercato stabile", ty:"neutral", ds:"Anno senza sorprese: i fondamentali tengono.", fx:{}}
 ];
 
-// ── GAME STATE ─────────────────────────────────────────────────────────────
-let state = {
-  turn: 1,
-  phase: 'decision', // 'decision' | 'results' | 'final'
-  resortApproved: null,
-  resortRevealed: false,
-  players: PLAYERS.map(name => ({
-    name,
-    cash: START_CASH,
-    assets: [],       // asset ids owned
-    history: [],      // {turn, delta, log}
-    totalWealth: START_CASH,
-  })),
-  lastEvent: null,
-  lastResults: null,
-};
-
-// ── HELPERS ────────────────────────────────────────────────────────────────
-function fmt(n){ return n.toLocaleString('it-IT',{style:'currency',currency:'EUR',maximumFractionDigits:0}); }
-function rnd(min,max){ return Math.random()*(max-min)+min; }
-function pick(arr){ return arr[Math.floor(Math.random()*arr.length)]; }
-
-function playerWealth(p){
-  // wealth = cash + asset book values (cost)
-  let val = p.cash;
-  p.assets.forEach(id => {
-    const a = ASSETS_DEF.find(x=>x.id===id);
-    if(a) val += a.cost;
-  });
-  return val;
+// ════════════════════ STATE ════════════════════
+var S;
+function newGame(){
+  S = {
+    screen:"intro",
+    year:1,
+    decideIdx:0,
+    drafts:[],
+    resort:{revealed:false, approved:null},
+    lastEvent:null,
+    lastResults:null,
+    players: PLAYERS.map(function(nm){
+      return { name:nm, cash:START, assets:[], history:[], nw:[START] };
+    })
+  };
 }
 
-function assetAvailable(assetId){
-  // each asset type: max 1 per player, but can coexist across players
-  // actually unlimited — anyone can own one of each type
-  return true;
+// ════════════════════ HELPERS ════════════════════
+function eur(n){ n=Math.round(n); return n.toLocaleString("it-IT")+" €"; }
+function rnd(a,b){ return Math.random()*(b-a)+a; }
+function pick(a){ return a[Math.floor(Math.random()*a.length)]; }
+function clamp(v,lo,hi){ return Math.max(lo,Math.min(hi,v)); }
+function net(p){
+  var v=p.cash; p.assets.forEach(function(id){ var a=assetDef(id); if(a) v+=a.cost; }); return v;
 }
+function assetDef(id){ for(var i=0;i<ASSETS.length;i++) if(ASSETS[i].id===id) return ASSETS[i]; return null; }
+function leadIdx(){ var b=0,bw=-1e9; S.players.forEach(function(p,i){ var w=net(p); if(w>bw){bw=w;b=i;} }); return b; }
+function el(tag,cls,html){ var d=document.createElement(tag); if(cls)d.className=cls; if(html!=null)d.innerHTML=html; return d; }
 
-function leaderIdx(){
-  let best=-1,bestW=-Infinity;
-  state.players.forEach((p,i)=>{
-    const w=playerWealth(p);
-    if(w>bestW){bestW=w;best=i;}
-  });
-  return best;
-}
-
-// ── SIMULATION ─────────────────────────────────────────────────────────────
-function simulate(decisions){
-  // Pick event
-  let event;
-  // Turn 1: resort announcement (resolved turn 2)
-  // Turn 2: resort verdict
-  if(state.turn === 2 && !state.resortRevealed){
-    state.resortApproved = Math.random() < 0.55;
-    state.resortRevealed = true;
-    event = state.resortApproved
-      ? {id:'resort_yes', label:'🏗️ Resort APPROVATO!', type:'good',
-         desc:'La multinazionale ottiene il via libera. Gli immobili schizzano su, il turismo esplode.',
-         fx:{garage_mult:1.5, kiosk_mult:1.8, resort:true}}
-      : {id:'resort_no',  label:'❌ Resort BOCCIATO', type:'neutral',
-         desc:'Il consiglio comunale boccia il progetto per ragioni ambientali. Nessun effetto.',
+// ════════════════════ SIMULATION ════════════════════
+function chooseEvent(){
+  if(S.year===2 && !S.resort.revealed){
+    S.resort.revealed=true;
+    S.resort.approved = Math.random()<0.55;
+    return S.resort.approved
+      ? {id:"resortY", lb:"🏗️ Resort APPROVATO!", ty:"good",
+         ds:"La multinazionale ottiene il via libera. Immobili 📈📈 e turismo 📈 esplodono.",
+         fx:{garageMult:1.6, kioskMult:1.8}}
+      : {id:"resortN", lb:"❌ Resort bocciato", ty:"neutral",
+         ds:"Il consiglio comunale boccia il progetto per ragioni ambientali. Nessun effetto.",
          fx:{}};
-  } else {
-    event = pick(RANDOM_EVENTS);
   }
-  state.lastEvent = event;
-
-  const fx = event.fx || {};
-  const stocksMod   = fx.stocks_mod   || 0;
-  const carsMod     = fx.cars_mod     || 0;
-  const kiosk_mult  = fx.kiosk_mult   || 1.0;
-  const kiosk_bonus = fx.kiosk_bonus  || 0;
-  const garage_mult = fx.garage_mult  || 1.0;
-  const garage_dam  = fx.garage_damage|| 0;
-  const deposit_rate= fx.deposit_rate || 0.03;
-  const cash_erode  = fx.cash_erode   || 0;
-
-  const results = state.players.map((p, i) => {
-    const d = decisions[i];
-    const log = [];
-    let delta = 0;
-
-    // 1. Asset income
-    p.assets.forEach(id => {
-      if(id === 'garage'){
-        const inc = Math.round(900 * garage_mult) - garage_dam;
-        delta += inc;
-        if(inc > 0) log.push(`Garage: +${fmt(inc)}`);
-        else log.push(`Garage: ${fmt(inc)} (danni)`);
-      }
-      if(id === 'kiosk'){
-        const inc = Math.round(1200 * kiosk_mult) + kiosk_bonus;
-        delta += inc;
-        log.push(`Chiosco: +${fmt(inc)}`);
-      }
-      if(id === 'cars'){
-        const base = rnd(-0.40, 1.00) + carsMod;
-        const inc = Math.round(4000 * Math.max(-0.6, base));
-        delta += inc;
-        log.push(`Auto usate: ${inc>=0?'+':''}${fmt(inc)}`);
-      }
-    });
-
-    // 2. Buy new assets
-    const newAssets = (d.buyAssets || []).filter(id => {
-      if(p.assets.includes(id)) return false; // already own
-      const a = ASSETS_DEF.find(x=>x.id===id);
-      return a && p.cash + delta >= a.cost;
-    });
-    newAssets.forEach(id => {
-      const a = ASSETS_DEF.find(x=>x.id===id);
-      delta -= a.cost;
-      p.assets.push(id);
-      log.push(`Acquistato: ${a.emoji} ${a.name} (-${fmt(a.cost)})`);
-    });
-
-    // 3. Stocks investment — resolved in second pass below
-    const stocksAmt = Math.min(d.stocks || 0, Math.max(0, p.cash));
-
-    // 4. Deposit
-    const depositAmt = Math.min(d.deposit || 0, Math.max(0, p.cash));
-    if(depositAmt > 0){
-      const interest = Math.round(depositAmt * deposit_rate);
-      delta += interest;
-      log.push(`Conto deposito (${(deposit_rate*100).toFixed(0)}%): +${fmt(interest)}`);
-    }
-
-    // 5. Cash erosion (inflation)
-    if(cash_erode > 0){
-      const erode = Math.round(p.cash * cash_erode);
-      delta -= erode;
-      log.push(`Inflazione: -${fmt(erode)}`);
-    }
-
-    return {playerIdx: i, delta, log, stocksAmt, stocksMod, depositAmt, deposit_rate};
-  });
-
-  // Redo stocks cleanly in a second pass
-  results.forEach((r, i) => {
-    if(r.stocksAmt > 0){
-      const base = rnd(-0.20, 0.50) + r.stocksMod;
-      const rate = Math.max(-0.80, base);
-      const netGain = Math.round(r.stocksAmt * rate);
-      r.delta += netGain;
-      r.log.push(`Azioni Tech (${rate>=0?'+':''}${(rate*100).toFixed(0)}%): ${netGain>=0?'+':''}${fmt(netGain)}`);
-    }
-  });
-
-  // Apply deltas
-  results.forEach(r => {
-    const p = state.players[r.playerIdx];
-    p.cash += r.delta;
-    p.cash = Math.max(0, p.cash); // floor at 0
-    p.history.push({turn: state.turn, delta: r.delta, log: r.log});
-    p.totalWealth = playerWealth(p);
-  });
-
-  state.lastResults = results;
-  state.phase = state.turn >= TURNS ? 'final' : 'results';
+  return pick(EVENTS);
 }
 
-// ── RENDER ─────────────────────────────────────────────────────────────────
+function simulate(){
+  var ev = chooseEvent();
+  S.lastEvent = ev;
+  var fx = ev.fx||{};
+  var stocksMod = fx.stocks||0, carsMod = fx.cars||0;
+  var kioskMult = fx.kioskMult||1, kioskBonus = fx.kioskBonus||0;
+  var garageMult = fx.garageMult||1, garageDmg = fx.garageDmg||0;
+  var depRate = fx.deposit||0.03, erode = fx.erode||0;
+
+  var results = S.players.map(function(p,i){
+    var d = S.drafts[i] || {assets:[],stocks:0,deposit:0};
+    var log=[], delta=0;
+
+    // income from owned assets
+    p.assets.forEach(function(id){
+      if(id==="garage"){ var g=Math.round(900*garageMult)-garageDmg; delta+=g; log.push(["🏠 Garage",g]); }
+      if(id==="kiosk"){ var k=Math.round(1200*kioskMult)+kioskBonus; delta+=k; log.push(["🍹 Chiosco",k]); }
+      if(id==="cars"){ var r=clamp(rnd(-0.40,1.00)+carsMod,-0.6,1.6); var c=Math.round(4000*r); delta+=c; log.push(["🚗 Auto usate ("+(r>=0?"+":"")+Math.round(r*100)+"%)",c]); }
+    });
+
+    // buy new assets
+    (d.assets||[]).forEach(function(id){
+      if(p.assets.indexOf(id)>=0) return;
+      var a=assetDef(id); if(!a) return;
+      p.assets.push(id); delta-=a.cost; log.push([a.e+" Compra "+a.n.split(" ")[0],-a.cost]);
+    });
+
+    // stocks
+    if(d.stocks>0){
+      var sr=clamp(rnd(-0.20,0.50)+stocksMod,-0.8,1.0);
+      var sg=Math.round(d.stocks*sr); delta+=sg;
+      log.push(["📈 Azioni ("+(sr>=0?"+":"")+Math.round(sr*100)+"%)",sg]);
+    }
+    // deposit
+    if(d.deposit>0){
+      var di=Math.round(d.deposit*depRate); delta+=di;
+      log.push(["💰 Deposito (+"+Math.round(depRate*100)+"%)",di]);
+    }
+    // inflation on idle cash
+    if(erode>0){
+      var idle=p.cash - d.stocks - d.deposit;
+      idle=Math.max(0,idle);
+      var er=Math.round(idle*erode);
+      if(er>0){ delta-=er; log.push(["📉 Inflazione su liquidità",-er]); }
+    }
+    return {i:i,delta:delta,log:log};
+  });
+
+  results.forEach(function(r){
+    var p=S.players[r.i];
+    p.cash=Math.max(0,p.cash+r.delta);
+    p.history.push({year:S.year,delta:r.delta,log:r.log});
+    p.nw.push(net(p));
+  });
+
+  S.lastResults=results;
+  S.screen = S.year>=YEARS ? "final" : "results";
+}
+
+// ════════════════════ RENDER ════════════════════
 function render(){
-  const app = document.getElementById('app');
-  app.innerHTML = '';
-
-  // Turn dots
-  const turnbar = document.createElement('div');
-  turnbar.className = 'turnbar';
-  turnbar.innerHTML = `<span class="turn-label">Anno ${state.turn} / ${TURNS}</span>
-    <div class="dots">${Array.from({length:TURNS},(_,i)=>`
-      <div class="dot ${i<state.turn-1?'done':i===state.turn-1?'current':''}" title="Anno ${i+1}"></div>`).join('')}
-    </div>`;
-  app.appendChild(turnbar);
-
-  // Player cards
-  const cards = document.createElement('div');
-  cards.className = 'cards';
-  const li = leaderIdx();
-  state.players.forEach((p,i) => {
-    const w = playerWealth(p);
-    const prev = p.history.length > 0 ? p.history[p.history.length-1].delta : 0;
-    const card = document.createElement('div');
-    card.className = 'card' + (i===li && state.turn>1?' leader':'');
-    card.innerHTML = `
-      ${i===li && state.turn>1 ? '<div class="crown">👑</div>' : ''}
-      <div class="card-name">${p.name}</div>
-      <div class="card-wealth">${fmt(w)}</div>
-      ${p.history.length>0?`<div class="card-delta ${prev>=0?'pos':'neg'}">${prev>=0?'▲':'▼'} ${fmt(Math.abs(prev))} questo anno</div>`:''}
-      <div class="card-assets">
-        <span class="asset-tag">💵 ${fmt(p.cash)}</span>
-        ${p.assets.map(id=>{const a=ASSETS_DEF.find(x=>x.id===id);return`<span class="asset-tag">${a.emoji} ${a.name.split(' ')[0]}</span>`}).join('')}
-      </div>`;
-    cards.appendChild(card);
-  });
-  app.appendChild(cards);
-
-  if(state.phase === 'final'){
-    renderFinal(app);
-    return;
-  }
-
-  // Resort teaser (turn 1)
-  if(state.turn === 1 && !state.resortRevealed){
-    const banner = document.createElement('div');
-    banner.className = 'event-banner info';
-    banner.innerHTML = `<strong>🏗️ Evento in sospeso: Resort Multinazionale</strong>
-      <p>Una multinazionale vuole costruire un enorme resort vicino alla vostra zona. Nessuno sa se verrà approvato. Se passa: immobili 📈📈 e turismo 📈. Il verdetto arriverà il prossimo anno.</p>`;
-    app.appendChild(banner);
-  }
-
-  if(state.phase === 'results'){
-    renderResults(app);
-  } else {
-    renderDecision(app);
-  }
+  var root=document.getElementById("screen");
+  root.innerHTML="";
+  if(S.screen==="intro") return renderIntro(root);
+  if(S.screen==="final") { renderStandingsBar(root); return renderFinal(root); }
+  renderStandingsBar(root);
+  if(S.screen==="decision") return renderDecision(root);
+  if(S.screen==="results") return renderResults(root);
 }
 
-function renderResults(app){
-  const event = state.lastEvent;
-  const typeClass = event.type === 'good' ? 'good' : event.type === 'bad' ? 'bad' : 'neutral';
-  const banner = document.createElement('div');
-  banner.className = `event-banner ${typeClass}`;
-  banner.innerHTML = `<strong>${event.label}</strong><p>${event.desc}</p>`;
-  app.appendChild(banner);
+function renderIntro(root){
+  var op=el("div","opps");
+  op.innerHTML =
+    opp("📈","Azioni Tech","Resa -20% / +50%, casuale")+
+    opp("💰","Conto Deposito","Garantito +3% l'anno")+
+    opp("🏠","Garage","8.000 € · +900 €/anno")+
+    opp("🍹","Chiosco","6.000 € · +1.200 €/anno")+
+    opp("🚗","Auto usate","4.000 € · molto variabile")+
+    opp("🏦","Liquidità","Tieni i contanti, zero rischio");
+  var rules=el("div","rules",
+    "<div class='title'>📜 Regole</div>"+
+    li("💶","Ognuno parte con <b>10.000 €</b>")+
+    li("🗓️","Il gioco dura <b>10 anni</b> (1 turno = 1 anno)")+
+    li("🎯","Ogni anno: azioni, immobili, attività o liquidità")+
+    li("🎲","Io simulo mercato, crisi, boom ed eventi casuali")+
+    li("🏆","Vince chi ha il <b>patrimonio più alto</b> dopo 10 anni"));
+  var info=el("div","event info",
+    "<span class='lb'>🏗️ Evento in arrivo: il Resort</span>"+
+    "<span class='ds'>Una multinazionale vuole costruire un enorme resort vicino alla vostra zona. Se il progetto passa, immobili e turismo voleranno. Il verdetto arriva al 2° anno.</span>");
+  root.appendChild(el("div","title","🌊 Benvenuti in Puglia"));
+  root.appendChild(op);
+  root.appendChild(rules);
+  root.appendChild(info);
+  var b=el("button","btn btn-gold mt","▶ Inizia il gioco");
+  b.onclick=function(){ S.screen="decision"; S.decideIdx=0; S.drafts=[]; render(); };
+  root.appendChild(b);
+}
+function opp(e,n,d){ return "<div class='opp'><div class='e'>"+e+"</div><div class='n'>"+n+"</div><div class='d'>"+d+"</div></div>"; }
+function li(ic,t){ return "<li><span class='ic'>"+ic+"</span><span>"+t+"</span></li>"; }
 
-  const sec = document.createElement('div');
-  sec.className = 'section';
-  sec.innerHTML = '<h2>📊 Risultati Anno ' + state.turn + '</h2>';
+function renderStandingsBar(root){
+  var tb=el("div","turnbar");
+  var dots="";
+  for(var i=0;i<YEARS;i++){ var c=i<S.year-1?"done":(i===S.year-1?"cur":""); dots+="<div class='dot "+c+"'></div>"; }
+  tb.innerHTML="<span class='yearlbl'>Anno "+S.year+" / "+YEARS+"</span><div class='dots'>"+dots+"</div>";
+  root.appendChild(tb);
 
-  state.players.forEach((p,i) => {
-    const r = state.lastResults[i];
-    const row = document.createElement('div');
-    row.style.marginBottom = '14px';
-    row.innerHTML = `<div class="result-row">
-      <span class="result-player">${p.name}</span>
-      <span class="result-gain ${r.delta>=0?'pos':'neg'}">${r.delta>=0?'+':''}${fmt(r.delta)}</span>
-    </div>
-    <div style="padding:4px 0 0 8px">
-      ${p.history[p.history.length-1].log.map(l=>`<div class="log-entry">${l}</div>`).join('')}
-    </div>`;
-    sec.appendChild(row);
+  var cards=el("div","cards");
+  var lead=leadIdx();
+  S.players.forEach(function(p,i){
+    var w=net(p);
+    var last = p.history.length? p.history[p.history.length-1].delta : null;
+    var dl = last==null? "" :
+      "<div class='dl "+(last>0?"up":last<0?"down":"flat")+"'>"+(last>0?"▲ +":last<0?"▼ ":"")+eur(Math.abs(last))+"</div>";
+    var tags="<span class='tag'>💵 "+eur(p.cash)+"</span>"+
+      p.assets.map(function(id){var a=assetDef(id);return "<span class='tag'>"+a.e+"</span>";}).join("");
+    var c=el("div","pcard"+(i===lead&&S.year>1?" lead":""),
+      "<div class='nm'>"+(i===lead&&S.year>1?"👑 ":"")+AVATARS[p.name]+" "+p.name+"</div>"+
+      "<div class='wl'>"+eur(w)+"</div>"+dl+
+      "<div class='tags'>"+tags+"</div>");
+    cards.appendChild(c);
   });
+  root.appendChild(cards);
+}
 
-  const btn = document.createElement('button');
-  btn.className = 'btn btn-primary btn-lg';
-  btn.style.marginTop = '14px';
-  btn.textContent = state.turn >= TURNS ? '🏆 Vedi Classifica Finale' : `▶ Vai all'Anno ${state.turn+1}`;
-  btn.onclick = () => {
-    state.turn++;
-    state.phase = 'decision';
-    render();
+function renderDecision(root){
+  if(S.year===1 && !S.resort.revealed && S.decideIdx===0){
+    root.appendChild(el("div","event info",
+      "<span class='lb'>🏗️ Resort in sospeso</span>"+
+      "<span class='ds'>Il verdetto arriverà il prossimo anno. Se approvato: immobili 📈📈 e turismo 📈.</span>"));
+  }
+  var p=S.players[S.decideIdx];
+  if(!S._draft) S._draft={assets:[],stocks:0,deposit:0};
+  var draft=S._draft;
+
+  var wrap=el("div","decwrap");
+  wrap.innerHTML=
+    "<div class='dechead'><div class='who'>"+AVATARS[p.name]+" "+p.name+"</div>"+
+    "<div class='step'>Giocatore "+(S.decideIdx+1)+" / 4</div></div>"+
+    "<div class='cashline'>Disponibili: <b>"+eur(p.cash)+"</b></div>";
+
+  // assets block
+  var ab=el("div","block");
+  ab.appendChild(el("div","bt","🏗️ Investimenti / Attività"));
+  var list=el("div","assetbtns");
+  ASSETS.forEach(function(a){
+    var owned=p.assets.indexOf(a.id)>=0;
+    var btn=el("div","abtn");
+    btn.setAttribute("data-aid",a.id);
+    btn.innerHTML="<div class='chk'>✓</div><div class='ae'>"+a.e+"</div>"+
+      "<div class='ai'><div class='an'>"+a.n+"</div><div class='ad'>"+(owned?"Già posseduto":a.d)+"</div></div>"+
+      "<div class='ax'>"+(owned?"✔":eur(a.cost))+"</div>";
+    if(owned){ btn.className="abtn dis"; }
+    else {
+      btn.onclick=function(){ toggleAsset(a.id); };
+    }
+    list.appendChild(btn);
+  });
+  ab.appendChild(list);
+  wrap.appendChild(ab);
+
+  // stocks slider
+  wrap.appendChild(sliderBlock("stocks","📈 Azioni Tech","Resa -20% / +50% — a rischio",p.cash));
+  // deposit slider
+  wrap.appendChild(sliderBlock("deposit","💰 Conto Deposito","Garantito +3% — sicuro",p.cash));
+
+  // budget bar
+  var bud=el("div","budget");
+  bud.innerHTML=
+    "<div class='bbar'>"+
+      "<div class='bseg as' id='seg_as'></div>"+
+      "<div class='bseg st' id='seg_st'></div>"+
+      "<div class='bseg dp' id='seg_dp'></div>"+
+      "<div class='bseg lq' id='seg_lq'></div>"+
+    "</div>"+
+    "<div class='blegend'>"+
+      "<span><i class='sw' style='background:#a78bfa'></i>Attività <b id='lg_as'>0 €</b></span>"+
+      "<span><i class='sw' style='background:#60a5fa'></i>Azioni <b id='lg_st'>0 €</b></span>"+
+      "<span><i class='sw' style='background:#4ade80'></i>Deposito <b id='lg_dp'>0 €</b></span>"+
+      "<span><i class='sw' style='background:#475569'></i>Liquidità <b id='lg_lq'>0 €</b></span>"+
+    "</div>";
+  wrap.appendChild(bud);
+
+  root.appendChild(wrap);
+
+  var confirm=el("button","btn btn-gold mt", S.decideIdx<3? "Conferma e passa a "+PLAYERS[S.decideIdx+1]+" ▶" : "⚡ Simula l'Anno "+S.year);
+  confirm.onclick=function(){
+    S.drafts[S.decideIdx]={assets:draft.assets.slice(),stocks:draft.stocks,deposit:draft.deposit};
+    S._draft=null;
+    if(S.decideIdx<3){ S.decideIdx++; render(); }
+    else { S.decideIdx=0; simulate(); render(); }
   };
-  sec.appendChild(btn);
-  app.appendChild(sec);
+  root.appendChild(confirm);
+
+  if(S.decideIdx>0){
+    var back=el("button","btn btn-ghost btn-sm mt-s","◀ Torna indietro");
+    back.onclick=function(){ S._draft=S.drafts[S.decideIdx-1]||null; S.decideIdx--; render(); };
+    root.appendChild(back);
+  }
+  root.appendChild(el("div","hint","Trascina gli slider o usa i pulsanti rapidi. Ciò che non investi resta liquidità."));
+
+  refreshBudget();
 }
 
-function renderDecision(app){
-  const sec = document.createElement('div');
-  sec.className = 'section';
-  sec.innerHTML = '<h2>🎯 Mosse Anno ' + state.turn + '</h2>';
-
-  const decisions = PLAYERS.map(() => ({stocks:0, deposit:0, buyAssets:[]}));
-
-  PLAYERS.forEach((name, pi) => {
-    const p = state.players[pi];
-    const form = document.createElement('div');
-    form.className = 'player-form';
-
-    const hdr = document.createElement('div');
-    hdr.className = 'player-form-header';
-    hdr.innerHTML = `<span>👤 ${name} — disponibile: <strong>${fmt(p.cash)}</strong></span><span>▼</span>`;
-
-    const body = document.createElement('div');
-    body.className = 'player-form-body' + (pi===0?' open':'');
-    hdr.onclick = () => body.classList.toggle('open');
-
-    // Stocks
-    const stocksRow = document.createElement('div');
-    stocksRow.className = 'form-row';
-
-    const sg = document.createElement('div'); sg.className = 'form-group';
-    sg.innerHTML = `<label>📈 Azioni Tech</label>
-      <input type="number" min="0" max="${p.cash}" step="500" value="0" id="stocks_${pi}" placeholder="0">
-      <small>Rendimento: -20% / +50% (casuale)</small>`;
-    stocksRow.appendChild(sg);
-
-    const dg = document.createElement('div'); dg.className = 'form-group';
-    dg.innerHTML = `<label>💰 Conto Deposito</label>
-      <input type="number" min="0" max="${p.cash}" step="500" value="0" id="deposit_${pi}" placeholder="0">
-      <small>Rendimento garantito: +3%</small>`;
-    stocksRow.appendChild(dg);
-    body.appendChild(stocksRow);
-
-    // Assets to buy
-    const al = document.createElement('div');
-    al.innerHTML = '<label style="font-size:.8rem;color:#94a3b8;display:block;margin-bottom:6px">Acquisti (se non li possiedi già)</label>';
-    const ac = document.createElement('div'); ac.className = 'asset-checks';
-
-    ASSETS_DEF.forEach(a => {
-      const owned = p.assets.includes(a.id);
-      const affordable = p.cash >= a.cost;
-      const div = document.createElement('label');
-      div.className = 'asset-check' + (owned||!affordable?' disabled':'');
-      div.title = owned ? 'Già posseduto' : !affordable ? 'Fondi insufficienti' : '';
-      div.innerHTML = `<input type="checkbox" id="asset_${pi}_${a.id}" value="${a.id}" ${owned||!affordable?'disabled':''}>
-        <span>${a.emoji} ${a.name} (${fmt(a.cost)}) — ${a.desc}</span>`;
-      ac.appendChild(div);
-    });
-    al.appendChild(ac);
-    body.appendChild(al);
-
-    // Cash left indicator
-    const cashLeft = document.createElement('div');
-    cashLeft.className = 'cash-left';
-    cashLeft.id = `cashleft_${pi}`;
-    body.appendChild(cashLeft);
-
-    // Update cash left on change
-    const updateCash = () => {
-      const s = parseInt(document.getElementById(`stocks_${pi}`).value)||0;
-      const d = parseInt(document.getElementById(`deposit_${pi}`).value)||0;
-      let spent = s + d;
-      ASSETS_DEF.forEach(a => {
-        const cb = document.getElementById(`asset_${pi}_${a.id}`);
-        if(cb && cb.checked) spent += a.cost;
+function sliderBlock(kind,label,hint,maxCash){
+  var b=el("div","block");
+  b.innerHTML=
+    "<div class='sliderbox'>"+
+      "<div class='sv'><span class='shint'>"+label+"</span><span class='sval' id='val_"+kind+"'>0 €</span></div>"+
+      "<input type='range' min='0' max='"+maxCash+"' step='250' value='0' id='sl_"+kind+"'>"+
+      "<div class='shint' style='margin-top:5px'>"+hint+"</div>"+
+      "<div class='quick'>"+
+        "<button class='qb' data-k='"+kind+"' data-p='0'>0</button>"+
+        "<button class='qb' data-k='"+kind+"' data-p='0.25'>25%</button>"+
+        "<button class='qb' data-k='"+kind+"' data-p='0.5'>50%</button>"+
+        "<button class='qb' data-k='"+kind+"' data-p='1'>Max</button>"+
+      "</div>"+
+    "</div>";
+  // wire after insertion via setTimeout? Instead attach now using event delegation on inputs.
+  setTimeout(function(){
+    var sl=document.getElementById("sl_"+kind);
+    if(sl){ sl.addEventListener("input",function(){ onSlider(kind, parseInt(sl.value,10)||0); }); }
+    var qbs=b.querySelectorAll(".qb");
+    qbs.forEach(function(q){
+      q.addEventListener("click",function(){
+        var pr=parseFloat(q.getAttribute("data-p"));
+        var p=S.players[S.decideIdx];
+        var target=Math.round((p.cash*pr)/250)*250;
+        onSlider(kind,target);
       });
-      const left = p.cash - spent;
-      cashLeft.textContent = left < 0
-        ? `⚠️ Superi il budget di ${fmt(-left)} — riduci gli investimenti`
-        : `Liquidità rimanente: ${fmt(left)}`;
-      cashLeft.style.color = left < 0 ? '#f87171' : '#94a3b8';
-    };
-
-    body.addEventListener('input', updateCash);
-    body.addEventListener('change', updateCash);
-    updateCash();
-
-    form.appendChild(hdr);
-    form.appendChild(body);
-    sec.appendChild(form);
-  });
-
-  const btn = document.createElement('button');
-  btn.className = 'btn btn-primary btn-lg';
-  btn.style.marginTop = '8px';
-  btn.textContent = '⚡ Simula Anno ' + state.turn;
-  btn.onclick = () => {
-    // Collect decisions + validate
-    const decisions = PLAYERS.map((_, pi) => {
-      const p = state.players[pi];
-      const stocks  = Math.min(Math.max(0, parseInt(document.getElementById(`stocks_${pi}`).value)||0), p.cash);
-      const deposit = Math.min(Math.max(0, parseInt(document.getElementById(`deposit_${pi}`).value)||0), p.cash);
-      const buyAssets = ASSETS_DEF
-        .map(a => document.getElementById(`asset_${pi}_${a.id}`))
-        .filter(cb => cb && cb.checked && !cb.disabled)
-        .map(cb => cb.value);
-      return {stocks, deposit, buyAssets};
     });
-
-    // Validate budgets
-    let ok = true;
-    decisions.forEach((d, pi) => {
-      const p = state.players[pi];
-      let spent = d.stocks + d.deposit;
-      d.buyAssets.forEach(id => { const a = ASSETS_DEF.find(x=>x.id===id); if(a) spent+=a.cost; });
-      if(spent > p.cash){
-        alert(`${PLAYERS[pi]} supera il budget disponibile! Correggi le mosse.`);
-        ok = false;
-      }
-    });
-    if(!ok) return;
-
-    simulate(decisions);
-    render();
-  };
-  sec.appendChild(btn);
-  app.appendChild(sec);
+  },0);
+  return b;
 }
 
-function renderFinal(app){
-  const sorted = [...state.players].sort((a,b)=>playerWealth(b)-playerWealth(a));
+function assetSpent(){
+  var p=S.players[S.decideIdx];
+  return S._draft.assets.reduce(function(s,id){
+    if(p.assets.indexOf(id)>=0) return s;
+    var a=assetDef(id); return s+(a?a.cost:0);
+  },0);
+}
 
-  const sec = document.createElement('div');
-  sec.className = 'section';
-  sec.innerHTML = `<h2>🏆 Classifica Finale dopo ${TURNS} Anni</h2>`;
-
-  // Podium
-  const podium = document.createElement('div');
-  podium.className = 'podium';
-  const order = sorted.length >= 3 ? [sorted[1], sorted[0], sorted[2]] : sorted;
-  const classes = sorted.length >= 3 ? ['second','first','third'] : ['first'];
-  const medals = sorted.length >= 3 ? ['🥈','🥇','🥉'] : ['🥇'];
-  order.forEach((p, idx) => {
-    const cls = classes[idx]; const med = medals[idx];
-    const div = document.createElement('div');
-    div.className = `podium-place ${cls}`;
-    div.innerHTML = `<div class="podium-emoji">${med}</div>
-      <div class="podium-name">${p.name}</div>
-      <div class="podium-wealth">${fmt(playerWealth(p))}</div>`;
-    podium.appendChild(div);
+function toggleAsset(id){
+  var p=S.players[S.decideIdx];
+  var arr=S._draft.assets;
+  var idx=arr.indexOf(id);
+  if(idx>=0){ arr.splice(idx,1); }
+  else {
+    var a=assetDef(id);
+    var freeAfter = p.cash - assetSpent() - a.cost;
+    if(freeAfter<0){ flash("Fondi insufficienti per "+a.n); return; }
+    arr.push(id);
+  }
+  // re-clamp sliders to remaining budget
+  reclampSliders();
+  // update asset button visuals
+  var btns=document.querySelectorAll(".abtn[data-aid]");
+  btns.forEach(function(b){
+    var aid=b.getAttribute("data-aid");
+    if(p.assets.indexOf(aid)>=0) return;
+    if(S._draft.assets.indexOf(aid)>=0) b.classList.add("on"); else b.classList.remove("on");
   });
-  sec.appendChild(podium);
+  refreshBudget();
+}
 
-  // Full table
-  const tbl = document.createElement('div');
-  sorted.forEach((p, rank) => {
-    const w = playerWealth(p);
-    const gained = w - START_CASH;
-    const row = document.createElement('div');
-    row.className = 'result-row';
-    row.innerHTML = `<span class="result-player">${rank+1}. ${p.name}</span>
-      <span class="result-detail">${p.assets.map(id=>ASSETS_DEF.find(x=>x.id===id).emoji).join('')} ${p.assets.length} asset</span>
-      <span class="result-gain ${gained>=0?'pos':'neg'}">${fmt(w)} (${gained>=0?'+':''}${fmt(gained)})</span>`;
-    tbl.appendChild(row);
+function maxAlloc(){
+  var p=S.players[S.decideIdx];
+  return Math.max(0, p.cash - assetSpent());
+}
+function onSlider(kind,val){
+  var d=S._draft;
+  var cap=maxAlloc();
+  val=clamp(val,0,cap);
+  if(kind==="stocks"){
+    d.stocks=val;
+    if(d.stocks+d.deposit>cap) d.deposit=cap-d.stocks;
+  } else {
+    d.deposit=val;
+    if(d.stocks+d.deposit>cap) d.stocks=cap-d.deposit;
+  }
+  syncSliderDom();
+  refreshBudget();
+}
+function reclampSliders(){
+  var d=S._draft, cap=maxAlloc();
+  if(d.stocks>cap) d.stocks=cap;
+  if(d.stocks+d.deposit>cap) d.deposit=cap-d.stocks;
+  if(d.deposit<0) d.deposit=0;
+  syncSliderDom();
+}
+function syncSliderDom(){
+  var d=S._draft, cap=maxAlloc();
+  var ss=document.getElementById("sl_stocks"), sd=document.getElementById("sl_deposit");
+  if(ss){ ss.max=cap; ss.value=d.stocks; }
+  if(sd){ sd.max=cap; sd.value=d.deposit; }
+  var vs=document.getElementById("val_stocks"), vd=document.getElementById("val_deposit");
+  if(vs) vs.textContent=eur(d.stocks);
+  if(vd) vd.textContent=eur(d.deposit);
+}
+function refreshBudget(){
+  var p=S.players[S.decideIdx], d=S._draft;
+  var as=assetSpent(), st=d.stocks, dp=d.deposit;
+  var lq=Math.max(0,p.cash-as-st-dp);
+  var tot=Math.max(1,p.cash);
+  setW("seg_as",as/tot); setW("seg_st",st/tot); setW("seg_dp",dp/tot); setW("seg_lq",lq/tot);
+  setT("lg_as",eur(as)); setT("lg_st",eur(st)); setT("lg_dp",eur(dp)); setT("lg_lq",eur(lq));
+  syncSliderDom();
+}
+function setW(id,frac){ var e=document.getElementById(id); if(e) e.style.width=(frac*100)+"%"; }
+function setT(id,t){ var e=document.getElementById(id); if(e) e.textContent=t; }
+
+function flash(msg){
+  var f=el("div","",msg);
+  f.style.cssText="position:fixed;left:50%;bottom:24px;transform:translateX(-50%);background:#c43d3d;color:#fff;padding:10px 16px;border-radius:10px;font-size:.85rem;font-weight:700;z-index:50;box-shadow:0 6px 20px rgba(0,0,0,.4)";
+  document.body.appendChild(f);
+  setTimeout(function(){ f.style.transition="opacity .4s"; f.style.opacity="0"; },1400);
+  setTimeout(function(){ f.remove(); },1850);
+}
+
+function renderResults(root){
+  var ev=S.lastEvent;
+  root.appendChild(el("div","event "+ev.ty,
+    "<span class='lb'>"+ev.lb+"</span><span class='ds'>"+ev.ds+"</span>"));
+  root.appendChild(el("div","title","📊 Risultati Anno "+S.year));
+  S.players.forEach(function(p){
+    var h=p.history[p.history.length-1];
+    var logHtml=h.log.map(function(x){
+      var v=x[1];
+      return "<div class='li'><span>"+x[0]+"</span><span class='v "+(v>=0?"pos":"neg")+"'>"+(v>=0?"+":"")+eur(v)+"</span></div>";
+    }).join("");
+    root.appendChild(el("div","rrow",
+      "<div class='rh'><span class='rn'>"+AVATARS[p.name]+" "+p.name+"</span>"+
+      "<span class='rg "+(h.delta>=0?"pos":"neg")+"'>"+(h.delta>=0?"+":"")+eur(h.delta)+"</span></div>"+
+      "<div class='rlog'>"+logHtml+"</div>"));
   });
-  sec.appendChild(tbl);
-
-  const winner = sorted[0];
-  const isMillion = playerWealth(winner) >= 1000000;
-  const endMsg = document.createElement('div');
-  endMsg.className = `event-banner ${isMillion?'good':'info'}`;
-  endMsg.style.marginTop = '16px';
-  endMsg.innerHTML = `<strong>${isMillion?'🎉 Abbiamo un milionario!':'🎯 Il vincitore è '+winner.name+'!'}</strong>
-    <p>${isMillion ? winner.name + ' ha raggiunto il milione di euro! Imprenditore pugliese dell\'anno!'
-      : 'Con ' + fmt(playerWealth(winner)) + ' ' + winner.name + ' domina la classifica. Forse nel prossimo decennio si arriverà al milione!'}</p>`;
-  sec.appendChild(endMsg);
-
-  const btn = document.createElement('button');
-  btn.className = 'btn btn-secondary';
-  btn.style.marginTop = '16px';
-  btn.textContent = '🔄 Ricomincia';
-  btn.onclick = () => { resetGame(); render(); };
-  sec.appendChild(btn);
-
-  app.appendChild(sec);
+  var b=el("button","btn btn-gold mt", S.year>=YEARS? "🏆 Classifica finale" : "▶ Avanti all'Anno "+(S.year+1));
+  b.onclick=function(){ S.year++; S.screen="decision"; S.decideIdx=0; S.drafts=[]; render(); };
+  root.appendChild(b);
 }
 
-// ── RESET ──────────────────────────────────────────────────────────────────
-function resetGame(){
-  state = {
-    turn: 1, phase: 'decision',
-    resortApproved: null, resortRevealed: false,
-    players: PLAYERS.map(name => ({
-      name, cash: START_CASH, assets: [], history: [], totalWealth: START_CASH,
-    })),
-    lastEvent: null, lastResults: null,
-  };
+function renderFinal(root){
+  var sorted=S.players.slice().sort(function(a,b){ return net(b)-net(a); });
+  root.appendChild(el("div","title","🏆 Classifica finale · "+YEARS+" anni"));
+
+  var pod=el("div","podium");
+  var slots=[["second","🥈"],["first","🥇"],["third","🥉"]];
+  // order: 2nd,1st,3rd visually; map sorted[1],sorted[0],sorted[2]
+  var arrange=[sorted[1],sorted[0],sorted[2]];
+  arrange.forEach(function(p,k){
+    if(!p) return;
+    pod.appendChild(el("div","pp "+slots[k][0],
+      "<div class='pe'>"+slots[k][1]+"</div>"+
+      "<div class='pn'>"+AVATARS[p.name]+" "+p.name+"</div>"+
+      "<div class='pw'>"+eur(net(p))+"</div>"));
+  });
+  root.appendChild(pod);
+
+  sorted.forEach(function(p,i){
+    var w=net(p), g=w-START;
+    root.appendChild(el("div","frow",
+      "<div class='rk'>"+(i+1)+"</div>"+
+      "<div class='fn'>"+AVATARS[p.name]+" "+p.name+
+        "<div style='font-size:.7rem;color:#8aa0c0'>"+(g>=0?"+":"")+eur(g)+" sul capitale</div></div>"+
+      sparkline(p.nw)+
+      "<div class='fw'>"+eur(w)+"</div>"));
+  });
+
+  var win=sorted[0], mil=net(win)>=1000000;
+  root.appendChild(el("div","event "+(mil?"good":"info")+" mt",
+    "<span class='lb'>"+(mil?"🎉 Abbiamo un milionario!":"🎯 Vince "+win.name+"!")+"</span>"+
+    "<span class='ds'>"+(mil
+      ? win.name+" ha superato il milione di euro. Imprenditore pugliese dell anno!"
+      : win.name+" chiude con "+eur(net(win))+". Nessun milione… per ora!")+"</span>"));
+
+  var b=el("button","btn btn-gold mt","🔄 Nuova partita");
+  b.onclick=function(){ newGame(); render(); };
+  root.appendChild(b);
+  root.appendChild(el("div","hint","Grazie per aver giocato all'Edizione Puglia 🌊"));
 }
 
-// ── BOOT ───────────────────────────────────────────────────────────────────
+function sparkline(vals){
+  var w=70,h=26,pad=2;
+  var mn=Math.min.apply(null,vals), mx=Math.max.apply(null,vals);
+  var rng=Math.max(1,mx-mn);
+  var pts=vals.map(function(v,i){
+    var x=pad+i*(w-2*pad)/(vals.length-1||1);
+    var y=h-pad-((v-mn)/rng)*(h-2*pad);
+    return x.toFixed(1)+","+y.toFixed(1);
+  }).join(" ");
+  var up=vals[vals.length-1]>=vals[0];
+  var col=up?"#4ade80":"#f87171";
+  return "<svg class='fspark' width='"+w+"' height='"+h+"' viewBox='0 0 "+w+" "+h+"'>"+
+    "<polyline fill='none' stroke='"+col+"' stroke-width='2' stroke-linejoin='round' stroke-linecap='round' points='"+pts+"'/></svg>";
+}
+
+// ════════════════════ BOOT ════════════════════
+newGame();
 render();
 </script>
 </body>
