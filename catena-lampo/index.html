@@ -137,41 +137,44 @@ button:focus-visible,input:focus-visible,summary:focus-visible{outline:3px solid
 .actions{display:grid;gap:10px;width:100%}
 .sheet.pop-in{animation:pop .3s cubic-bezier(.2,1.4,.4,1)}
 
-/* Final: la ghigliottina */
-.final-head{text-align:center;display:grid;gap:6px;position:relative}
-.final-head h2{margin:0;font:clamp(28px,9vw,40px)/1 var(--f-display)}
+/* Final: l'Ultima Catena e l'Ultima Parola */
+.final-head{text-align:center;display:grid;gap:4px;position:relative;padding-inline:44px}
+.final-head h2{margin:0;font:clamp(22px,7vw,30px)/1 var(--f-display)}
 .final-head .iconbtn{position:absolute;right:0;top:0}
 .pot{font:700 14px/1 var(--f-cond);letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
-.pot b{display:block;margin-top:6px;font:clamp(30px,10vw,44px)/1 var(--f-display);color:var(--gold);letter-spacing:0;font-variant-numeric:tabular-nums}
+.pot b{display:block;margin-top:4px;font:clamp(28px,9vw,38px)/1 var(--f-display);color:var(--gold);letter-spacing:0;font-variant-numeric:tabular-nums}
 .pot.hit b{animation:shake .6s;color:var(--bad)}
 @keyframes shake{20%,60%{transform:translateX(-8px)}40%,80%{transform:translateX(8px)}}
-#scr-final.compact .final-head h2,#scr-final.compact .final-head .kicker{display:none}
-#scr-final.compact .pot b{font-size:26px}
-.stage{display:grid;gap:12px}
-.pair{display:grid;grid-template-columns:1fr 1fr;gap:12px}
-.card{position:relative;overflow:hidden;height:112px;border-radius:16px;background:linear-gradient(180deg,var(--tile),var(--panel));border:2px solid var(--tile-edge);font:clamp(14px,4.4vw,22px)/1.1 var(--f-display);color:var(--ink);padding:8px;overflow-wrap:anywhere;transition:border-color .2s,color .2s,opacity .3s,transform .1s}
-.card:active{transform:scale(.97)}
-.card.picked{border-color:var(--ink);box-shadow:0 0 0 2px var(--ink)}
-.card.good{border-color:var(--gold);color:var(--gold)}
-.card.cut{opacity:.5;color:var(--muted)}
-.card.cut::after{content:"";position:absolute;left:-10%;right:-10%;top:50%;height:6px;background:var(--bad);transform:rotate(-16deg) scaleX(0);transform-origin:left;animation:cut .3s ease-out forwards}
-@keyframes cut{to{transform:rotate(-16deg) scaleX(1)}}
-.verdict{min-height:1.3em;margin:0;text-align:center;font:700 19px/1.3 var(--f-cond);letter-spacing:.06em;text-transform:uppercase}
+.finfo{display:flex;justify-content:space-between;align-items:center;gap:8px;min-height:22px;font:700 15px/1 var(--f-cond);letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+.finfo b{color:var(--gold)}
+.dots{display:inline-flex;gap:5px;vertical-align:middle;margin-left:6px}
+.dots i{width:12px;height:12px;border-radius:50%;background:var(--gold)}
+.dots i.used{background:none;border:2px solid var(--tile-edge)}
+.rlabel{text-align:center;font:700 12px/1 var(--f-cond);letter-spacing:.16em;text-transform:uppercase;color:var(--muted);margin-top:6px}
+.gap{flex:none;width:calc(var(--t)*1.3);display:grid;place-items:center;font:calc(var(--t)*.6)/1 var(--f-display);color:var(--gold);letter-spacing:.05em}
+.cover{flex:none;height:var(--t);padding-inline:18px;display:grid;place-items:center;border-radius:calc(var(--t)*.16);border:2px dashed var(--tile-edge);font:700 calc(var(--t)*.4)/1 var(--f-cond);letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+.r-terzo .tile{background:linear-gradient(180deg,var(--ink),var(--muted));color:var(--stage);border-color:var(--ink)}
+.r-win .tile{background:linear-gradient(180deg,var(--ok),var(--panel));border-color:var(--ok);color:var(--ink)}
+.r-lose .tile{background:linear-gradient(180deg,var(--bad),var(--panel));border-color:var(--bad);color:var(--ink)}
+.stage{display:grid;gap:10px}
+.tools{display:grid;grid-template-columns:1fr;gap:8px}
+.ghost[disabled]{opacity:.35}
+.verdict{min-height:1.3em;margin:0;text-align:center;font:700 17px/1.3 var(--f-cond);letter-spacing:.06em;text-transform:uppercase;text-wrap:balance}
 .verdict.good{color:var(--ok)}.verdict.bad{color:var(--bad)}
-.clues{display:grid;gap:8px}
-.clue{height:44px;border-radius:10px;display:grid;place-items:center;background:var(--panel);border:1px dashed var(--tile-edge);font:20px/1 var(--f-display);color:var(--tile-edge)}
-.clue.on{background:linear-gradient(180deg,var(--tile),var(--panel));border:1px solid var(--gold);color:var(--gold)}
-.clue.new{animation:pop .4s cubic-bezier(.2,1.6,.4,1)}
 .steps{margin:0;padding-left:20px;display:grid;gap:8px;font-size:16px}
+.steps b{color:var(--gold)}
 .lead{margin:0;text-align:center;font-size:18px;text-wrap:balance}
 .lead b{color:var(--gold)}
-.bigtime{text-align:center;font:64px/1 var(--f-display);color:var(--gold);font-variant-numeric:tabular-nums}
+.timerow{display:grid;grid-template-columns:auto 1fr;gap:14px;align-items:center}
+.bigtime{min-width:2ch;text-align:center;font:44px/1 var(--f-display);color:var(--gold);font-variant-numeric:tabular-nums}
 .bigtime.urgent{color:var(--bad);animation:bump 1s infinite}
-.result{display:grid;gap:14px;text-align:center}
-.result h3{margin:0;font:clamp(26px,8vw,36px)/1.1 var(--f-display);text-wrap:balance}
+.choice{display:grid;gap:10px;text-align:center}
+.choice small{display:block;margin-top:6px;font:700 14px/1 var(--f-cond);letter-spacing:.06em}
+.result{display:grid;gap:10px;text-align:center}
+.result h3{margin:0;font:clamp(24px,8vw,34px)/1.1 var(--f-display);text-wrap:balance}
 .result h3.win{color:var(--gold)}
-.result p{margin:0;color:var(--muted)}
-.result .tiles{--t:min(40px,calc((100vw - 40px) / var(--n) - 4px))}
+.result p{margin:0;color:var(--muted);text-wrap:balance}
+.result p b{color:var(--ink)}
 .confetti{position:fixed;top:-16px;width:9px;height:15px;z-index:20;pointer-events:none;animation:fall linear forwards}
 @keyframes fall{to{transform:translateY(112vh) rotate(760deg)}}
 
@@ -187,7 +190,7 @@ button:focus-visible,input:focus-visible,summary:focus-visible{outline:3px solid
       <div class="tiles" aria-hidden="true"><span class="tile" style="animation-delay:0s">C</span><span class="tile" style="animation-delay:.05s">A</span><span class="tile" style="animation-delay:.1s">T</span><span class="tile" style="animation-delay:.15s">E</span><span class="tile" style="animation-delay:.2s">N</span><span class="tile" style="animation-delay:.25s">A</span></div>
       <div class="tiles lampo" aria-hidden="true"><span class="tile" style="animation-delay:.35s">L</span><span class="tile" style="animation-delay:.4s">A</span><span class="tile" style="animation-delay:.45s">M</span><span class="tile" style="animation-delay:.5s">P</span><span class="tile" style="animation-delay:.55s">O</span></div>
     </div>
-    <p class="tag">Parole concatenate, due squadre, un telefono sul tavolo. Chi arriva prima al traguardo gioca la Ghigliottina.</p>
+    <p class="tag">Parole concatenate, due squadre, un telefono sul tavolo. Chi arriva prima al traguardo gioca l'Ultima Catena.</p>
     <form id="setup" class="setup" autocomplete="off">
       <div class="teamsrow">
         <label class="field a"><span>Squadra 1</span><input id="inA" maxlength="12" autocapitalize="characters"></label>
@@ -201,6 +204,14 @@ button:focus-visible,input:focus-visible,summary:focus-visible{outline:3px solid
           <button type="button" data-v="800">800</button>
         </div>
       </div>
+      <div class="field">
+        <span class="legend" id="plLbl">Giocatori per squadra</span>
+        <div class="seg" id="segPl" role="group" aria-labelledby="plLbl">
+          <button type="button" data-v="2">2</button>
+          <button type="button" data-v="3">3</button>
+          <button type="button" data-v="4">4</button>
+        </div>
+      </div>
       <button class="cta" type="submit">Si gioca!</button>
     </form>
     <details class="rules">
@@ -209,10 +220,11 @@ button:focus-visible,input:focus-visible,summary:focus-visible{outline:3px solid
         <li>Sul tabellone c'è una <b>catena</b> di 7 parole: la prima e l'ultima sono scoperte. Ogni parola è legata alla precedente (es. <b>casa → dolce → vita</b>).</li>
         <li>Della parola da indovinare si vede la prima lettera, poi ogni 3 secondi se ne scopre un'altra. Meno lettere vedi, più punti vale (da 100 a 10).</li>
         <li>Chi la sa preme per primo il <b>suo pulsante</b> e ha 12 secondi per scriverla. Se sbaglia, la palla passa all'altra squadra.</li>
-        <li>La prima squadra che raggiunge il traguardo va alla <b>Ghigliottina</b>: 5 scelte tra due parole (quella sbagliata dimezza il montepremi), poi 1 minuto per trovare la parola che le lega tutte.</li>
+        <li>La prima squadra che arriva al traguardo gioca <b>l'Ultima Catena</b> per un montepremi di 100 € a punto: i giocatori indovinano a turno le parole di una nuova catena e ogni errore dimezza il montepremi.</li>
+        <li>Si chiude con <b>l'Ultima Parola</b>: tutta la squadra cerca insieme la parola legata all'ultima della catena. Se la indovina vince il montepremi.</li>
       </ol>
     </details>
-    <button class="linkbtn" id="btnDemo" type="button">Prova subito la Ghigliottina</button>
+    <button class="linkbtn" id="btnDemo" type="button">Prova subito il gioco finale</button>
   </section>
 
   <section id="scr-inter" class="screen" hidden>
@@ -250,13 +262,14 @@ button:focus-visible,input:focus-visible,summary:focus-visible{outline:3px solid
 
   <section id="scr-final" class="screen" hidden>
     <header class="final-head">
-      <div class="kicker">Gioco finale</div>
-      <h2>Ghigliottina</h2>
+      <div class="kicker" id="fKicker">Gioco finale</div>
+      <h2 id="fTitle">L'Ultima Catena</h2>
       <div class="pot" id="pot">Montepremi <b id="potVal">0 €</b></div>
       <button class="iconbtn" id="btnExit2" type="button" aria-label="Esci dalla partita"><svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" fill="none"/></svg></button>
     </header>
+    <div class="finfo"><span id="fTurn"></span><span id="fJolly"></span></div>
+    <div class="board" id="fboard"></div>
     <div class="stage" id="stage"></div>
-    <div class="clues" id="clues"></div>
   </section>
 </div>
 
@@ -316,23 +329,21 @@ const CHAINS = [
   ['TESTA','CROCE','ROSSA','LINEA','AEREA','BASE','MUSICALE'],
   ['LIBRO','APERTO','MARE','MORTO','PUNTO','VISTA','BELLA'],
 ];
-// Ghigliottina: per ogni coppia la prima parola è quella giusta.
-const GHIGLIOTTINE = [
-  {a:'CUORE', alt:['CUORI'], p:[['LEONE','TIGRE'],['BATTITO','RESPIRO'],['ORO','ARGENTO'],['SPEZZATO','STIRATO'],['MANO','PIEDE']]},
-  {a:'LUNA', p:[['MIELE','ZUCCHERO'],['PIENA','VUOTA'],['PARK','GIARDINO'],['CRESCENTE','AUMENTO'],['STORTA','DRITTA']]},
-  {a:'CARTA', alt:['CARTE'], p:[['CREDITO','PRESTITO'],['IGIENICA','VITAMINICA'],['BIANCA','GRIGIA'],['IDENTITÀ','COGNOME'],['CASTELLO','FORTEZZA']]},
-  {a:'GATTO', alt:['GATTI'], p:[['STIVALI','SCARPE'],['NOVE','SETTE'],['NERO','VERDE'],['TOPO','FORMICA'],['SELVATICO','SPINOSO']]},
-  {a:'PANE', p:[['BURRO','SAPONE'],['QUOTIDIANO','SETTIMANALE'],['BUONO','CATTIVO'],['SPAGNA','FRANCIA'],['BRICIOLE','SCHEGGE']]},
-  {a:'TEMPO', p:[['LIBERO','OCCUPATO'],['PERSO','TROVATO'],['PIENO','VUOTO'],['DENARO','ARGENTO'],['MACCHINA','BICICLETTA']]},
-  {a:'ACQUA', p:[['POZZO','CAMINO'],['SANTA','BEATA'],['ALTA','LARGA'],['MINERALE','VEGETALE'],['BOCCA','NASO']]},
-  {a:'PALLA', p:[['NEVE','GHIACCIO'],['PIEDE','GOMITO'],['BALZO','SALTO'],['CANESTRO','CESTINO'],['VOLO','DECOLLO']]},
-  {a:'STELLA', alt:['STELLE'], p:[['CADENTE','ROTOLANTE'],['POLARE','TROPICALE'],['MARINA','MONTANA'],['CINEMA','BIBLIOTECA'],['MICHELIN','PIRELLI']]},
-  {a:'CHIAVE', alt:['CHIAVI'], p:[['INGLESE','FRANCESE'],['VOLTA','ARCO'],['LETTURA','SCRITTURA'],['PAROLA','FRASE'],['VIOLINO','PIANOFORTE']]},
-  {a:'OCCHIO', alt:['OCCHI'], p:[['BUE','MUCCA'],['NUDO','VESTITO'],['LINCE','PUMA'],['CROCE','CERCHIO'],['NERO','BIANCO']]},
-  {a:'SALE', p:[['GROSSO','PICCOLO'],['PEPE','ORIGANO'],['ZUCCA','MELONE'],['MARINO','MONTANO'],['INGLESE','TEDESCO']]},
+// Gioco finale. c: l'Ultima Catena (la prima parola è scoperta, le altre 6 si indovinano a turno);
+// a: la parola misteriosa dell'Ultima Parola, legata all'ultima parola della catena e al terzo elemento t.
+const FINALI = [
+  {c:['BICCHIERE','VINO','ROSSO','SEMAFORO','VERDE','NUMERO','TELEFONO'], a:'SQUILLO', t:'TROMBA'},
+  {c:['PORTA','APERTA','BOCCA','LUPO','MARE','STELLA','POLARE'], a:'ORSO', t:'PELUCHE'},
+  {c:['CAMPO','CALCIO','PALLONE','ORO','FEBBRE','CAVALLO','BATTAGLIA'], a:'NAVALE', t:'BASE'},
+  {c:['GIORNO','PAGA','BUSTA','LETTERA','AMORE','PRIMO','PIATTO'], a:'FORTE', t:'CASSA'},
+  {c:['PIEDE','SCARPA','GINNASTICA','ARTISTICA','DIREZIONE','VENTO','MULINO'], a:'BIANCO', t:'NATALE'},
+  {c:['CANE','GUARDIA','MEDICA','VISITA','CORTESIA','AUTO','SCUOLA'], a:'BANCO', t:'PESCI'},
+  {c:['SALE','GROSSO','CALIBRO','PISTOLA','ACQUA','SANTA','NOTTE'], a:'STELLATA', alt:['STELLATO'], t:'BANDIERA'},
+  {c:['TORTA','FETTA','LIMONE','SUCCO','FRUTTA','SECCA','GOLA'], a:'PROFONDA', alt:['PROFONDO','PROFONDE'], t:'ACQUE'},
 ];
 
-const STEP_MS = 3000, ANSWER_MS = 12000, FINAL_MS = 60000, EURO_PER_POINT = 100;
+const STEP_MS = 3000, ANSWER_MS = 12000, EURO_PER_POINT = 100;
+const UP_MS = 30000, TERZO_MS = 20000, JOLLY = 2;
 
 /* ---------- Utilità ---------- */
 const $ = id => document.getElementById(id);
@@ -420,7 +431,7 @@ document.addEventListener('visibilitychange', () => { if (document.visibilitySta
 /* ---------- Stato partita ---------- */
 const S = {
   teams: [{name: 'ROSSI', score: 0}, {name: 'BLU', score: 0}],
-  target: 500, chains: [], played: [], ci: 0, chain: null, rows: [],
+  target: 500, players: 3, chains: [], played: [], ci: 0, chain: null, rows: [],
   wi: 1, revealed: 1, locked: new Set(), phase: 'idle', answering: -1,
 };
 const curWord = () => S.chain[S.wi];
@@ -432,6 +443,11 @@ inA.value = store.get('nameA', 'ROSSI');
 inB.value = store.get('nameB', 'BLU');
 let target = store.get('target', 500);
 const segBtns = [...document.querySelectorAll('#seg button')];
+let players = store.get('players', 3);
+const plBtns = [...document.querySelectorAll('#segPl button')];
+function paintPl(){ plBtns.forEach(b => b.setAttribute('aria-pressed', String(+b.dataset.v === players))); }
+plBtns.forEach(b => b.addEventListener('click', () => { players = +b.dataset.v; store.set('players', players); paintPl(); }));
+paintPl();
 function paintSeg(){ segBtns.forEach(b => b.setAttribute('aria-pressed', String(+b.dataset.v === target))); }
 segBtns.forEach(b => b.addEventListener('click', () => { target = +b.dataset.v; store.set('target', target); paintSeg(); }));
 paintSeg();
@@ -440,6 +456,7 @@ function readTeams(){
   const a = cleanName(inA.value) || 'ROSSI', b = cleanName(inB.value) || 'BLU';
   store.set('nameA', a); store.set('nameB', b);
   S.teams = [{name: a, score: 0}, {name: b, score: 0}];
+  S.players = players;
 }
 $('setup').addEventListener('submit', e => { e.preventDefault(); Sound.unlock(); newGame(); });
 $('btnDemo').addEventListener('click', () => { Sound.unlock(); readTeams(); S.played = []; S.teams[0].score = 500; keepAwake(); startFinal(0); });
@@ -494,7 +511,7 @@ function sizeTiles(){
   s = Math.min(s, Math.floor((H - (rows - 1) * 6) / rows), 46);
   board.style.setProperty('--t', Math.max(s, 16) + 'px');
 }
-window.addEventListener('resize', sizeTiles);
+window.addEventListener('resize', () => { sizeTiles(); sizeFinal(); });
 
 function updateScores(bumpTeam){
   ['A', 'B'].forEach((k, i) => {
@@ -669,148 +686,305 @@ function nextWord(){
 }
 function announceFinal(t){
   stopClock(); S.phase = 'idle'; updateBuzzers();
-  setStatus(`${S.teams[t].name} va al gioco finale!`);
+  setStatus(`${S.teams[t].name} va all'Ultima Catena!`);
   Sound.win();
   setTimeout(() => startFinal(t), 1600);
 }
 
-/* ---------- Gioco finale: la Ghigliottina ---------- */
-const F = {team: 0, pot: 0, g: null, pairs: [], step: 0, clues: [], busy: false, done: false, raf: 0, end: 0};
-const stage = $('stage');
+/* ---------- Gioco finale: l'Ultima Catena e l'Ultima Parola ----------
+   Ultima Catena: i giocatori rispondono a turno. Parola giusta: montepremi intatto, tocca al compagno.
+   Parola sbagliata: montepremi dimezzato, risponde il compagno con una lettera in più; se sbaglia anche lui
+   la parola viene svelata e il montepremi si dimezza di nuovo. Due jolly aggiungono una lettera gratis.
+   Ultima Parola: tutta la squadra insieme. Si vedono le prime due lettere e l'ultima, non la lunghezza.
+   Allo scadere del tempo si può comprare il terzo elemento: montepremi dimezzato e altri 20 secondi. */
+const F = {stage: 'done', raf: 0};
+const stage = $('stage'), fboard = $('fboard');
+
 function startFinal(t){
   stopClock(); S.phase = 'final';
-  F.team = t;
-  F.pot = Math.max(S.teams[t].score, 10) * EURO_PER_POINT;
   const used = new Set(S.played.flat().map(norm));
-  const pool = GHIGLIOTTINE.filter(g => !used.has(norm(g.a)));
-  F.g = pick(pool.length ? pool : GHIGLIOTTINE);
-  F.pairs = F.g.p.map(([good, bad]) => ({good, opts: shuffle([good, bad])}));
-  F.step = 0; F.clues = []; F.busy = false; F.done = false;
-  $('scr-final').classList.remove('compact');
-  renderPot(false); renderClues(-1);
-  stage.innerHTML = `
+  const pool = FINALI.filter(f => f.c.concat(f.a, f.t).every(w => !used.has(norm(w))));
+  const g = pick(pool.length ? pool : FINALI);
+  cancelAnimationFrame(F.raf);
+  Object.assign(F, {
+    team: t, g, pot: Math.max(S.teams[t].score, 10) * EURO_PER_POINT,
+    rows: g.c.map((_, i) => i === 0 ? 'given' : 'future'),
+    wi: 1, extra: 0, attempt: 1, player: 0, jolly: JOLLY,
+    stage: 'intro', busy: false, terzo: false, reveal: -1, won: null, raf: 0,
+  });
+  $('fKicker').textContent = `Gioco finale · ${S.teams[t].name}`;
+  $('fTitle').textContent = "L'Ultima Catena";
+  renderPot(false); renderInfo();
+  show('final');
+  renderFinalBoard(false);
+  setStage(`
     <p class="lead"><b></b> gioca per il montepremi.</p>
     <ol class="steps">
-      <li>Per 5 volte scegliete una parola tra due. Se prendete quella sbagliata, il montepremi si dimezza.</li>
-      <li>Le 5 parole giuste hanno tutte un legame con una parola misteriosa.</li>
-      <li>Avete 1 minuto per scriverla.</li>
+      <li>La prima parola è scoperta. Delle altre vedete solo la prima lettera: ognuna è legata a quella sopra.</li>
+      <li>Rispondete <b>a turno</b>, un giocatore per parola. Se è giusta il montepremi resta intatto.</li>
+      <li>Se è sbagliata il montepremi <b>si dimezza</b> e risponde il compagno, con una lettera in più. Se sbaglia anche lui, si dimezza ancora.</li>
+      <li>Avete 2 <b>jolly</b>: aggiungono una lettera senza toccare il montepremi.</li>
     </ol>
-    <button class="cta" type="button" id="btnF">Inizia</button>`;
+    <button class="cta" type="button" id="btnF">Inizia l'Ultima Catena</button>`);
   stage.querySelector('.lead b').textContent = S.teams[t].name;
-  $('btnF').addEventListener('click', showPair);
-  show('final');
+  $('btnF').addEventListener('click', () => { F.stage = 'chain'; F.rows[1] = 'current'; renderFinalBoard(true); renderInfo(); chainStage(); });
 }
+function setStage(html){ stage.innerHTML = html; requestAnimationFrame(sizeFinal); }
 function renderPot(hit){
   $('potVal').textContent = euro(F.pot);
   const p = $('pot');
   if (hit){ p.classList.remove('hit'); void p.offsetWidth; p.classList.add('hit'); setTimeout(() => p.classList.remove('hit'), 1200); }
 }
-function renderClues(newIdx){
-  const box = $('clues'); box.textContent = '';
-  for (let i = 0; i < 5; i++){
-    const d = document.createElement('div');
-    d.className = 'clue' + (F.clues[i] ? ' on' : '') + (i === newIdx ? ' new' : '');
-    d.textContent = F.clues[i] || '?';
-    box.appendChild(d);
+function renderInfo(){
+  const turn = $('fTurn'), jolly = $('fJolly');
+  turn.textContent = ''; jolly.textContent = '';
+  if (F.stage === 'chain'){
+    turn.append('Risponde: ');
+    const b = document.createElement('b'); b.textContent = S.players > 1 ? `giocatore ${F.player + 1}` : S.teams[F.team].name; turn.append(b);
+    jolly.append('Jolly');
+    const d = document.createElement('span'); d.className = 'dots';
+    for (let i = 0; i < JOLLY; i++){ const dot = document.createElement('i'); if (i >= F.jolly) dot.className = 'used'; d.appendChild(dot); }
+    jolly.appendChild(d);
+  } else if (F.stage === 'up' || F.stage === 'result'){
+    turn.append('Risponde: '); const b = document.createElement('b'); b.textContent = 'tutta la squadra'; turn.append(b);
   }
 }
-function showPair(){
-  const p = F.pairs[F.step];
-  stage.innerHTML = `
-    <div class="kicker c">Parola ${F.step + 1} di 5 · sceglietene una</div>
-    <div class="pair"><button class="card" type="button"></button><button class="card" type="button"></button></div>
-    <p class="verdict" id="verdict"></p>`;
-  const btns = [...stage.querySelectorAll('.card')];
-  btns.forEach((b, i) => { b.textContent = p.opts[i]; b.addEventListener('click', () => choose(i, btns)); });
+const shownLetters = () => Math.min(1 + F.extra, chars(F.g.c[F.wi]).length - 1);
+
+function tileRow(cls, letters, visible, popIdx){
+  const row = document.createElement('div'); row.className = 'row ' + cls;
+  letters.forEach((ch, j) => {
+    const t = document.createElement('span'); t.className = 'tile';
+    if (visible(j)) t.textContent = ch;
+    if (j === popIdx) t.classList.add('pop');
+    row.appendChild(t);
+  });
+  return row;
 }
-function choose(i, btns){
-  if (F.busy) return; F.busy = true;
-  const p = F.pairs[F.step];
-  btns[i].classList.add('picked'); Sound.tick();
-  setTimeout(() => {
-    const gi = p.opts.indexOf(p.good);
-    btns[gi].classList.add('good');
-    btns[1 - gi].classList.add('cut');
-    Sound.blade();
-    const v = $('verdict');
-    if (i !== gi){
-      F.pot = Math.round(F.pot / 2);
-      setTimeout(() => { renderPot(true); vibrate(200); }, 250);
-      v.className = 'verdict bad'; v.textContent = 'Montepremi dimezzato!';
+function label(text){ const d = document.createElement('div'); d.className = 'rlabel'; d.textContent = text; return d; }
+
+function renderFinalBoard(animate){
+  fboard.textContent = '';
+  if (F.stage === 'up' || F.stage === 'result'){
+    const given = chars(F.g.c[F.g.c.length - 1]), ans = chars(F.g.a), terzo = chars(F.g.t);
+    fboard.append(label("Ultima parola della catena"), tileRow('r-given', given, () => true));
+    fboard.append(label('Parola misteriosa'));
+    if (F.reveal < 0){
+      const row = document.createElement('div'); row.className = 'row r-current';
+      [ans[0], ans[1]].forEach(ch => { const t = document.createElement('span'); t.className = 'tile'; t.textContent = ch; row.appendChild(t); });
+      const gap = document.createElement('span'); gap.className = 'gap'; gap.textContent = '…'; row.appendChild(gap);
+      const last = document.createElement('span'); last.className = 'tile'; last.textContent = ans[ans.length - 1]; row.appendChild(last);
+      fboard.appendChild(row);
     } else {
-      v.className = 'verdict good'; v.textContent = 'Salvi! Il montepremi resta.';
+      const cls = F.won == null ? 'r-current' : (F.won ? 'r-win' : 'r-lose');
+      fboard.appendChild(tileRow(cls, ans, j => j < 2 || j === ans.length - 1 || j < F.reveal, F.reveal - 1));
     }
-    F.clues.push(p.good); renderClues(F.clues.length - 1);
-    setTimeout(() => { F.busy = false; F.step++; F.step < 5 ? showPair() : minuteIntro(); }, 1700);
-  }, 700);
+    fboard.append(label('Terzo elemento'));
+    if (F.terzo) fboard.appendChild(tileRow('r-terzo', terzo, () => true, animate ? -2 : -1));
+    else { const row = document.createElement('div'); row.className = 'row'; const c = document.createElement('span'); c.className = 'cover'; c.textContent = 'coperto'; row.appendChild(c); fboard.appendChild(row); }
+    if (animate && F.terzo) fboard.lastChild.querySelectorAll('.tile').forEach(t => t.classList.add('pop'));
+  } else {
+    F.g.c.forEach((w, i) => {
+      const st = F.rows[i], ls = chars(w);
+      const vis = st === 'future' ? () => false : st === 'current' ? (j => j < shownLetters()) : () => true;
+      const pop = animate && st === 'current' ? shownLetters() - 1 : -1;
+      fboard.appendChild(tileRow('r-' + st, ls, vis, pop));
+    });
+  }
+  sizeFinal();
 }
-function minuteIntro(){
-  stage.innerHTML = `
-    <p class="lead">Ecco le 5 parole. Qual è la parola che le lega tutte?</p>
-    <button class="cta" type="button" id="btnMin">Parte il minuto</button>`;
-  $('btnMin').addEventListener('click', startMinute);
+function sizeFinal(){
+  if ($('scr-final').hidden || !F.g) return;
+  const up = F.stage === 'up' || F.stage === 'result';
+  const words = up ? [F.g.c[F.g.c.length - 1], F.g.a, F.g.t] : F.g.c;
+  const n = Math.max(6, ...words.map(w => chars(w).length));
+  const rows = words.length, reserved = up ? 3 * 24 : 0;
+  const W = fboard.clientWidth, H = fboard.clientHeight - reserved;
+  let s = Math.floor((W - (n - 1) * 4) / n);
+  s = Math.min(s, Math.floor((H - (rows - 1) * 6) / rows), up ? 44 : 40);
+  fboard.style.setProperty('--t', Math.max(s, 16) + 'px');
 }
-function startMinute(){
-  $('scr-final').classList.add('compact');
-  stage.innerHTML = `
-    <div class="bigtime" id="ftime">60</div>
-    <div class="bar"><i id="fbar"></i></div>
-    <form class="ansform" id="fform" autocomplete="off">
-      <input id="finput" type="text" autocomplete="off" autocorrect="off" autocapitalize="characters" spellcheck="false" enterkeyhint="done" placeholder="La parola" aria-label="Risposta finale">
-      <button type="submit">OK</button>
+
+/* Ultima Catena */
+function answerForm(btnLabel){
+  return `<form class="ansform" id="fform" autocomplete="off">
+      <input id="finput" type="text" autocomplete="off" autocorrect="off" autocapitalize="characters" spellcheck="false" enterkeyhint="done" placeholder="Parola" aria-label="Risposta">
+      <button type="submit">${btnLabel}</button>
     </form>`;
-  const input = $('finput');
-  $('fform').addEventListener('submit', e => { e.preventDefault(); finalSubmit(); });
-  try { input.focus({preventScroll: true}); } catch(e){ input.focus(); }
-  F.end = performance.now() + FINAL_MS;
+}
+function chainStage(){
+  setStage(`${answerForm('OK')}
+    <div class="tools"><button class="ghost" type="button" id="btnJolly">Usa un jolly · +1 lettera</button></div>
+    <p class="verdict" id="fstatus"></p>`);
+  $('fform').addEventListener('submit', e => { e.preventDefault(); chainSubmit($('finput').value); });
+  $('btnJolly').addEventListener('click', useJolly);
+  paintJolly();
+}
+function paintJolly(){
+  const b = $('btnJolly'); if (!b) return;
+  b.disabled = F.busy || F.jolly <= 0 || shownLetters() >= chars(F.g.c[F.wi]).length - 1;
+}
+function fStatus(text, kind){ const v = $('fstatus'); if (v){ v.className = 'verdict ' + (kind || ''); v.textContent = text; } }
+function useJolly(){
+  if (F.stage !== 'chain' || F.busy || F.jolly <= 0) return;
+  if (shownLetters() >= chars(F.g.c[F.wi]).length - 1) return;
+  F.jolly--; F.extra++;
+  Sound.letter(); renderFinalBoard(true); renderInfo(); paintJolly();
+  fStatus('Jolly: una lettera in più, montepremi intatto');
+}
+function chainSubmit(text){
+  if (F.stage !== 'chain' || F.busy || !norm(text)) return;
+  F.busy = true; paintJolly();
+  const input = $('finput'); input.value = ''; input.blur();
+  const answerer = F.player;
+  if (isCorrect(text, F.g.c[F.wi])) chainRight(answerer);
+  else chainWrong(answerer, text);
+}
+function chainRight(answerer){
+  F.rows[F.wi] = F.team ? 'b' : 'a';
+  F.player = (answerer + 1) % S.players;
+  renderFinalBoard(false); Sound.ok(); vibrate([30, 40, 30]);
+  fStatus('Esatto! Il montepremi resta intatto', 'good');
+  setTimeout(nextChainWord, 1300);
+}
+function chainWrong(answerer, text){
+  const before = F.pot, word = F.g.c[F.wi];
+  F.pot = Math.round(F.pot / 2);
+  renderPot(true); Sound.bad(); vibrate(220);
+  const next = (answerer + 1) % S.players;
+  const who = S.players > 1 ? `il giocatore ${next + 1}` : 'di nuovo la squadra';
+  if (F.attempt === 1){
+    showFeedback({ok: false, title: 'Sbagliato!',
+      sub: `«${text.toUpperCase()}» non è giusta. Montepremi dimezzato: ${euro(F.pot)}.`,
+      note: `Ora risponde ${who}, con una lettera in più.`, actions: true});
+    fbOnContinue = () => {
+      hideFeedback();
+      F.attempt = 2; F.extra = Math.min(F.extra + 1, chars(word).length - 2); F.player = next; F.busy = false;
+      renderFinalBoard(true); renderInfo(); paintJolly();
+      fStatus('Secondo tentativo, con una lettera in più');
+    };
+  } else {
+    F.rows[F.wi] = 'miss'; renderFinalBoard(false);
+    showFeedback({ok: false, title: 'Sbagliato di nuovo!',
+      sub: `La parola era «${word}». Montepremi dimezzato: ${euro(F.pot)}.`,
+      note: `La prossima parola tocca a ${S.players > 1 ? `giocatore ${next + 1}` : 'voi'}.`, actions: true});
+    fbOnContinue = () => { hideFeedback(); F.player = next; nextChainWord(); };
+  }
+  fbOnAccept = () => { hideFeedback(); F.pot = before; renderPot(false); chainRight(answerer); };
+}
+function nextChainWord(){
+  F.busy = false; F.wi++; F.extra = 0; F.attempt = 1;
+  if (F.wi >= F.g.c.length) return upIntro();
+  F.rows[F.wi] = 'current';
+  renderFinalBoard(true); renderInfo(); paintJolly();
+  fStatus('');
+}
+
+/* Ultima Parola */
+function upIntro(){
+  F.stage = 'up';
+  $('fTitle').textContent = "L'Ultima Parola";
+  renderInfo(); renderFinalBoard(true);
+  const given = F.g.c[F.g.c.length - 1];
+  setStage(`
+    <p class="lead">Trovate la parola misteriosa legata a <b></b>. Vedete le prime due lettere e l'ultima, non la lunghezza.</p>
+    <ol class="steps">
+      <li>Rispondete <b>tutti insieme</b>, consultandovi: avete ${UP_MS / 1000} secondi.</li>
+      <li>Allo scadere potete comprare il <b>terzo elemento</b>, un'altra parola legata a quella misteriosa: il montepremi si dimezza e avete altri ${TERZO_MS / 1000} secondi.</li>
+      <li>Parola giusta: vincete il montepremi. Sbagliata: perdete tutto.</li>
+    </ol>
+    <button class="cta" type="button" id="btnUp">Via!</button>`);
+  stage.querySelector('.lead b').textContent = given;
+  $('btnUp').addEventListener('click', () => {
+    setStage(`
+      <div class="timerow" id="timeRow"><div class="bigtime" id="ftime"></div><div class="bar"><i id="fbar"></i></div></div>
+      <div class="choice" id="choice" hidden>
+        <p class="lead">Tempo scaduto! Cosa fate?</p>
+        <button class="cta" type="button" id="btnTerzo">Compra il terzo elemento<small id="terzoCost"></small></button>
+        <button class="ghost" type="button" id="btnSenza">Rispondiamo senza</button>
+      </div>
+      ${answerForm('Rispondi')}
+      <p class="verdict" id="fstatus"></p>`);
+    $('fform').addEventListener('submit', e => { e.preventDefault(); if (norm($('finput').value)) upSubmit(); });
+    $('btnTerzo').addEventListener('click', buyTerzo);
+    $('btnSenza').addEventListener('click', () => { $('choice').hidden = true; fStatus('Scrivete la risposta quando siete pronti'); focusInput(); });
+    focusInput();
+    runTimer(UP_MS, upExpired);
+  });
+}
+function focusInput(){ const i = $('finput'); if (!i) return; try { i.focus({preventScroll: true}); } catch(e){ i.focus(); } }
+function runTimer(ms, onEnd){
   cancelAnimationFrame(F.raf);
+  const end = performance.now() + ms, el = $('ftime');
+  $('timeRow').hidden = false; el.classList.remove('urgent'); el.textContent = '';
   const loop = () => {
-    const left = F.end - performance.now();
-    if (left <= 0) return finalSubmit();
-    const secs = Math.ceil(left / 1000), el = $('ftime');
-    if (el.textContent !== String(secs)){
-      el.textContent = secs;
-      if (secs <= 10){ el.classList.add('urgent'); Sound.tick(); }
-    }
-    $('fbar').style.transform = `scaleX(${left / FINAL_MS})`;
+    if (F.stage !== 'up') return;
+    const left = end - performance.now();
+    if (left <= 0){ el.textContent = '0'; $('fbar').style.transform = 'scaleX(0)'; return onEnd(); }
+    const secs = Math.ceil(left / 1000);
+    if (el.textContent !== String(secs)){ el.textContent = secs; if (secs <= 5){ el.classList.add('urgent'); Sound.tick(); } }
+    $('fbar').style.transform = `scaleX(${left / ms})`;
     F.raf = requestAnimationFrame(loop);
   };
   loop();
 }
-function finalSubmit(){
-  if (F.done) return;
+function upExpired(){
+  Sound.miss(); vibrate(150);
+  if (F.terzo) return upSubmit();
+  $('timeRow').hidden = true;
+  $('terzoCost').textContent = `montepremi a ${euro(Math.round(F.pot / 2))} · altri ${TERZO_MS / 1000} secondi`;
+  $('choice').hidden = false;
+  $('finput').blur();
+}
+function buyTerzo(){
+  if (F.terzo || F.stage !== 'up') return;
+  F.terzo = true;
+  F.pot = Math.round(F.pot / 2);
+  renderPot(true); Sound.blade();
+  $('choice').hidden = true;
+  renderFinalBoard(true);
+  fStatus(`Terzo elemento: ${F.g.t}`);
+  focusInput();
+  runTimer(TERZO_MS, upExpired);
+}
+function upSubmit(){
+  if (F.stage !== 'up') return;
+  F.stage = 'result';
   cancelAnimationFrame(F.raf);
-  const input = $('finput');
-  const text = input ? input.value.trim() : '';
+  const input = $('finput'), text = input ? input.value.trim() : '';
   if (input) input.blur();
-  const won = isCorrect(text, F.g.a, F.g.alt);
-  stage.innerHTML = `
+  F.won = isCorrect(text, F.g.a, F.g.alt);
+  const wonPot = F.pot;
+  setStage(`
     <div class="result">
       <p id="rWrote"></p>
-      <div class="kicker">La parola giusta è…</div>
-      <div class="tiles" id="rTiles"></div>
-      <h3 id="rTitle"></h3>
+      <h3 id="rTitle">La parola misteriosa è…</h3>
       <p id="rSub"></p>
       <div class="actions" id="rActions" hidden>
         <button class="cta" type="button" id="btnAgain">Rivincita</button>
         <button class="ghost" type="button" id="btnMenu">Menu</button>
       </div>
-    </div>`;
-  $('rWrote').textContent = text ? `Avete scritto «${text.toUpperCase()}»` : 'Nessuna risposta scritta.';
-  const tiles = $('rTiles'), ls = chars(F.g.a);
-  tiles.style.setProperty('--n', ls.length);
-  const spans = ls.map(() => { const s = document.createElement('span'); s.className = 'tile'; tiles.appendChild(s); return s; });
+    </div>`);
+  $('rWrote').textContent = text ? `Avete risposto «${text.toUpperCase()}»` : 'Nessuna risposta.';
   $('btnAgain').addEventListener('click', newGame);
   $('btnMenu').addEventListener('click', () => show('home'));
-  let k = 0;
+  const won = F.won; F.won = null;
+  const L = chars(F.g.a).length;
+  F.reveal = 2;
+  renderFinalBoard(false);
   setTimeout(function rev(){
-    if (k < spans.length){ spans[k].textContent = ls[k]; spans[k].classList.add('pop'); Sound.letter(); k++; return setTimeout(rev, 260); }
-    const h = $('rTitle');
-    if (won){ h.className = 'win'; h.textContent = `Avete vinto ${euro(F.pot)}!`; $('rSub').textContent = `Complimenti ${S.teams[F.team].name}.`; Sound.win(); confetti(); vibrate([60, 60, 60, 60, 200]); }
-    else { h.textContent = 'Peccato!'; $('rSub').textContent = `Il montepremi di ${euro(F.pot)} resta in banca.`; Sound.lose(); }
+    if (F.stage !== 'result') return;
+    if (F.reveal < L){ F.reveal++; Sound.letter(); renderFinalBoard(false); return setTimeout(rev, 300); }
+    F.won = won;
+    const terzoWasHidden = !F.terzo;
+    F.terzo = true;
+    renderFinalBoard(terzoWasHidden);
+    const h = $('rTitle'), sub = $('rSub');
+    const link = `${F.g.c[F.g.c.length - 1]} · ${F.g.a} · ${F.g.t}`;
+    if (won){ h.className = 'win'; h.textContent = `Avete vinto ${euro(wonPot)}!`; sub.textContent = `Complimenti ${S.teams[F.team].name}! ${link}`; Sound.win(); confetti(); vibrate([60, 60, 60, 60, 200]); }
+    else { h.className = ''; h.textContent = 'Peccato!'; sub.textContent = `Era «${F.g.a}» (${link}). I ${euro(wonPot)} restano in banca.`; Sound.lose(); }
     $('rActions').hidden = false;
-  }, 1400);
-  F.done = true;
+  }, 1200);
 }
 function confetti(){
   const colors = ['var(--gold)', 'var(--a)', 'var(--b)', 'var(--ok)', 'var(--ink)'];
@@ -838,7 +1012,7 @@ $('cfNo').addEventListener('click', () => { ovConfirm.hidden = true; if (pausedC
 $('cfYes').addEventListener('click', () => {
   ovConfirm.hidden = true; ovAnswer.hidden = true; ovFb.hidden = true;
   stopClock(); cancelAnimationFrame(ansRaf); cancelAnimationFrame(F.raf);
-  S.phase = 'idle'; F.done = true;
+  S.phase = 'idle'; F.stage = 'done';
   show('home');
 });
 const ICON_ON = '<svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9h4l5-4v14l-5-4H4z" fill="currentColor"/><path d="M16.5 8.5a5 5 0 0 1 0 7M19 6a8.5 8.5 0 0 1 0 12" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round"/></svg>';
