@@ -150,6 +150,8 @@ button:focus-visible,input:focus-visible,summary:focus-visible{outline:3px solid
 .dots{display:inline-flex;gap:5px;vertical-align:middle;margin-left:6px}
 .dots i{width:12px;height:12px;border-radius:50%;background:var(--gold)}
 .dots i.used{background:none;border:2px solid var(--tile-edge)}
+.errs i{background:none;border:2px solid var(--tile-edge)}
+.errs i.bad{background:var(--bad);border-color:var(--bad)}
 .rlabel{text-align:center;font:700 12px/1 var(--f-cond);letter-spacing:.16em;text-transform:uppercase;color:var(--muted);margin-top:6px}
 .gap{flex:none;width:calc(var(--t)*1.3);display:grid;place-items:center;font:calc(var(--t)*.6)/1 var(--f-display);color:var(--gold);letter-spacing:.05em}
 .cover{flex:none;height:var(--t);padding-inline:18px;display:grid;place-items:center;border-radius:calc(var(--t)*.16);border:2px dashed var(--tile-edge);font:700 calc(var(--t)*.4)/1 var(--f-cond);letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
@@ -220,7 +222,7 @@ button:focus-visible,input:focus-visible,summary:focus-visible{outline:3px solid
         <li>Sul tabellone c'è una <b>catena</b> di 7 parole: la prima e l'ultima sono scoperte. Ogni parola è legata alla precedente (es. <b>casa → dolce → vita</b>).</li>
         <li>Della parola da indovinare si vede la prima lettera, poi ogni 3 secondi se ne scopre un'altra. Meno lettere vedi, più punti vale (da 100 a 10).</li>
         <li>Chi la sa preme per primo il <b>suo pulsante</b> e ha 12 secondi per scriverla. Se sbaglia, la palla passa all'altra squadra.</li>
-        <li>La prima squadra che arriva al traguardo gioca <b>l'Ultima Catena</b> per un montepremi di 100 € a punto: i giocatori indovinano a turno le parole di una nuova catena e ogni errore dimezza il montepremi.</li>
+        <li>La prima squadra che arriva al traguardo gioca <b>l'Ultima Catena</b> per un montepremi di 100 € a punto: i giocatori indovinano a turno le parole di una nuova catena. Ogni parola ammette 4 errori: ognuno toglie il 25% del montepremi e scopre una lettera a caso.</li>
         <li>Si chiude con <b>l'Ultima Parola</b>: tutta la squadra cerca insieme la parola legata all'ultima della catena. Se la indovina vince il montepremi.</li>
       </ol>
     </details>
@@ -332,18 +334,18 @@ const CHAINS = [
 // Gioco finale. c: l'Ultima Catena (la prima parola è scoperta, le altre 6 si indovinano a turno);
 // a: la parola misteriosa dell'Ultima Parola, legata all'ultima parola della catena e al terzo elemento t.
 const FINALI = [
-  {c:['BICCHIERE','VINO','ROSSO','SEMAFORO','VERDE','NUMERO','TELEFONO'], a:'SQUILLO', t:'TROMBA'},
-  {c:['PORTA','APERTA','BOCCA','LUPO','MARE','STELLA','POLARE'], a:'ORSO', t:'PELUCHE'},
-  {c:['CAMPO','CALCIO','PALLONE','ORO','FEBBRE','CAVALLO','BATTAGLIA'], a:'NAVALE', t:'BASE'},
-  {c:['GIORNO','PAGA','BUSTA','LETTERA','AMORE','PRIMO','PIATTO'], a:'FORTE', t:'CASSA'},
-  {c:['PIEDE','SCARPA','GINNASTICA','ARTISTICA','DIREZIONE','VENTO','MULINO'], a:'BIANCO', t:'NATALE'},
-  {c:['CANE','GUARDIA','MEDICA','VISITA','CORTESIA','AUTO','SCUOLA'], a:'BANCO', t:'PESCI'},
-  {c:['SALE','GROSSO','CALIBRO','PISTOLA','ACQUA','SANTA','NOTTE'], a:'STELLATA', alt:['STELLATO'], t:'BANDIERA'},
-  {c:['TORTA','FETTA','LIMONE','SUCCO','FRUTTA','SECCA','GOLA'], a:'PROFONDA', alt:['PROFONDO','PROFONDE'], t:'ACQUE'},
+  {c:['MARE','SOLE','LUNA','MIELE','APE','REGINA','CORONA'], a:'SPINE', t:'ROSA'},
+  {c:['LIBRO','SCUOLA','BANCO','PESCE','ROSSO','SEMAFORO','VERDE'], a:'PRATO', t:'FIORITO'},
+  {c:['TRENO','STAZIONE','SERVIZIO','CAMERA','LETTO','FIUME','ACQUA'], a:'FRESCA', t:'FRUTTA'},
+  {c:['GIORNO','NOTTE','STELLA','MARE','ONDA','RADIO','MUSICA'], a:'CLASSICA', t:'DANZA'},
+  {c:['CANE','GATTO','TOPO','FORMAGGIO','PIZZA','MARGHERITA','FIORE'], a:'MAZZO', t:'CARTE'},
+  {c:['TAVOLA','PIATTO','PASTA','FAGIOLI','MINESTRA','BRODO','POLLO'], a:'ARROSTO', t:'PATATE'},
+  {c:['SCARPE','GINNASTICA','PALESTRA','PESI','BILANCIA','CUCINA','FORNO'], a:'PANE', t:'BURRO'},
+  {c:['ESTATE','VACANZE','MARE','SPIAGGIA','SABBIA','DESERTO','CAMMELLO'], a:'GOBBA', t:'SCHIENA'},
 ];
 
 const STEP_MS = 3000, ANSWER_MS = 12000, EURO_PER_POINT = 100;
-const UP_MS = 30000, TERZO_MS = 20000, JOLLY = 2;
+const UP_MS = 45000, TERZO_MS = 20000, JOLLY = 2, MAX_ERR = 4, CUT = 0.25;
 
 /* ---------- Utilità ---------- */
 const $ = id => document.getElementById(id);
@@ -692,13 +694,14 @@ function announceFinal(t){
 }
 
 /* ---------- Gioco finale: l'Ultima Catena e l'Ultima Parola ----------
-   Ultima Catena: i giocatori rispondono a turno. Parola giusta: montepremi intatto, tocca al compagno.
-   Parola sbagliata: montepremi dimezzato, risponde il compagno con una lettera in più; se sbaglia anche lui
-   la parola viene svelata e il montepremi si dimezza di nuovo. Due jolly aggiungono una lettera gratis.
-   Ultima Parola: tutta la squadra insieme. Si vedono le prime due lettere e l'ultima, non la lunghezza.
-   Allo scadere del tempo si può comprare il terzo elemento: montepremi dimezzato e altri 20 secondi. */
+   Ultima Catena: i giocatori rispondono a turno. Ogni parola ammette 4 errori: ogni errore toglie il 25%
+   del montepremi e passa la risposta al compagno; ai primi 3 errori si scopre una lettera a caso, al 4°
+   la parola viene svelata. Due jolly scoprono una lettera a caso senza toccare il montepremi.
+   Ultima Parola: tutta la squadra insieme, con le stesse regole sugli errori. Allo scadere del tempo si può
+   comprare il terzo elemento: montepremi dimezzato e altri 20 secondi. */
 const F = {stage: 'done', raf: 0};
 const stage = $('stage'), fboard = $('fboard');
+const cut = pot => Math.round(pot * (1 - CUT));
 
 function startFinal(t){
   stopClock(); S.phase = 'final';
@@ -709,8 +712,8 @@ function startFinal(t){
   Object.assign(F, {
     team: t, g, pot: Math.max(S.teams[t].score, 10) * EURO_PER_POINT,
     rows: g.c.map((_, i) => i === 0 ? 'given' : 'future'),
-    wi: 1, extra: 0, attempt: 1, player: 0, jolly: JOLLY,
-    stage: 'intro', busy: false, terzo: false, reveal: -1, won: null, raf: 0,
+    wi: 1, shown: new Set([0]), errors: 0, pop: -1, player: 0, jolly: JOLLY,
+    stage: 'intro', busy: false, terzo: false, reveal: false, won: null, raf: 0,
   });
   $('fKicker').textContent = `Gioco finale · ${S.teams[t].name}`;
   $('fTitle').textContent = "L'Ultima Catena";
@@ -720,14 +723,14 @@ function startFinal(t){
   setStage(`
     <p class="lead"><b></b> gioca per il montepremi.</p>
     <ol class="steps">
-      <li>La prima parola è scoperta. Delle altre vedete solo la prima lettera: ognuna è legata a quella sopra.</li>
-      <li>Rispondete <b>a turno</b>, un giocatore per parola. Se è giusta il montepremi resta intatto.</li>
-      <li>Se è sbagliata il montepremi <b>si dimezza</b> e risponde il compagno, con una lettera in più. Se sbaglia anche lui, si dimezza ancora.</li>
-      <li>Avete 2 <b>jolly</b>: aggiungono una lettera senza toccare il montepremi.</li>
+      <li>La prima parola è scoperta. Delle altre vedete la prima lettera: ognuna è legata a quella sopra.</li>
+      <li>Rispondete <b>a turno</b>. Se la parola è giusta il montepremi resta intatto.</li>
+      <li>Avete <b>${MAX_ERR} errori</b> per parola: ogni errore toglie il <b>${CUT * 100}%</b> del montepremi e scopre una lettera a caso. Al ${MAX_ERR}° errore la parola viene svelata.</li>
+      <li>Avete ${JOLLY} <b>jolly</b>: scoprono una lettera senza toccare il montepremi.</li>
     </ol>
     <button class="cta" type="button" id="btnF">Inizia l'Ultima Catena</button>`);
   stage.querySelector('.lead b').textContent = S.teams[t].name;
-  $('btnF').addEventListener('click', () => { F.stage = 'chain'; F.rows[1] = 'current'; renderFinalBoard(true); renderInfo(); chainStage(); });
+  $('btnF').addEventListener('click', () => { F.stage = 'chain'; F.rows[1] = 'current'; F.pop = 0; renderFinalBoard(true); renderInfo(); chainStage(); });
 }
 function setStage(html){ stage.innerHTML = html; requestAnimationFrame(sizeFinal); }
 function renderPot(hit){
@@ -736,27 +739,33 @@ function renderPot(hit){
   if (hit){ p.classList.remove('hit'); void p.offsetWidth; p.classList.add('hit'); setTimeout(() => p.classList.remove('hit'), 1200); }
 }
 function renderInfo(){
-  const turn = $('fTurn'), jolly = $('fJolly');
-  turn.textContent = ''; jolly.textContent = '';
-  if (F.stage === 'chain'){
-    turn.append('Risponde: ');
-    const b = document.createElement('b'); b.textContent = S.players > 1 ? `giocatore ${F.player + 1}` : S.teams[F.team].name; turn.append(b);
-    jolly.append('Jolly');
-    const d = document.createElement('span'); d.className = 'dots';
-    for (let i = 0; i < JOLLY; i++){ const dot = document.createElement('i'); if (i >= F.jolly) dot.className = 'used'; d.appendChild(dot); }
-    jolly.appendChild(d);
-  } else if (F.stage === 'up' || F.stage === 'result'){
-    turn.append('Risponde: '); const b = document.createElement('b'); b.textContent = 'tutta la squadra'; turn.append(b);
-  }
+  const turn = $('fTurn'), right = $('fJolly');
+  turn.textContent = ''; right.textContent = '';
+  if (F.stage !== 'chain' && F.stage !== 'up') return;
+  turn.append('Risponde: ');
+  const b = document.createElement('b');
+  b.textContent = F.stage === 'up' ? 'tutta la squadra' : (S.players > 1 ? `giocatore ${F.player + 1}` : S.teams[F.team].name);
+  turn.append(b);
+  right.append('Errori');
+  const d = document.createElement('span'); d.className = 'dots errs';
+  for (let i = 0; i < MAX_ERR; i++){ const dot = document.createElement('i'); if (i < F.errors) dot.className = 'bad'; d.appendChild(dot); }
+  right.appendChild(d);
 }
-const shownLetters = () => Math.min(1 + F.extra, chars(F.g.c[F.wi]).length - 1);
+const curFinalWord = () => F.stage === 'up' || F.stage === 'result' ? F.g.a : F.g.c[F.wi];
+function hiddenIdx(){ const L = chars(curFinalWord()).length; return [...Array(L).keys()].filter(j => !F.shown.has(j)); }
+// Scopre una lettera a caso, lasciandone sempre almeno una coperta. Restituisce l'indice o -1.
+function revealRandom(){
+  const h = hiddenIdx();
+  if (h.length <= 1) return -1;
+  const j = pick(h); F.shown.add(j); return j;
+}
 
 function tileRow(cls, letters, visible, popIdx){
   const row = document.createElement('div'); row.className = 'row ' + cls;
   letters.forEach((ch, j) => {
     const t = document.createElement('span'); t.className = 'tile';
     if (visible(j)) t.textContent = ch;
-    if (j === popIdx) t.classList.add('pop');
+    if (popIdx === 'all' || j === popIdx) t.classList.add('pop');
     row.appendChild(t);
   });
   return row;
@@ -765,30 +774,21 @@ function label(text){ const d = document.createElement('div'); d.className = 'rl
 
 function renderFinalBoard(animate){
   fboard.textContent = '';
+  const pop = animate === true ? F.pop : -1;
   if (F.stage === 'up' || F.stage === 'result'){
     const given = chars(F.g.c[F.g.c.length - 1]), ans = chars(F.g.a), terzo = chars(F.g.t);
-    fboard.append(label("Ultima parola della catena"), tileRow('r-given', given, () => true));
-    fboard.append(label('Parola misteriosa'));
-    if (F.reveal < 0){
-      const row = document.createElement('div'); row.className = 'row r-current';
-      [ans[0], ans[1]].forEach(ch => { const t = document.createElement('span'); t.className = 'tile'; t.textContent = ch; row.appendChild(t); });
-      const gap = document.createElement('span'); gap.className = 'gap'; gap.textContent = '…'; row.appendChild(gap);
-      const last = document.createElement('span'); last.className = 'tile'; last.textContent = ans[ans.length - 1]; row.appendChild(last);
-      fboard.appendChild(row);
-    } else {
-      const cls = F.won == null ? 'r-current' : (F.won ? 'r-win' : 'r-lose');
-      fboard.appendChild(tileRow(cls, ans, j => j < 2 || j === ans.length - 1 || j < F.reveal, F.reveal - 1));
-    }
+    fboard.append(label('Ultima parola della catena'), tileRow('r-given', given, () => true));
+    fboard.append(label(`Parola misteriosa · ${ans.length} lettere`));
+    const cls = F.won == null ? 'r-current' : (F.won ? 'r-win' : 'r-lose');
+    fboard.appendChild(tileRow(cls, ans, j => F.reveal || F.shown.has(j), pop));
     fboard.append(label('Terzo elemento'));
-    if (F.terzo) fboard.appendChild(tileRow('r-terzo', terzo, () => true, animate ? -2 : -1));
+    if (F.terzo) fboard.appendChild(tileRow('r-terzo', terzo, () => true, animate === 'terzo' ? 'all' : -1));
     else { const row = document.createElement('div'); row.className = 'row'; const c = document.createElement('span'); c.className = 'cover'; c.textContent = 'coperto'; row.appendChild(c); fboard.appendChild(row); }
-    if (animate && F.terzo) fboard.lastChild.querySelectorAll('.tile').forEach(t => t.classList.add('pop'));
   } else {
     F.g.c.forEach((w, i) => {
-      const st = F.rows[i], ls = chars(w);
-      const vis = st === 'future' ? () => false : st === 'current' ? (j => j < shownLetters()) : () => true;
-      const pop = animate && st === 'current' ? shownLetters() - 1 : -1;
-      fboard.appendChild(tileRow('r-' + st, ls, vis, pop));
+      const st = F.rows[i];
+      const vis = st === 'future' ? () => false : st === 'current' ? (j => F.shown.has(j)) : () => true;
+      fboard.appendChild(tileRow('r-' + st, chars(w), vis, st === 'current' ? pop : -1));
     });
   }
   sizeFinal();
@@ -814,7 +814,7 @@ function answerForm(btnLabel){
 }
 function chainStage(){
   setStage(`${answerForm('OK')}
-    <div class="tools"><button class="ghost" type="button" id="btnJolly">Usa un jolly · +1 lettera</button></div>
+    <div class="tools"><button class="ghost" type="button" id="btnJolly"></button></div>
     <p class="verdict" id="fstatus"></p>`);
   $('fform').addEventListener('submit', e => { e.preventDefault(); chainSubmit($('finput').value); });
   $('btnJolly').addEventListener('click', useJolly);
@@ -822,14 +822,15 @@ function chainStage(){
 }
 function paintJolly(){
   const b = $('btnJolly'); if (!b) return;
-  b.disabled = F.busy || F.jolly <= 0 || shownLetters() >= chars(F.g.c[F.wi]).length - 1;
+  b.textContent = `Usa un jolly · +1 lettera (${F.jolly} rimast${F.jolly === 1 ? 'o' : 'i'})`;
+  b.disabled = F.busy || F.jolly <= 0 || hiddenIdx().length <= 1;
 }
 function fStatus(text, kind){ const v = $('fstatus'); if (v){ v.className = 'verdict ' + (kind || ''); v.textContent = text; } }
 function useJolly(){
   if (F.stage !== 'chain' || F.busy || F.jolly <= 0) return;
-  if (shownLetters() >= chars(F.g.c[F.wi]).length - 1) return;
-  F.jolly--; F.extra++;
-  Sound.letter(); renderFinalBoard(true); renderInfo(); paintJolly();
+  const j = revealRandom(); if (j < 0) return;
+  F.jolly--; F.pop = j;
+  Sound.letter(); renderFinalBoard(true); paintJolly();
   fStatus('Jolly: una lettera in più, montepremi intatto');
 }
 function chainSubmit(text){
@@ -848,33 +849,35 @@ function chainRight(answerer){
   setTimeout(nextChainWord, 1300);
 }
 function chainWrong(answerer, text){
-  const before = F.pot, word = F.g.c[F.wi];
-  F.pot = Math.round(F.pot / 2);
-  renderPot(true); Sound.bad(); vibrate(220);
+  const before = F.pot, prevErrors = F.errors, word = F.g.c[F.wi];
+  F.pot = cut(F.pot); F.errors++;
+  renderPot(true); renderInfo(); Sound.bad(); vibrate(220);
   const next = (answerer + 1) % S.players;
   const who = S.players > 1 ? `il giocatore ${next + 1}` : 'di nuovo la squadra';
-  if (F.attempt === 1){
-    showFeedback({ok: false, title: 'Sbagliato!',
-      sub: `«${text.toUpperCase()}» non è giusta. Montepremi dimezzato: ${euro(F.pot)}.`,
-      note: `Ora risponde ${who}, con una lettera in più.`, actions: true});
+  if (F.errors < MAX_ERR){
+    showFeedback({ok: false, title: `Errore ${F.errors} di ${MAX_ERR}`,
+      sub: `«${text.toUpperCase()}» non è giusta. Montepremi −${CUT * 100}%: ${euro(F.pot)}.`,
+      note: `Si scopre una lettera a caso. Ora risponde ${who}.`, actions: true});
     fbOnContinue = () => {
       hideFeedback();
-      F.attempt = 2; F.extra = Math.min(F.extra + 1, chars(word).length - 2); F.player = next; F.busy = false;
+      F.pop = revealRandom(); F.player = next; F.busy = false;
+      if (F.pop >= 0) Sound.letter();
       renderFinalBoard(true); renderInfo(); paintJolly();
-      fStatus('Secondo tentativo, con una lettera in più');
+      fStatus(`Ancora ${MAX_ERR - F.errors} ${MAX_ERR - F.errors === 1 ? 'errore' : 'errori'} per questa parola`);
     };
   } else {
     F.rows[F.wi] = 'miss'; renderFinalBoard(false);
-    showFeedback({ok: false, title: 'Sbagliato di nuovo!',
-      sub: `La parola era «${word}». Montepremi dimezzato: ${euro(F.pot)}.`,
+    showFeedback({ok: false, title: `Errore ${MAX_ERR} di ${MAX_ERR}`,
+      sub: `La parola era «${word}». Montepremi −${CUT * 100}%: ${euro(F.pot)}.`,
       note: `La prossima parola tocca a ${S.players > 1 ? `giocatore ${next + 1}` : 'voi'}.`, actions: true});
     fbOnContinue = () => { hideFeedback(); F.player = next; nextChainWord(); };
   }
-  fbOnAccept = () => { hideFeedback(); F.pot = before; renderPot(false); chainRight(answerer); };
+  fbOnAccept = () => { hideFeedback(); F.pot = before; F.errors = prevErrors; renderPot(false); renderInfo(); chainRight(answerer); };
 }
 function nextChainWord(){
-  F.busy = false; F.wi++; F.extra = 0; F.attempt = 1;
+  F.busy = false; F.wi++; F.errors = 0;
   if (F.wi >= F.g.c.length) return upIntro();
+  F.shown = new Set([0]); F.pop = 0;
   F.rows[F.wi] = 'current';
   renderFinalBoard(true); renderInfo(); paintJolly();
   fStatus('');
@@ -882,16 +885,18 @@ function nextChainWord(){
 
 /* Ultima Parola */
 function upIntro(){
-  F.stage = 'up';
+  F.stage = 'up'; F.errors = 0;
+  const L = chars(F.g.a).length;
+  F.shown = new Set([0, 1, L - 1]); F.pop = -1;
   $('fTitle').textContent = "L'Ultima Parola";
-  renderInfo(); renderFinalBoard(true);
+  renderInfo(); renderFinalBoard(false);
   const given = F.g.c[F.g.c.length - 1];
   setStage(`
-    <p class="lead">Trovate la parola misteriosa legata a <b></b>. Vedete le prime due lettere e l'ultima, non la lunghezza.</p>
+    <p class="lead">Trovate la parola misteriosa legata a <b></b>. Vedete le prime due lettere e l'ultima.</p>
     <ol class="steps">
       <li>Rispondete <b>tutti insieme</b>, consultandovi: avete ${UP_MS / 1000} secondi.</li>
+      <li>Anche qui avete <b>${MAX_ERR} errori</b>: ognuno toglie il ${CUT * 100}% e scopre una lettera. Al ${MAX_ERR}° perdete tutto.</li>
       <li>Allo scadere potete comprare il <b>terzo elemento</b>, un'altra parola legata a quella misteriosa: il montepremi si dimezza e avete altri ${TERZO_MS / 1000} secondi.</li>
-      <li>Parola giusta: vincete il montepremi. Sbagliata: perdete tutto.</li>
     </ol>
     <button class="cta" type="button" id="btnUp">Via!</button>`);
   stage.querySelector('.lead b').textContent = given;
@@ -905,9 +910,9 @@ function upIntro(){
       </div>
       ${answerForm('Rispondi')}
       <p class="verdict" id="fstatus"></p>`);
-    $('fform').addEventListener('submit', e => { e.preventDefault(); if (norm($('finput').value)) upSubmit(); });
+    $('fform').addEventListener('submit', e => { e.preventDefault(); upAnswer(false); });
     $('btnTerzo').addEventListener('click', buyTerzo);
-    $('btnSenza').addEventListener('click', () => { $('choice').hidden = true; fStatus('Scrivete la risposta quando siete pronti'); focusInput(); });
+    $('btnSenza').addEventListener('click', () => { $('choice').hidden = true; fStatus('Niente più tempo limite: rispondete quando siete pronti'); focusInput(); });
     focusInput();
     runTimer(UP_MS, upExpired);
   });
@@ -930,7 +935,7 @@ function runTimer(ms, onEnd){
 }
 function upExpired(){
   Sound.miss(); vibrate(150);
-  if (F.terzo) return upSubmit();
+  if (F.terzo) return upAnswer(true);
   $('timeRow').hidden = true;
   $('terzoCost').textContent = `montepremi a ${euro(Math.round(F.pot / 2))} · altri ${TERZO_MS / 1000} secondi`;
   $('choice').hidden = false;
@@ -942,18 +947,32 @@ function buyTerzo(){
   F.pot = Math.round(F.pot / 2);
   renderPot(true); Sound.blade();
   $('choice').hidden = true;
-  renderFinalBoard(true);
+  renderFinalBoard('terzo');
   fStatus(`Terzo elemento: ${F.g.t}`);
   focusInput();
   runTimer(TERZO_MS, upExpired);
 }
-function upSubmit(){
-  if (F.stage !== 'up') return;
+// timeUp: è finito il tempo del terzo elemento, quello che è scritto vale come ultima risposta.
+function upAnswer(timeUp){
+  if (F.stage !== 'up' || F.busy) return;
+  const input = $('finput'), text = input.value.trim();
+  if (!timeUp && !norm(text)) return;
+  if (isCorrect(text, F.g.a, F.g.alt)) return upEnd(true, text);
+  if (timeUp) return upEnd(false, text);
+  F.pot = cut(F.pot); F.errors++;
+  renderPot(true); renderInfo(); Sound.bad(); vibrate(220);
+  if (F.errors >= MAX_ERR) return upEnd(false, text);
+  input.value = '';
+  F.pop = revealRandom();
+  renderFinalBoard(true);
+  const left = MAX_ERR - F.errors;
+  fStatus(`«${text.toUpperCase()}» no! −${CUT * 100}%, nuova lettera. ${left} ${left === 1 ? 'errore rimasto' : 'errori rimasti'}`, 'bad');
+  focusInput();
+}
+function upEnd(won, text){
   F.stage = 'result';
   cancelAnimationFrame(F.raf);
-  const input = $('finput'), text = input ? input.value.trim() : '';
-  if (input) input.blur();
-  F.won = isCorrect(text, F.g.a, F.g.alt);
+  const input = $('finput'); if (input) input.blur();
   const wonPot = F.pot;
   setStage(`
     <div class="result">
@@ -968,23 +987,21 @@ function upSubmit(){
   $('rWrote').textContent = text ? `Avete risposto «${text.toUpperCase()}»` : 'Nessuna risposta.';
   $('btnAgain').addEventListener('click', newGame);
   $('btnMenu').addEventListener('click', () => show('home'));
-  const won = F.won; F.won = null;
-  const L = chars(F.g.a).length;
-  F.reveal = 2;
-  renderFinalBoard(false);
+  renderInfo();
+  const order = hiddenIdx();
   setTimeout(function rev(){
     if (F.stage !== 'result') return;
-    if (F.reveal < L){ F.reveal++; Sound.letter(); renderFinalBoard(false); return setTimeout(rev, 300); }
+    if (order.length){ F.pop = order.shift(); F.shown.add(F.pop); Sound.letter(); renderFinalBoard(true); return setTimeout(rev, 300); }
     F.won = won;
     const terzoWasHidden = !F.terzo;
     F.terzo = true;
-    renderFinalBoard(terzoWasHidden);
+    renderFinalBoard(terzoWasHidden ? 'terzo' : false);
     const h = $('rTitle'), sub = $('rSub');
     const link = `${F.g.c[F.g.c.length - 1]} · ${F.g.a} · ${F.g.t}`;
     if (won){ h.className = 'win'; h.textContent = `Avete vinto ${euro(wonPot)}!`; sub.textContent = `Complimenti ${S.teams[F.team].name}! ${link}`; Sound.win(); confetti(); vibrate([60, 60, 60, 60, 200]); }
-    else { h.className = ''; h.textContent = 'Peccato!'; sub.textContent = `Era «${F.g.a}» (${link}). I ${euro(wonPot)} restano in banca.`; Sound.lose(); }
+    else { h.className = ''; h.textContent = 'Peccato!'; sub.textContent = `Era «${F.g.a}» (${link}). Il montepremi resta in banca.`; Sound.lose(); }
     $('rActions').hidden = false;
-  }, 1200);
+  }, 900);
 }
 function confetti(){
   const colors = ['var(--gold)', 'var(--a)', 'var(--b)', 'var(--ok)', 'var(--ink)'];
